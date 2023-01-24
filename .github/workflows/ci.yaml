@@ -19,6 +19,8 @@ jobs:
         with:
           path: lib
           key: ${{ runner.os }}-lib
+      - name: Install dependencies
+        run: npm i
       - name: Run tests
         run: npm run test
       - name: Run linter
