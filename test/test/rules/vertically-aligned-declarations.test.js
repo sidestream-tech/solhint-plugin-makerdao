@@ -24,4 +24,15 @@ describe('Linter - vertically aligned comments', () => {
         });
         assertNoErrors(report);
     });
+    it('should not report vertically aligned comments among multiple blocks', () => {
+        const processedStr = contractWith(require('../fixtures/declarations/unalignedDeclarationsMultipleBlocks'));
+        const report = linter.processStr(processedStr, {
+            plugins: ['makerdao'],
+            rules: {
+                'makerdao/vertically-aligned-declarations': 'error',
+            },
+        });
+        assertErrorCount(report, 2);
+        assertErrorMessage(report, 'State variable declarations should be aligned');
+    });
 });
