@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "test"
+    "test": "jest -i"
   },
   "author": "",
   "license": "ISC",
