@@ -3,9 +3,12 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "lint": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --max-warnings=0"
-  },
+  "keywords": [
+    "solhint",
+    "makerdao",
+    "plugin",
+    "solidity"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
