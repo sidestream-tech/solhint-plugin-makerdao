@@ -1,9 +1,9 @@
 {
   "extends": "solhint:default",
-  "plugins": ["maker"],
+  "plugins": ["makerdao"],
   "rules": {
-      "maker/vertically-aligned-comments": "error",
-      "maker/vertically-aligned-declarations": "error"
+      "makerdao/vertically-aligned-comments": "error",
+      "makerdao/vertically-aligned-declarations": "error"
   }
 }
 
