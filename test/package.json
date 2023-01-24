@@ -1,0 +1,19 @@
+{
+  "name": "solhint-plugin-maker-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.3.1",
+    "solhint": "^3.3.8",
+    "solhint-plugin-maker": "file:../"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "solhint:default",
+  "plugins": ["maker"],
+  "rules": {
+      "maker/vertically-aligned-comments": "error",
+      "maker/vertically-aligned-declarations": "error"
+  }
+}
+
