@@ -3,19 +3,18 @@ contract C {
     uint256 a; // comments
     uint256 b; // comments
 };
-`
+`;
 const badCode = `
 contract C {
     uint256 abc; // comments
     uint256 pi; // comments
 };
-`
+`;
 const meta = {
     type: 'miscellaneous',
 
     docs: {
-        description:
-            'Check that comments of the block start on the same column.',
+        description: 'Check that comments of the block start on the same column.',
         category: 'Miscellaneous',
         examples: {
             good: [

@@ -3,13 +3,13 @@ contract C {
     uint256 public a;
     uint256 public b;
 };
-`
+`;
 const badCode = `
 contract C {
     uint256 public a;
     uint public b;
 };
-`
+`;
 
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 
@@ -17,8 +17,7 @@ const meta = {
     type: 'miscellaneous',
 
     docs: {
-        description:
-            'Check that declarations of contract variables have their names aligned vertically.',
+        description: 'Check that declarations of contract variables have their names aligned vertically.',
         category: 'Miscellaneous',
         examples: {
             good: [
