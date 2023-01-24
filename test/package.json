@@ -14,6 +14,6 @@
   "devDependencies": {
     "jest": "^29.3.1",
     "solhint": "^3.3.8",
-    "solhint-plugin-maker": "file:../"
+    "solhint-plugin-makerdao": "file:.."
   }
 }

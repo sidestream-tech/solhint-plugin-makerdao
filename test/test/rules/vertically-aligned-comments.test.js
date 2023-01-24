@@ -5,9 +5,9 @@ const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhin
 describe('Linter - vertically aligned comments', () => {
     it('should report vertically unaligned comments', () => {
         const report = linter.processStr(contractWith(require('../fixtures/comments/unalignedComments')), {
-            plugins: ['maker'],
+            plugins: ['makerdao'],
             rules: {
-                'maker/vertically-aligned-comments': 'error',
+                'makerdao/vertically-aligned-comments': 'error',
             },
         });
         assertErrorCount(report, 1);
@@ -15,9 +15,9 @@ describe('Linter - vertically aligned comments', () => {
     });
     it('should report vertically unaligned comments within multiple blocks', () => {
         const report = linter.processStr(contractWith(require('../fixtures/comments/unalignedCommentsMultiBlock')), {
-            plugins: ['maker'],
+            plugins: ['makerdao'],
             rules: {
-                'maker/vertically-aligned-comments': 'error',
+                'makerdao/vertically-aligned-comments': 'error',
             },
         });
         assertErrorCount(report, 2);
@@ -26,9 +26,9 @@ describe('Linter - vertically aligned comments', () => {
     it('should not report vertically aligned comments', () => {
         const processedStr = contractWith(require('../fixtures/comments/alignedComments'));
         const report = linter.processStr(processedStr, {
-            plugins: ['maker'],
+            plugins: ['makerdao'],
             rules: {
-                'maker/vertically-aligned-comments': 'error',
+                'makerdao/vertically-aligned-comments': 'error',
             },
         });
         assertNoErrors(report);
@@ -36,9 +36,9 @@ describe('Linter - vertically aligned comments', () => {
     it('should not report multiple blocks of vertically aligned comments', () => {
         const processedStr = contractWith(require('../fixtures/comments/alignedCommentsMultiBlock'));
         const report = linter.processStr(processedStr, {
-            plugins: ['maker'],
+            plugins: ['makerdao'],
             rules: {
-                'maker/vertically-aligned-comments': 'error',
+                'makerdao/vertically-aligned-comments': 'error',
             },
         });
         assertNoErrors(report);

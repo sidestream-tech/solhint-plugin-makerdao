@@ -28,6 +28,9 @@ class VerticallyAlignedDeclarations {
                 previousLine = null;
             }
         }
+        if (stateVariableDeclarationBlock.length) {
+            stateVariableDeclarationBlocks.push(stateVariableDeclarationBlock);
+        }
         for (const block of stateVariableDeclarationBlocks) {
             const alignments = block.map(node => node.variables[0].identifier.loc.start.column);
             const maxAlignment = Math.max(...alignments);
