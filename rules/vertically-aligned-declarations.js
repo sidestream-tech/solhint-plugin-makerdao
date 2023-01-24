@@ -12,7 +12,7 @@ class VerticallyAlignedDeclarations {
         const stateVariableDeclarationBlocks = [];
         let stateVariableDeclarationBlock = [];
         let previousLine = null;
-        for (let subNode of ctx.subNodes) {
+        for (const subNode of ctx.subNodes) {
             if (
                 subNode.type === 'StateVariableDeclaration' &&
                 !subNode.initialValue &&
@@ -28,7 +28,7 @@ class VerticallyAlignedDeclarations {
                 previousLine = null;
             }
         }
-        for (let block of stateVariableDeclarationBlocks) {
+        for (const block of stateVariableDeclarationBlocks) {
             const alignments = block.map(node => node.variables[0].identifier.loc.start.column);
             const maxAlignment = Math.max(...alignments);
             alignments.forEach((alignment, idx) => {
