@@ -4,5 +4,8 @@
   "description": "",
   "main": "index.js",
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.8.3"
+  }
 }

@@ -8,5 +8,5 @@ module.exports = multiLine(
     '        uint d;    // aligned',
     '',
     'uint256 e; // unaligned',
-    'uint f; // unaligned',
-)
+    'uint f; // unaligned'
+);

@@ -8,5 +8,5 @@ module.exports = multiLine(
     '        uint d;    // this is another comment',
     '',
     '        uint256 e; // this is a comment',
-    '        uint f;    // this is another comment',
-)
+    '        uint f;    // this is another comment'
+);
