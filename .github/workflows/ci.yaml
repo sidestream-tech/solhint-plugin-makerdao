@@ -21,7 +21,11 @@ jobs:
           key: ${{ runner.os }}-lib
       - name: Install dependencies
         run: npm i
-      - name: Run tests
-        run: npm run test
       - name: Run linter
         run: npm run lint
+      - name: Enter test dir
+        run: cd test
+      - name: Install dependencies
+        run: npm i
+      - name: Run tests
+        run: npm run test
