@@ -1,3 +1,45 @@
+const goodCode = `
+contract C {
+    uint256 a; // comments
+    uint256 b; // comments
+};
+`
+const badCode = `
+contract C {
+    uint256 abc; // comments
+    uint256 pi; // comments
+};
+`
+const meta = {
+    type: 'miscellaneous',
+
+    docs: {
+        description:
+            'Check that comments of the block start on the same column.',
+        category: 'Miscellaneous',
+        examples: {
+            good: [
+                {
+                    description: 'All comments start on the same column',
+                    code: goodCode,
+                },
+            ],
+            bad: [
+                {
+                    description: 'Not all comments start on the same column',
+                    code: badCode,
+                },
+            ],
+        },
+    },
+
+    isDefault: false,
+    recommended: false,
+    defaultSetup: 'warn',
+
+    schema: null,
+};
+
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 const commentPattern = /.*\/\/.*/;
 
@@ -39,6 +81,7 @@ class VerticallyAlignedComments {
         this.config = config;
         this.inputSrc = inputSrc;
         this.fileName = fileName;
+        this.meta = meta;
     }
     SourceUnit(ctx) {
         const lines = this.inputSrc.split(lineBreakPattern);
