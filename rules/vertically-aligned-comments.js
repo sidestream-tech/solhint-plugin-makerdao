@@ -45,7 +45,7 @@ class VerticallyAlignedComments {
         const comments = lines.map((line, index) => ({ line, index })).filter(({ line }) => commentPattern.test(line));
         const commentGroupStartIndices = getCommentGroupStartIndices(comments);
         const reportedErrors = validateVerticalAlignment(commentGroupStartIndices, comments, ctx);
-        reportedErrors.forEach((updatedContext) => {
+        reportedErrors.forEach(updatedContext => {
             this.reporter.error(updatedContext, this.ruleId, 'Comments should be vertically aligned.');
         });
     }
