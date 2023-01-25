@@ -2,8 +2,8 @@ const linter = require('solhint');
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 
-describe('Linter - vertically aligned comments', () => {
-    it('should report vertically unaligned comments', () => {
+describe('Linter - vertically aligned declarations', () => {
+    it('should report vertically unaligned declarations', () => {
         const processedStr = contractWith(require('../fixtures/declarations/unalignedDeclarations'));
         const report = linter.processStr(processedStr, {
             plugins: ['makerdao'],
@@ -14,7 +14,7 @@ describe('Linter - vertically aligned comments', () => {
         assertErrorCount(report, 1);
         assertErrorMessage(report, 'State variable declarations should be aligned');
     });
-    it('should not report vertically aligned comments', () => {
+    it('should not report vertically aligned declarations', () => {
         const processedStr = contractWith(require('../fixtures/declarations/alignedDeclarations'));
         const report = linter.processStr(processedStr, {
             plugins: ['makerdao'],
@@ -24,7 +24,7 @@ describe('Linter - vertically aligned comments', () => {
         });
         assertNoErrors(report);
     });
-    it('should not report vertically aligned comments among multiple blocks', () => {
+    it('should not report vertically aligned declarations among multiple blocks', () => {
         const processedStr = contractWith(require('../fixtures/declarations/unalignedDeclarationsMultipleBlocks'));
         const report = linter.processStr(processedStr, {
             plugins: ['makerdao'],

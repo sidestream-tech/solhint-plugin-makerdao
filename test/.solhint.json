@@ -3,7 +3,8 @@
   "plugins": ["makerdao"],
   "rules": {
       "makerdao/vertically-aligned-comments": "error",
-      "makerdao/vertically-aligned-declarations": "error"
+      "makerdao/vertically-aligned-declarations": "error",
+      "makerdao/vertically-aligned-state-var-visibility": "error"
   }
 }
 
