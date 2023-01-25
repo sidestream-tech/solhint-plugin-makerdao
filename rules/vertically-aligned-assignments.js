@@ -44,10 +44,6 @@ const meta = {
     schema: null,
 };
 
-function isDeclarationFirstInBlock(startLineNum, previousLineNumOrNull) {
-    return startLineNum === previousLineNumOrNull + 1 || previousLineNumOrNull === null;
-}
-
 function validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks, ctx) {
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
