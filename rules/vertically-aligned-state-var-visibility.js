@@ -104,8 +104,9 @@ function getVariableVisibilityModifierColumnsPerBlock(visibilityModifierLocation
         const { visibilityModifier, lines } = modifier;
         const [startLine, endLine] = lines;
         const linesOfCode = inputSrc.split(lineBreakPattern).slice(startLine - 1, endLine);
-        const columnLocationsOfModifier = linesOfCode
-            .map(line => getIndexOfVisibilityModifier(line, visibilityModifier))
+        const columnLocationsOfModifier = linesOfCode.map(line =>
+            getIndexOfVisibilityModifier(line, visibilityModifier)
+        );
 
         return columnLocationsOfModifier.find(column => column !== null);
     });
