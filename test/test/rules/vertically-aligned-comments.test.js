@@ -4,7 +4,7 @@ const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhin
 
 describe('Linter - vertically aligned comments', () => {
     it('should report vertically unaligned comments', () => {
-        const report = linter.processStr(contractWith(require('../fixtures/comments/unalignedComments')), {
+        const report = linter.processStr(contractWith(require('../fixtures/comments/incorrect/unalignedComments')), {
             plugins: ['makerdao'],
             rules: {
                 'makerdao/vertically-aligned-comments': 'error',
@@ -14,17 +14,20 @@ describe('Linter - vertically aligned comments', () => {
         assertErrorMessage(report, 'Comments should be vertically aligned.');
     });
     it('should report vertically unaligned comments within multiple blocks', () => {
-        const report = linter.processStr(contractWith(require('../fixtures/comments/unalignedCommentsMultiBlock')), {
-            plugins: ['makerdao'],
-            rules: {
-                'makerdao/vertically-aligned-comments': 'error',
-            },
-        });
+        const report = linter.processStr(
+            contractWith(require('../fixtures/comments/incorrect/unalignedCommentsMultiBlock')),
+            {
+                plugins: ['makerdao'],
+                rules: {
+                    'makerdao/vertically-aligned-comments': 'error',
+                },
+            }
+        );
         assertErrorCount(report, 2);
         assertErrorMessage(report, 'Comments should be vertically aligned.');
     });
     it('should not report vertically aligned comments', () => {
-        const processedStr = contractWith(require('../fixtures/comments/alignedComments'));
+        const processedStr = contractWith(require('../fixtures/comments/correct/alignedComments'));
         const report = linter.processStr(processedStr, {
             plugins: ['makerdao'],
             rules: {
@@ -34,7 +37,7 @@ describe('Linter - vertically aligned comments', () => {
         assertNoErrors(report);
     });
     it('should not report multiple blocks of vertically aligned comments', () => {
-        const processedStr = contractWith(require('../fixtures/comments/alignedCommentsMultiBlock'));
+        const processedStr = contractWith(require('../fixtures/comments/correct/alignedCommentsMultiBlock'));
         const report = linter.processStr(processedStr, {
             plugins: ['makerdao'],
             rules: {
