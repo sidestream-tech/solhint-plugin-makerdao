@@ -1,7 +1,7 @@
 const noNewlinesBetweenSignatures = `
 function a() public;
 function b() public;
-`
+`;
 
 const newlinesBetweenFunctions = `
 function a() public {
@@ -11,6 +11,6 @@ function a() public {
 function b() public {
     return 1;
 }
-`
+`;
 
-module.exports = {noNewlinesBetweenSignatures, newlinesBetweenFunctions};
+module.exports = { noNewlinesBetweenSignatures, newlinesBetweenFunctions };

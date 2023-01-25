@@ -3,7 +3,10 @@ const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 
 const functionSignatureNewLines = require('../fixtures/functionSignatureNewLines/incorrect');
-const {noNewlinesBetweenSignatures, newlinesBetweenFunctions} = require('../fixtures/functionSignatureNewLines/correct');
+const {
+    noNewlinesBetweenSignatures,
+    newlinesBetweenFunctions,
+} = require('../fixtures/functionSignatureNewLines/correct');
 describe('Linter - newlines between function signatures', () => {
     it('should report signatures with newlines in between', () => {
         const report = linter.processStr(contractWith(functionSignatureNewLines), {

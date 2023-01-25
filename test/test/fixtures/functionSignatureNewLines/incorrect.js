@@ -6,6 +6,6 @@ function c() public;
 function d() {
     return 1;
 }
-`
+`;
 
 module.exports = newlinesBetweenSignatures;
