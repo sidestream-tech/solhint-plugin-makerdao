@@ -7,7 +7,7 @@ contract C {
 const badCode = `
 contract C {
     uint256 public a;
-    uint public b;
+    uint public    b;
 };
 `;
 
