@@ -4,4 +4,4 @@ module.exports = `
     uint256
             public c;
     uint    public d;
-`
+`;

@@ -7,4 +7,4 @@ module.exports = `
     function ff() {}
     uint256 e;
     uint   f;
-`
+`;
