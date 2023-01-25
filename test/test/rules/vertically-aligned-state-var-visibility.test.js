@@ -2,9 +2,15 @@ const linter = require('solhint');
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 
+const {
+    alignedMultiLineDeclarationsMultiple,
+    alignedVisivilityModifiers,
+} = require('../fixtures/declarations/correct');
+const { unalignedVisibilityModifiers } = require('../fixtures/declarations/incorrect');
+
 describe('Linter - vertically aligned visibility modifiers', () => {
     it('should report vertically unaligned visibility modifiers', () => {
-        const processedStr = contractWith(require('../fixtures/declarations/unalignedVisibilityModifiers'));
+        const processedStr = contractWith(unalignedVisibilityModifiers);
         const report = linter.processStr(processedStr, {
             plugins: ['makerdao'],
             rules: {
@@ -15,7 +21,7 @@ describe('Linter - vertically aligned visibility modifiers', () => {
         assertErrorMessage(report, 'State variable visibility modifiers should be aligned');
     });
     it('should not report vertically aligned visibility modifiers', () => {
-        const processedStr = contractWith(require('../fixtures/declarations/alignedVisivilityModifiers'));
+        const processedStr = contractWith(alignedVisivilityModifiers);
         const report = linter.processStr(processedStr, {
             plugins: ['makerdao'],
             rules: {
@@ -25,7 +31,7 @@ describe('Linter - vertically aligned visibility modifiers', () => {
         assertNoErrors(report);
     });
     it('should not report vertically aligned visibility modifiers for multilines', () => {
-        const processedStr = contractWith(require('../fixtures/declarations/alignedMultiLineDeclarationsMultiple'));
+        const processedStr = contractWith(alignedMultiLineDeclarationsMultiple);
         const report = linter.processStr(processedStr, {
             plugins: ['makerdao'],
             rules: {
