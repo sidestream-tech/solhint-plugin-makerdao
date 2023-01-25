@@ -1,6 +1,6 @@
 const alignedDeclarations = `
     uint256 a;
-    uint    b;
+    uint    b = 23;
 `;
 
 const alignedMultiLineDeclarationsMultiple = `

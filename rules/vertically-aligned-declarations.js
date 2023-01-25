@@ -53,7 +53,6 @@ function getStateVariableDeclarationBlocks(ctx) {
     for (const subNode of ctx.subNodes) {
         if (
             subNode.type === 'StateVariableDeclaration' &&
-            !subNode.initialValue &&
             isDeclarationFirstInBlock(subNode.loc.start.line, previousLine)
         ) {
             stateVariableDeclarationBlock.push(subNode);
