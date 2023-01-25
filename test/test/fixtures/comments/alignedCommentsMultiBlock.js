@@ -1,12 +1,10 @@
-const { multiLine } = require('solhint/test/common/contract-builder');
+module.exports = `
+    uint256 a; // this is a comment
+    uint b;    // this is another comment
 
-module.exports = multiLine(
-    'uint256 a; // this is a comment',
-    '        uint b;    // this is another comment',
-    '',
-    '        uint256 c; // this is a comment',
-    '        uint d;    // this is another comment',
-    '',
-    '        uint256 e; // this is a comment',
-    '        uint f;    // this is another comment'
-);
+    uint256 c; // this is a comment
+    uint d;    // this is another comment
+
+    uint256 e; // this is a comment
+    uint f;    // this is another comment
+`
