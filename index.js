@@ -6,6 +6,9 @@ const { NoNewlinesBetweenFunctionSignatures } = require('./rules/no-newlines-bet
 const { UnderscoredConstructorArguments } = require('./rules/constructor-arguments-unserscored');
 const { PreferTypeProvidedMax } = require('./rules/prefer-type-provided-max');
 const { CapitalizedSnakeOnlyForConst } = require('./rules/capitalized-snake-only-for-const');
+const {
+    NewlinesBetweenCustomAndNativeDeclarations,
+} = require('./rules/newlines-between-custom-and-native-declarations');
 
 module.exports = [
     VerticallyAlignedComments,
@@ -16,4 +19,5 @@ module.exports = [
     UnderscoredConstructorArguments,
     PreferTypeProvidedMax,
     CapitalizedSnakeOnlyForConst,
+    NewlinesBetweenCustomAndNativeDeclarations,
 ];

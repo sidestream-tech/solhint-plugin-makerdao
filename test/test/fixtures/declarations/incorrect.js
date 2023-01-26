@@ -24,9 +24,20 @@ const unalignedVisibilityModifiers = `
     uint   public b;
 `;
 
+const missingNewlinesBetweenCustomAndNativeDeclarations = `
+    interface customInterface {
+        function f() external;
+    }
+    contract C {
+        uint256 public a;
+        cutomInterface public item;
+    }
+`;
+
 module.exports = {
     unalignedDeclarations,
     unalignedDeclarationsMultipleBlocks,
     unalignedMultiLineVisibilityModifiers,
     unalignedVisibilityModifiers,
+    missingNewlinesBetweenCustomAndNativeDeclarations,
 };

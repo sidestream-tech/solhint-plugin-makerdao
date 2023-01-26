@@ -16,4 +16,15 @@ const alignedVisivilityModifiers = `
     uint    public b;
 `;
 
-module.exports = { alignedDeclarations, alignedMultiLineDeclarationsMultiple, alignedVisivilityModifiers };
+const newlinesBetweenCustomAndNativeDeclarations = `
+    uint256 public a;
+
+    cutomInterface public item;
+`;
+
+module.exports = {
+    alignedDeclarations,
+    alignedMultiLineDeclarationsMultiple,
+    alignedVisivilityModifiers,
+    newlinesBetweenCustomAndNativeDeclarations,
+};
