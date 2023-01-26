@@ -4,6 +4,7 @@ const { VerticallyAlignedVisibilityModifiers } = require('./rules/vertically-ali
 const { VerticallyAlignedAssignments } = require('./rules/vertically-aligned-assignments');
 const { NoNewlinesBetweenFunctionSignatures } = require('./rules/no-newlines-between-function-signatures');
 const { UnderscoredConstructorArguments } = require('./rules/constructor-arguments-unserscored');
+const { PreferTypeProvidedMax } = require('./rules/prefer-type-provided-max');
 
 module.exports = [
     VerticallyAlignedComments,
@@ -12,4 +13,5 @@ module.exports = [
     VerticallyAlignedAssignments,
     NoNewlinesBetweenFunctionSignatures,
     UnderscoredConstructorArguments,
+    PreferTypeProvidedMax,
 ];
