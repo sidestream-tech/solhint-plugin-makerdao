@@ -5,6 +5,7 @@ const { VerticallyAlignedAssignments } = require('./rules/vertically-aligned-ass
 const { NoNewlinesBetweenFunctionSignatures } = require('./rules/no-newlines-between-function-signatures');
 const { UnderscoredConstructorArguments } = require('./rules/constructor-arguments-unserscored');
 const { PreferTypeProvidedMax } = require('./rules/prefer-type-provided-max');
+const { CapitalizedSnakeOnlyForConst } = require('./rules/capitalized-snake-only-for-const');
 
 module.exports = [
     VerticallyAlignedComments,
@@ -14,4 +15,5 @@ module.exports = [
     NoNewlinesBetweenFunctionSignatures,
     UnderscoredConstructorArguments,
     PreferTypeProvidedMax,
+    CapitalizedSnakeOnlyForConst,
 ];

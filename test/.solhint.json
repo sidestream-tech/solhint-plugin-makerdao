@@ -5,7 +5,8 @@
       "makerdao/vertically-aligned-comments": "error",
       "makerdao/vertically-aligned-declarations": "error",
       "makerdao/vertically-aligned-state-var-visibility": "error",
-      "makerdao/no-newlines-between-function-signatures": "error"
+      "makerdao/no-newlines-between-function-signatures": "error",
+      "makerdao/capitalized-snake-only-for-const": "error"
   }
 }
 
