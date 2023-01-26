@@ -3,6 +3,7 @@ const { VerticallyAlignedDeclarations } = require('./rules/vertically-aligned-de
 const { VerticallyAlignedVisibilityModifiers } = require('./rules/vertically-aligned-state-var-visibility');
 const { VerticallyAlignedAssignments } = require('./rules/vertically-aligned-assignments');
 const { NoNewlinesBetweenFunctionSignatures } = require('./rules/no-newlines-between-function-signatures');
+const { UnderscoredConstructorArguments } = require('./rules/constructor-arguments-unserscored');
 
 module.exports = [
     VerticallyAlignedComments,
@@ -10,4 +11,5 @@ module.exports = [
     VerticallyAlignedVisibilityModifiers,
     VerticallyAlignedAssignments,
     NoNewlinesBetweenFunctionSignatures,
+    UnderscoredConstructorArguments,
 ];
