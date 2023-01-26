@@ -5,9 +5,9 @@ Particularly, it is useful for pull request submission in the corresponding smar
 
 ### Requirements
 
-- [sohint](https://github.com/protofire/solhint) installation.
+- [solhint](https://github.com/protofire/solhint) installation.
 
-### installation
+### Installation
 
 ```bash
 npm install --save-dev solhint-plugin-makerdao
