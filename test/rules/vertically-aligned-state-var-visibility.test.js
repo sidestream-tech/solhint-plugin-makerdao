@@ -5,6 +5,7 @@ const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhin
 const {
     alignedMultiLineDeclarationsMultiple,
     alignedVisivilityModifiers,
+    singleVisivilityModifiers,
 } = require('../fixtures/declarations/correct');
 const { unalignedVisibilityModifiers } = require('../fixtures/declarations/incorrect');
 
@@ -26,6 +27,13 @@ describe('Linter - vertically aligned visibility modifiers', () => {
     });
     it('should not report vertically aligned visibility modifiers for multilines', () => {
         const processedStr = contractWith(alignedMultiLineDeclarationsMultiple);
+        const report = generateReport(processedStr, {
+            'makerdao/vertically-aligned-state-var-visibility': 'error',
+        });
+        assertNoErrors(report);
+    });
+    it('should not report vertically aligned visibility modifiers for single variable', () => {
+        const processedStr = contractWith(singleVisivilityModifiers);
         const report = generateReport(processedStr, {
             'makerdao/vertically-aligned-state-var-visibility': 'error',
         });
