@@ -1,12 +1,13 @@
-### Solhint plugin Makerdao
+# MakerDAO solidity linter
 
-This plugin extends the capabilities of the Solhint linter to include the MakerDAO style guide.
-Particularly, it is useful for pull request submission in the corresponding smart contract repositories.
+This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)) rules and opinionated configuration for the code style enforced by [MakerDAO](https://github.com/makerdao) protocol engineers. Technically, it's a set of [solhint](https://github.com/protofire/solhint) plugins and a configuration file that can be globally installed in your system and executed on demand of as a pre-commit hook.
 
-### Requirements
+### Getting started
 
-- [solhint](https://github.com/protofire/solhint) installation.
-
+- Install [node.js](https://nodejs.org/en/download/package-manager/)
+- Install [solhint](https://github.com/protofire/solhint)
+- ...
+- Profit
 ### Installation
 
 ```bash
