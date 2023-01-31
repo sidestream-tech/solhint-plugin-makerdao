@@ -4,15 +4,16 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 
 ### Getting started
 
-- Install [node.js](https://nodejs.org/en/download/package-manager/)
-- Install [solhint](https://github.com/protofire/solhint)
-- Install [npx](https://www.npmjs.com/package/npx) if you only use local solhint installation
-- Install this plugin
-- Create a `.solhint.json` file in the root of your project and add configuration into it.
-- Run solhint:
-    - if installed globally: `solhint ./path/to/file`
-    - if installed locallly for the project: `npx solhint ./path/to/file`
-    - if you want to only execute the rules from this plugin: `npx solhint -c ./node_modules/solhint-plugin-makerdao/.solhint.json /path/to/file`
+#### Add this linter to existing project
+1. Install [solhint](https://github.com/protofire/solhint) via `npm i solhint --save-dev`
+2. Install this repository via `npm i https://github.com/sidestream-tech/solhint-plugin-makerdao --save-dev`
+3. Create a new `.solhint.json` file in the root of your project and add configuration into it:
+  {
+    "extends": "solhint:default",
+    "plugins": ["makerdao"] 
+  }
+4. Add `lint` script to the `package.json` with `solhint ./**/*.sol`
+5. Run `npm run lint` manually, in CI or [before every commit](https://www.npmjs.com/package/pre-commit)
 
 ### Configuration
 
