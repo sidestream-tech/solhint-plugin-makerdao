@@ -24,20 +24,7 @@ Add the plugin into your `.solhint.json` file:
 }
 ```
 
-Configure the rules. For example
-
-```json
-"rules": {
-  "makerdao/vertically-aligned-comments": "error",
-  "makerdao/vertically-aligned-declarations": "error",
-  "makerdao/vertically-aligned-state-var-visibility": "error",
-  "makerdao/no-newlines-between-function-signatures": "error",
-  "makerdao/capitalized-snake-only-for-const": "error",
-  "makerdao/newlines-between-custom-and-native-declarations": "error",
-  "makerdao/constructor-arguments-unserscored": "error",
-  "makerdao/prefer-type-provided-max": "error"
-}
-```
+Configure the rules. For example [this file](./test/.solhint.json)
 
 ### Rules
 
