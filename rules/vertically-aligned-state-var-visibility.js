@@ -1,4 +1,5 @@
 const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
+const getMaxArrayValueOrNull = require('./utils/getMaxArrayValueOrNull');
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -96,10 +97,10 @@ function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks, ct
     for (const block of stateVariableDeclarationBlocks) {
         const locations = getVariableVisibilityModifierLocations(block);
         const columns = getVariableVisibilityModifierColumnsPerBlock(locations, inputSrc);
-        if (columns.every(column => column === null)) {
+        const maxAlignment = getMaxArrayValueOrNull(columns);
+        if (maxAlignment === null) {
             return [];
-        }
-        const maxAlignment = Math.max(...columns);
+        };
         columns.forEach((col, idx) => {
             if (col !== maxAlignment) {
                 errors.push({ ...ctx, loc: block[idx].loc });
