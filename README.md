@@ -24,7 +24,7 @@ Add the plugin into your `.solhint.json` file:
 }
 ```
 
-Configure the rules. For example [this file](./test/.solhint.json)
+Configure the rules. For example [this file](./.solhint.json)
 
 ### Rules
 
