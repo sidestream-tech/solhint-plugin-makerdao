@@ -6,17 +6,16 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 
 - Install [node.js](https://nodejs.org/en/download/package-manager/)
 - Install [solhint](https://github.com/protofire/solhint)
-- ...
-- Profit
-### Installation
-
-```bash
-npm install --save-dev solhint-plugin-makerdao
-```
+- Install [npx](https://www.npmjs.com/package/npx) if you only use local solhint installation
+- Install this plugin
+- Create a `.solhint.json` file in the root of your project and add configuration into it.
+- Run solhint:
+    - if installed globally: `solhint ./path/to/file`
+    - if installed locallly for the project: `npx solhint ./path/to/file`
 
 ### Configuration
 
-Add the plugin into your `.solhint.json` file:
+1. Add the plugin into your `.solhint.json` file:
 
 ```json
 {
@@ -24,7 +23,7 @@ Add the plugin into your `.solhint.json` file:
 }
 ```
 
-Configure the rules. For example [this file](./.solhint.json)
+2. Configure the rules. For example [this file](./.solhint.json)
 
 ### Rules
 
