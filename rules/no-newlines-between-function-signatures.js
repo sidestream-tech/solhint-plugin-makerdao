@@ -74,12 +74,9 @@ function validateNoNewlines(stateVariableDeclarationBlocks, ctx) {
 }
 
 class NoNewlinesBetweenFunctionSignatures {
-    constructor(reporter, config, inputSrc, fileName) {
+    constructor(reporter) {
         this.ruleId = 'no-newlines-between-function-signatures';
         this.reporter = reporter;
-        this.config = config;
-        this.inputSrc = inputSrc;
-        this.fileName = fileName;
         this.meta = meta;
     }
     ContractDefinition(ctx) {

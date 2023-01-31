@@ -38,12 +38,9 @@ const meta = {
 };
 
 class PreferTypeProvidedMax {
-    constructor(reporter, config, inputSrc, fileName) {
+    constructor(reporter) {
         this.ruleId = 'prefer-type-provided-max';
         this.reporter = reporter;
-        this.config = config;
-        this.inputSrc = inputSrc;
-        this.fileName = fileName;
         this.meta = meta;
     }
     FunctionCall(ctx) {

@@ -57,12 +57,9 @@ function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, c
     return errors;
 }
 class VerticallyAlignedDeclarations {
-    constructor(reporter, config, inputSrc, fileName) {
+    constructor(reporter) {
         this.ruleId = 'vertically-aligned-declarations';
         this.reporter = reporter;
-        this.config = config;
-        this.inputSrc = inputSrc;
-        this.fileName = fileName;
         this.meta = meta;
     }
     ContractDefinition(ctx) {

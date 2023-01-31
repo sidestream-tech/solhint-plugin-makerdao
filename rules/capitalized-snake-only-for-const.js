@@ -48,12 +48,9 @@ function isCapitalSnake(name) {
 }
 
 class CapitalizedSnakeOnlyForConst {
-    constructor(reporter, config, inputSrc, fileName) {
+    constructor(reporter) {
         this.ruleId = 'capitalized-snake-only-for-const';
         this.reporter = reporter;
-        this.config = config;
-        this.inputSrc = inputSrc;
-        this.fileName = fileName;
         this.meta = meta;
     }
     VariableDeclaration(ctx) {

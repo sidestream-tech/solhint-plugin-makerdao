@@ -38,12 +38,9 @@ const meta = {
 };
 
 class UnderscoredConstructorArguments {
-    constructor(reporter, config, inputSrc, fileName) {
+    constructor(reporter) {
         this.ruleId = 'constructor-arguments-unserscored';
         this.reporter = reporter;
-        this.config = config;
-        this.inputSrc = inputSrc;
-        this.fileName = fileName;
         this.meta = meta;
     }
     FunctionDefinition(ctx) {

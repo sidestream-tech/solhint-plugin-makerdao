@@ -99,12 +99,10 @@ function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks, ct
     return errors;
 }
 class VerticallyAlignedVisibilityModifiers {
-    constructor(reporter, config, inputSrc, fileName) {
+    constructor(reporter, _config, inputSrc) {
         this.ruleId = 'vertically-aligned-state-var-visibility';
         this.reporter = reporter;
-        this.config = config;
         this.inputSrc = inputSrc;
-        this.fileName = fileName;
         this.meta = meta;
     }
     ContractDefinition(ctx) {

@@ -58,12 +58,9 @@ function validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks, 
     return errors;
 }
 class VerticallyAlignedAssignments {
-    constructor(reporter, config, inputSrc, fileName) {
+    constructor(reporter) {
         this.ruleId = 'vertically-aligned-assignments';
         this.reporter = reporter;
-        this.config = config;
-        this.inputSrc = inputSrc;
-        this.fileName = fileName;
         this.meta = meta;
     }
     ContractDefinition(ctx) {
