@@ -10,4 +10,4 @@ const prefixedArgs = `
     }
 `;
 
-module.exports = { suffixedArgs, prefixedArgs};
+module.exports = { suffixedArgs, prefixedArgs };
