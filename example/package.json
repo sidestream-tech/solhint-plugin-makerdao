@@ -1,0 +1,12 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "lint": "solhint ./**/*.sol"
+  },
+  "devDependencies": {
+    "solhint": "^3.3.8",
+    "solhint-plugin-makerdao": "file:.."
+  }
+}
