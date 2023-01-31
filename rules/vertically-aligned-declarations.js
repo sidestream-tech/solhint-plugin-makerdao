@@ -1,4 +1,5 @@
 const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
+const getMaxArrayValueOrNull = require('./utils/getMaxArrayValueOrNull');
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -54,7 +55,10 @@ function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, c
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
         const alignments = block.map(node => node.variables[0].identifier.loc.start.column);
-        const maxAlignment = Math.max(...alignments);
+        const maxAlignment = getMaxArrayValueOrNull(alignments);
+        if (maxAlignment === null) {
+            return [];
+        }
         alignments.forEach((alignment, idx) => {
             if (alignment !== maxAlignment) {
                 errors.push({ ...ctx, loc: block[idx].loc });
