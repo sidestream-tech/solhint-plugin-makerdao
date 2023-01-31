@@ -12,7 +12,7 @@ const meta = {
     type: 'miscellaneous',
 
     docs: {
-        description: 'All contract constructor arguments should be suffixed with an underscore.',
+        description: 'All contract constructor arguments should be suffixed or prefixed with an underscore.',
         category: 'Miscellaneous',
         examples: {
             good: [
