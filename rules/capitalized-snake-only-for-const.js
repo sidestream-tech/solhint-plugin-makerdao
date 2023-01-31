@@ -2,12 +2,12 @@ const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDecla
 
 const goodCode = `
 contract C {
-    uint256 constant SNEK_CASE = 33;
+    uint256 constant SNAKE_CASE = 33;
 };
 `;
 const badCode = `
 contract C {
-    uint256 SNEK_CASE = 33;
+    uint256 SNAKE_CASE = 33;
 };
 `;
 
