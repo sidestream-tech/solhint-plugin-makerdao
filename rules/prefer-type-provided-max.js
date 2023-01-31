@@ -48,7 +48,7 @@ const meta = {
 
 class PreferTypeProvidedMax {
     constructor(reporter) {
-        this.ruleId = 'prefer-type-provided-max';
+        this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
         this.ruleActiveAt = '0.7.0';

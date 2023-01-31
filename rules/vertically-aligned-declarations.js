@@ -65,7 +65,7 @@ function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, c
 }
 class VerticallyAlignedDeclarations {
     constructor(reporter) {
-        this.ruleId = 'vertically-aligned-declarations';
+        this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }

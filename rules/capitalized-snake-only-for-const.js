@@ -56,7 +56,7 @@ function isCapitalSnake(name) {
 
 class CapitalizedSnakeOnlyForConst {
     constructor(reporter) {
-        this.ruleId = 'capitalized-snake-only-for-const';
+        this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }

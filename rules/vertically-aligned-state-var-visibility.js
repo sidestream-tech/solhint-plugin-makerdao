@@ -107,7 +107,7 @@ function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks, ct
 }
 class VerticallyAlignedVisibilityModifiers {
     constructor(reporter, _config, inputSrc) {
-        this.ruleId = 'vertically-aligned-state-var-visibility';
+        this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.inputSrc = inputSrc;
         this.meta = meta;

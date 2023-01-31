@@ -46,7 +46,7 @@ const meta = {
 
 class UnderscoredConstructorArguments {
     constructor(reporter) {
-        this.ruleId = 'constructor-arguments-unserscored';
+        this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }

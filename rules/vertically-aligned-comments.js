@@ -82,7 +82,7 @@ function validateVerticalAlignment(commentGroupStartIndices, comments, ctx) {
 
 class VerticallyAlignedComments {
     constructor(reporter, _config, inputSrc) {
-        this.ruleId = 'vertically-aligned-comments';
+        this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.inputSrc = inputSrc;
         this.meta = meta;

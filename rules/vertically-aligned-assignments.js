@@ -66,7 +66,7 @@ function validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks, 
 }
 class VerticallyAlignedAssignments {
     constructor(reporter) {
-        this.ruleId = 'vertically-aligned-assignments';
+        this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }

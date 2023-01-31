@@ -69,7 +69,7 @@ function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, c
 }
 class NewlinesBetweenCustomAndNativeDeclarations {
     constructor(reporter) {
-        this.ruleId = 'newlines-between-custom-and-native-declarations';
+        this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }
