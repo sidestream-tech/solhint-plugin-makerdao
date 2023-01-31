@@ -4,4 +4,10 @@ const suffixedArgs = `
     }
 `;
 
-module.exports = { suffixedArgs };
+const prefixedArgs = `
+    constructor(uint _a) {
+        this.a = _a;
+    }
+`;
+
+module.exports = { suffixedArgs, prefixedArgs};
