@@ -1,4 +1,4 @@
-const linter = require('solhint');
+const generateReport = require('../helpers/generateReport');
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 
@@ -8,33 +8,24 @@ const { unalignedAssignments, multipleBlocksUnalignedAssignments } = require('..
 describe('Linter - vertically aligned assignments', () => {
     it('should report vertically unaligned assignments', () => {
         const processedStr = contractWith(unalignedAssignments);
-        const report = linter.processStr(processedStr, {
-            plugins: ['makerdao'],
-            rules: {
-                'makerdao/vertically-aligned-assignments': 'error',
-            },
+        const report = generateReport(processedStr, {
+            'makerdao/vertically-aligned-assignments': 'error',
         });
         assertErrorCount(report, 1);
         assertErrorMessage(report, 'State variable assignments should be aligned');
     });
     it('should report vertically unaligned assignments in multiple blocks', () => {
         const processedStr = contractWith(multipleBlocksUnalignedAssignments);
-        const report = linter.processStr(processedStr, {
-            plugins: ['makerdao'],
-            rules: {
-                'makerdao/vertically-aligned-assignments': 'error',
-            },
+        const report = generateReport(processedStr, {
+            'makerdao/vertically-aligned-assignments': 'error',
         });
         assertErrorCount(report, 1);
         assertErrorMessage(report, 'State variable assignments should be aligned');
     });
     it('should not report vertically aligned assignments', () => {
         const processedStr = contractWith(alignedAssignments);
-        const report = linter.processStr(processedStr, {
-            plugins: ['makerdao'],
-            rules: {
-                'makerdao/vertically-aligned-assignments': 'error',
-            },
+        const report = generateReport(processedStr, {
+            'makerdao/vertically-aligned-assignments': 'error',
         });
         assertNoErrors(report);
     });
