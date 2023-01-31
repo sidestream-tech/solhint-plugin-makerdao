@@ -12,6 +12,7 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 - Run solhint:
     - if installed globally: `solhint ./path/to/file`
     - if installed locallly for the project: `npx solhint ./path/to/file`
+    - if you want to only execute the rules from this plugin: `npx solhint -c ./node_modules/solhint-plugin-makerdao/.solhint.json /path/to/file`
 
 ### Configuration
 
