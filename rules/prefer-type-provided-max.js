@@ -1,9 +1,13 @@
+const semver = require('semver');
+
 const goodCode = `
+pragma solidity ^0.7.0;
 contract C {
     uint256 a = type(uint256).max;
 };
 `;
 const badCode = `
+pragma solidity ^0.7.0;
 contract C {
     uint256 a = uint256(-1);
 };
@@ -42,8 +46,18 @@ class PreferTypeProvidedMax {
         this.ruleId = 'prefer-type-provided-max';
         this.reporter = reporter;
         this.meta = meta;
+        this.ruleActiveAt = '0.7.0';
+        this.ruleActive = false;
+    }
+    PragmaDirective(node) {
+        if (node.name === 'solidity' && semver.satisfies(semver.minVersion(node.value), this.ruleActiveAt)) {
+            this.ruleActive = true;
+        }
     }
     FunctionCall(ctx) {
+        if (!this.ruleActive) {
+            return;
+        }
         if (!ctx.expression || ctx.expression.type !== 'ElementaryTypeName') {
             return;
         }

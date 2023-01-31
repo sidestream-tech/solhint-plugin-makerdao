@@ -7,7 +7,10 @@ const { conversionProvidedMax } = require('../fixtures/maxValue/incorrect');
 
 describe('Linter - max value assignments', () => {
     it('should report type conversion max values', () => {
-        const processedStr = contractWith(conversionProvidedMax);
+        const processedStr = `
+            pragma solidity ^0.7.0;
+            ${contractWith(conversionProvidedMax)}
+        `;
         const report = generateReport(processedStr, {
             'makerdao/prefer-type-provided-max': 'error',
         });
@@ -15,7 +18,10 @@ describe('Linter - max value assignments', () => {
         assertErrorMessage(report, 'Use type(uint256).max instead of uint256(-1)');
     });
     it('should not report type provided max values', () => {
-        const processedStr = contractWith(typeProvidedMax);
+        const processedStr = `
+            pragma solidity ^0.7.0;
+            ${contractWith(typeProvidedMax)}
+        `;
         const report = generateReport(processedStr, {
             'makerdao/prefer-type-provided-max': 'error',
         });
