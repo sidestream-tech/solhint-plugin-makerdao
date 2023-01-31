@@ -100,7 +100,7 @@ function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks, ct
         const maxAlignment = getMaxArrayValueOrNull(columns);
         if (maxAlignment === null) {
             return [];
-        };
+        }
         columns.forEach((col, idx) => {
             if (col !== maxAlignment) {
                 errors.push({ ...ctx, loc: block[idx].loc });
