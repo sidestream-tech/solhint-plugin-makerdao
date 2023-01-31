@@ -2,17 +2,22 @@ const semver = require('semver');
 
 const goodCode = `
 pragma solidity ^0.7.0;
+
+
 contract C {
     uint256 a = type(uint256).max;
-};
+}
 `;
 const badCode = `
 pragma solidity ^0.7.0;
+
+
 contract C {
     uint256 a = uint256(-1);
-};
+}
 `;
 const meta = {
+    ruleId: 'prefer-type-provided-max',
     type: 'miscellaneous',
 
     docs: {
@@ -72,4 +77,4 @@ class PreferTypeProvidedMax {
     }
 }
 
-module.exports = { PreferTypeProvidedMax };
+module.exports = { PreferTypeProvidedMax, meta };

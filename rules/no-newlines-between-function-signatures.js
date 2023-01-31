@@ -1,17 +1,24 @@
 const goodCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     function a() public;
     function b() public;
-};
+}
 `;
 const badCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     function a() public;
 
     function b() public;
-};
+}
 `;
 const meta = {
+    ruleId: 'no-newlines-between-function-signatures',
     type: 'miscellaneous',
 
     docs: {
@@ -88,4 +95,4 @@ class NoNewlinesBetweenFunctionSignatures {
     }
 }
 
-module.exports = { NoNewlinesBetweenFunctionSignatures };
+module.exports = { NoNewlinesBetweenFunctionSignatures, meta };

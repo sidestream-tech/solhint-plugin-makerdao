@@ -1,14 +1,21 @@
 const goodCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     constructor(uint a_);
-};
+}
 `;
 const badCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     constructor(uint a);
-};
+}
 `;
 const meta = {
+    ruleId: 'constructor-arguments-unserscored',
     type: 'miscellaneous',
 
     docs: {
@@ -55,4 +62,4 @@ class UnderscoredConstructorArguments {
     }
 }
 
-module.exports = { UnderscoredConstructorArguments };
+module.exports = { UnderscoredConstructorArguments, meta };

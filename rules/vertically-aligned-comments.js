@@ -1,16 +1,23 @@
 const goodCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     uint256 a; // comments
     uint256 b; // comments
-};
+}
 `;
 const badCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     uint256 abc; // comments
     uint256 pi; // comments
-};
+}
 `;
 const meta = {
+    ruleId: 'vertically-aligned-comments',
     type: 'miscellaneous',
 
     docs: {
@@ -91,4 +98,4 @@ class VerticallyAlignedComments {
     }
 }
 
-module.exports = { VerticallyAlignedComments };
+module.exports = { VerticallyAlignedComments, meta };

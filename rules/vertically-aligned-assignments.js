@@ -1,21 +1,28 @@
 const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
 
 const goodCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     uint256 public a = 33;
     uint256 public b = 1337;
-};
+}
 `;
 const badCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     uint256 public a = 12;
     uint    public b =  12;
-};
+}
 `;
 
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 
 const meta = {
+    ruleId: 'vertically-aligned-assignments',
     type: 'miscellaneous',
 
     docs: {
@@ -72,4 +79,4 @@ class VerticallyAlignedAssignments {
     }
 }
 
-module.exports = { VerticallyAlignedAssignments };
+module.exports = { VerticallyAlignedAssignments, meta };

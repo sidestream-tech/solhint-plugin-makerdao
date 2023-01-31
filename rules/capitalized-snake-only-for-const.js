@@ -1,19 +1,26 @@
 const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
 
 const goodCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     uint256 constant SNAKE_CASE = 33;
-};
+}
 `;
 const badCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     uint256 SNAKE_CASE = 33;
-};
+}
 `;
 
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 
 const meta = {
+    ruleId: 'capitalized-snake-only-for-const',
     type: 'miscellaneous',
 
     docs: {
@@ -63,4 +70,4 @@ class CapitalizedSnakeOnlyForConst {
     }
 }
 
-module.exports = { CapitalizedSnakeOnlyForConst };
+module.exports = { CapitalizedSnakeOnlyForConst, meta };

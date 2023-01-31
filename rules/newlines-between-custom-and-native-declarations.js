@@ -1,23 +1,29 @@
 const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
 const goodCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     uint256 public a;
-    uint256 public b;
 
-    MyInterface public interface;
-};
+    cutomInterface public item;
+}
 `;
 const badCode = `
+pragma solidity 0.4.4;
+
+
 contract C {
     uint256 public a;
     uint public b;
     MyInterface public interface;
-};
+}
 `;
 
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 
 const meta = {
+    ruleId: 'newlines-between-custom-and-native-declarations',
     type: 'miscellaneous',
 
     docs: {
@@ -76,4 +82,4 @@ class NewlinesBetweenCustomAndNativeDeclarations {
     }
 }
 
-module.exports = { NewlinesBetweenCustomAndNativeDeclarations };
+module.exports = { NewlinesBetweenCustomAndNativeDeclarations, meta };
