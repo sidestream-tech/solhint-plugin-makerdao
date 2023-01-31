@@ -27,4 +27,14 @@ describe('Linter - max value assignments', () => {
         });
         assertNoErrors(report);
     });
+    it('should not report type provided max values for solidity below 0.7', () => {
+        const processedStr = `
+            pragma solidity ^0.6.12;
+            ${contractWith(conversionProvidedMax)}
+        `;
+        const report = generateReport(processedStr, {
+            'makerdao/prefer-type-provided-max': 'error',
+        });
+        assertNoErrors(report);
+    });
 });
