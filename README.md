@@ -23,15 +23,7 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 
 ### Configuration
 
-1. Add the plugin into your `.solhint.json` file:
-
-```json
-{
-    "plugins": ["makerdao"]
-}
-```
-
-2. Configure the rules. For example [this file](./.solhint.json)
+1. Add the plugin into your `.solhint.json` file according to the [documentation](https://github.com/protofire/solhint#configuration). You can see the example of configuration in [this file](./.solhint.json)
 
 ### Rules
 
