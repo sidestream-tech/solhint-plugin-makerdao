@@ -6,6 +6,7 @@
     "lint": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --max-warnings=0",
     "test": "jest -i ./test"
   },
+  "bin": "bin/lint.js",
   "main": "index.js",
   "keywords": [
     "solhint",
