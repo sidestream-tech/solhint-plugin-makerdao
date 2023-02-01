@@ -19,7 +19,7 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 
 1. Install [solhint](https://github.com/protofire/solhint) globaly via `npm i solhint -g`
 2. Install this repository via `npm i -g https://github.com/sidestream-tech/solhint-plugin-makerdao`
-3. Run `npx solhint-plugin-makerdao /path/to/file` to lint the path with only the plugin-provided rules.
+3. Lint all solidity files in the current folder via `npx solhint-plugin-makerdao ./**/*.sol`
 
 ### Configuration
 
