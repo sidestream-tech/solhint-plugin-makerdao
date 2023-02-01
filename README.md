@@ -4,6 +4,12 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 
 ### Getting started
 
+#### Use this package as a standalone cli tool
+
+1. Install [solhint](https://github.com/protofire/solhint) globaly via `npm i solhint -g`
+2. Install this repository via `npm i https://github.com/sidestream-tech/solhint-plugin-makerdao --save-dev`
+3. Run `npx solhint-plugin-makerdao /path/to/file` to lint the path with only the plugin-provided rules.
+
 #### Add this linter to existing project
 1. Install [solhint](https://github.com/protofire/solhint) via `npm i solhint --save-dev`
 2. Install this repository via `npm i https://github.com/sidestream-tech/solhint-plugin-makerdao --save-dev`
@@ -14,12 +20,6 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
   }
 4. Add `lint` script to the `package.json` with `solhint ./**/*.sol`
 5. Run `npm run lint` manually, in CI or [before every commit](https://www.npmjs.com/package/pre-commit)
-
-#### Add this linter as global installation
-
-1. Install [solhint](https://github.com/protofire/solhint) globaly via `npm i solhint -g`
-2. Install this repository via `npm i -g https://github.com/sidestream-tech/solhint-plugin-makerdao`
-3. Lint all solidity files in the current folder via `npx solhint-plugin-makerdao ./**/*.sol`
 
 ### Configuration
 
