@@ -17,9 +17,6 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 4. Add `lint` script to the `package.json` with `solhint ./**/*.sol`
 5. Run `npm run lint` manually, in CI or [before every commit](https://www.npmjs.com/package/pre-commit)
 
-### Configuration
-
-1. Add the plugin into your `.solhint.json` file according to the [documentation](https://github.com/protofire/solhint#configuration). You can see the example of configuration in [this file](./.solhint.json)
 
 ### Rules
 
