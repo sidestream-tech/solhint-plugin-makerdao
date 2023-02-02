@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const shell = require('shelljs');
 const path = require('node:path');
+
 const argv = process.argv[2];
 if (!argv) {
     console.error('Path not provided');
