@@ -8,7 +8,7 @@ if (!argv) {
     process.exit(1);
 }
 
-const pathToConfig = path.dirname(__dirname) + '/.solhint.json'
+const pathToConfig = path.dirname(__dirname) + '/.solhint.json';
 const executedCommand = `npx solhint -c ${pathToConfig} ${argv}`;
 
 shell.exec(executedCommand);
