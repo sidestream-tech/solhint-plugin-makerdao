@@ -13,11 +13,7 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 #### Add this linter to existing project
 1. Install [solhint](https://github.com/protofire/solhint) via `npm i solhint --save-dev`
 2. Install this repository via `npm i https://github.com/sidestream-tech/solhint-plugin-makerdao --save-dev`
-3. Create a new `.solhint.json` file in the root of your project and add configuration into it:
-  {
-    "extends": "solhint:default",
-    "plugins": ["makerdao"]
-  }
+3. Create a new `.solhint.json` according to the [documentation](https://github.com/protofire/solhint#configuration) or use the one provided in this repository.
 4. Add `lint` script to the `package.json` with `solhint ./**/*.sol`
 5. Run `npm run lint` manually, in CI or [before every commit](https://www.npmjs.com/package/pre-commit)
 
