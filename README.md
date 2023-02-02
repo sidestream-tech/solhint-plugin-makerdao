@@ -7,7 +7,7 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 #### Use this package as a standalone cli tool
 
 1. Install [solhint](https://github.com/protofire/solhint) globaly via `npm i solhint -g`
-2. Install this repository via `npm i https://github.com/sidestream-tech/solhint-plugin-makerdao --save-dev`
+2. Install this repository via `npm i -g https://github.com/sidestream-tech/solhint-plugin-makerdao`
 3. Run `npx solhint-plugin-makerdao /path/to/file` to lint the path with only the plugin-provided rules.
 
 #### Add this linter to existing project
