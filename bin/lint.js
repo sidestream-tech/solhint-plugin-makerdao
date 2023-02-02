@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-var shell = require('shelljs');
-var argv = process.argv[2];
+const shell = require('shelljs');
+const path = require('node:path');
+const argv = process.argv[2];
 if (!argv) {
     console.error('Path not provided');
     process.exit(1);
 }
-var globalNpmInstallationsPath = shell.exec('npm root -g', { silent: true }).stdout.trim();
-var executed = `npx solhint -c ${globalNpmInstallationsPath}/solhint-plugin-makerdao/.solhint.json ${argv}`;
+
+const pathToConfig = path.dirname(__dirname) + '/.solhint.json'
+var executed = `npx solhint -c ${pathToConfig} ${argv}`;
 
 shell.exec(executed);
