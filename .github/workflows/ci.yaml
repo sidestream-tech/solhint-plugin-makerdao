@@ -23,9 +23,5 @@ jobs:
         run: npm i
       - name: Run linter
         run: npm run lint
-      - name: Install dependencies
-        working-directory: test
-        run: npm i
       - name: Run tests
-        working-directory: test
         run: npm run test
