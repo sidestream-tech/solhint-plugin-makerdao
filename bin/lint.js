@@ -8,6 +8,6 @@ if (!argv) {
 }
 
 const pathToConfig = path.dirname(__dirname) + '/.solhint.json'
-var executed = `npx solhint -c ${pathToConfig} ${argv}`;
+const executed = `npx solhint -c ${pathToConfig} ${argv}`;
 
 shell.exec(executed);
