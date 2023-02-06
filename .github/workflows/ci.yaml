@@ -18,4 +18,5 @@ jobs:
       - name: Run linter
         run: npm run lint
       - name: Run tests
+        working-directory: ./test
         run: npm run test
