@@ -30,3 +30,15 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 | newlines-between-custom-and-native-declarations | Enforce newlines between variable declarations of custom and native types (e.g. `IExampleContract` and `uint256` ) |
 | constructor-arguments-unserscored               | Enforce underscores for constructor argument names                                                                 |
 | prefer-type-provided-max                        | enforce using type provided max values over conversions. I.e. `type(uint256).max` over `uint256(-1)`               |
+
+
+### Publishing to npm
+
+In order to publish the package to the npm:
+
+```sh
+
+> npm login # if not logged in
+> npm publish --access public
+
+```
