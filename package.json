@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "lint": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --max-warnings=0",
-    "test": "jest -i ./test"
+    "test": "jest -i"
   },
   "bin": "bin/lint.js",
   "main": "index.js",
