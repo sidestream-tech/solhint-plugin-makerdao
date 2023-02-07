@@ -6,6 +6,10 @@
     "lint": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --max-warnings=0",
     "test": "jest -i"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sidestream-tech/solhint-plugin-makerdao"
+  },
   "bin": "bin/lint.js",
   "main": "index.js",
   "keywords": [
