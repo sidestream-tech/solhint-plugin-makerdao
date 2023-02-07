@@ -1,10 +1,14 @@
 {
-  "name": "solhint-plugin-makerdao",
-  "version": "0.0.1",
+  "name": "@sidestream/solhint-plugin-makerdao",
+  "version": "0.1.0",
   "description": "",
   "scripts": {
     "lint": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --max-warnings=0",
-    "test": "jest -i ./test"
+    "test": "jest -i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sidestream-tech/solhint-plugin-makerdao"
   },
   "bin": "bin/lint.js",
   "main": "index.js",
@@ -22,7 +26,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "jest": "^29.3.1",
     "prettier": "^2.8.3",
-    "solhint": "^3.3.8"
+    "solhint": "^3.3.8",
+    "solhint-plugin-makerdao": "file:"
   },
   "dependencies": {
     "semver": "^7.3.8"
