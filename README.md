@@ -21,7 +21,7 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 ### Rules
 
 | Rule                                            | Description                                                                                                        |
-| :-:                                             | :-                                                                                                                 |
+| :-                                             | :-                                                                                                                 |
 | vertically-aligned-comments                     | Enforce comments in the same block that start with `//` to start on the same column                                |
 | vertically-aligned-declarations                 | Enforce contract scope declarations to have variable names start on the same column                                |
 | vertically-aligned-state-var-visibility         | Enforce visibility modifiers such as `public` to start on the same column in the declarations                      |
