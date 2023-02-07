@@ -1,6 +1,6 @@
 {
   "name": "@sidestream/solhint-plugin-makerdao",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "scripts": {
     "lint": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --max-warnings=0",
