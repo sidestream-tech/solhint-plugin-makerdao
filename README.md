@@ -34,11 +34,8 @@ This repository contains [linting](https://en.wikipedia.org/wiki/Lint_(software)
 
 ### Publishing to npm
 
-In order to publish the package to the npm:
-
-```sh
-
-> npm login # if not logged in
-> npm publish --access public
-
-```
+0. Login to npm (if not yet) via `npm login`
+1. Update `version` field inside `package.json` according to the [semver](https://semver.org/)
+  - Run `npm install` to propagate changes to the `package-lock.json`
+2. Open a PR with the changes
+3. Publish the new version via `npm publish --access public`
