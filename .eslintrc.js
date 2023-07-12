@@ -7,7 +7,11 @@ module.exports = {
         es2018: true,
         jest: true,
     },
-    plugins: ['prettier'],
+    extends: [
+        "airbnb-base",
+        "airbnb-typescript/base"
+    ],
+    plugins: ['prettier', '@typescript-eslint'],
     extends: ['plugin:prettier/recommended'],
     globals: {
         process: 'readonly',
@@ -15,9 +19,20 @@ module.exports = {
     rules: {
         'prettier/prettier': 'warn',
         'prefer-const': ['warn'],
-        'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
+        'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
         curly: 'warn',
         'no-undef': 'off',
         'eol-last': ['error', 'always'],
+        'max-len': ['error', { 'code': 120 }],
+        'no-return-await': [
+            'error'
+        ],
+        'import/prefer-default-export': 'off',
     },
+    ignorePatterns: ['rules/**/*.js', 'test/**/*.js', 'index.js', 'bin/**', '.eslintrc.js'],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        project: "./tsconfig.json"
+    },
+
 };
