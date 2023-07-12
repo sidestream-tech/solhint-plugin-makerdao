@@ -10,7 +10,7 @@ const metas = relevantFiles
         const { meta } = require(`../rules/${file}`);
         return meta;
     });
-const { assertNoErrors, assertErrorCount } = require('solhint/test/common/asserts');
+const { assertNoErrors } = require('solhint/test/common/asserts');
 const generateReport = require('./helpers/generateReport');
 
 describe('Rules have valid examples', () => {

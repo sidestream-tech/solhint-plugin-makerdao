@@ -1,4 +1,3 @@
-const linter = require('solhint');
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 const generateReport = require('../helpers/generateReport');
