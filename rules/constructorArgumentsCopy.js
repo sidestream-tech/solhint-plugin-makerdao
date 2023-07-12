@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UnderscoredConstructorArguments = exports.META = void 0;
+exports.UnderscoredConstructorArguments = exports.meta = void 0;
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -17,7 +17,7 @@ contract C {
     constructor(uint a);
 }
 `;
-exports.META = {
+exports.meta = {
     ruleId: 'constructor-arguments-unserscored',
     type: 'miscellaneous',
     docs: {
@@ -45,9 +45,9 @@ exports.META = {
 };
 class UnderscoredConstructorArguments {
     constructor(reporter) {
-        this.ruleId = exports.META.ruleId;
+        this.ruleId = exports.meta.ruleId;
         this.reporter = reporter;
-        this.meta = exports.META;
+        this.meta = exports.meta;
     }
     FunctionDefinition(ctx) {
         if (!ctx.isConstructor) {

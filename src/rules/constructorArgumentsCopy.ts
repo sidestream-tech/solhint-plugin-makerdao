@@ -14,7 +14,7 @@ contract C {
     constructor(uint a);
 }
 `;
-export const META = {
+export const meta = {
     ruleId: 'constructor-arguments-unserscored',
     type: 'miscellaneous',
 
@@ -52,9 +52,9 @@ export class UnderscoredConstructorArguments {
     private meta: Record<string, any>;
 
     constructor(reporter: any) {
-        this.ruleId = META.ruleId;
+        this.ruleId = meta.ruleId;
         this.reporter = reporter;
-        this.meta = META;
+        this.meta = meta;
     }
 
     FunctionDefinition(ctx: any) {
