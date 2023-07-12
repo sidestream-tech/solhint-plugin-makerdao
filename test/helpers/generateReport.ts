@@ -1,6 +1,6 @@
 const linter = require('solhint');
 
-const generateReport = (contractCode, rules) => {
+const generateReport = (contractCode: string, rules: Record<string, string>) => {
     const report = linter.processStr(contractCode, {
         plugins: ['makerdao'],
         rules,
@@ -8,4 +8,4 @@ const generateReport = (contractCode, rules) => {
     return report;
 };
 
-module.exports = generateReport;
+export default generateReport;
