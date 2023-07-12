@@ -7,6 +7,8 @@ const { expect } = require('@jest/globals');
 const metas = relevantFiles
     .map(file => file.replace('.js', ''))
     .map(file => {
+        // TODO: convert the project to TS and use proper imports
+        // eslint-disable-next-line global-require,import/no-dynamic-require
         const { meta } = require(`../rules/${file}`);
         return meta;
     });
