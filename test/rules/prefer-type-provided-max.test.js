@@ -1,6 +1,6 @@
-const generateReport = require('../helpers/generateReport');
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
+const generateReport = require('../helpers/generateReport');
 
 const { typeProvidedMax } = require('../fixtures/maxValue/correct');
 const { conversionProvidedMax } = require('../fixtures/maxValue/incorrect');

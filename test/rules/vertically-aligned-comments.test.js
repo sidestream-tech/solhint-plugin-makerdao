@@ -1,9 +1,10 @@
-const generateReport = require('../helpers/generateReport');
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
+const generateReport = require('../helpers/generateReport');
 
 const { unalignedComments, unalignedCommentsMultiBlock } = require('../fixtures/comments/incorrect');
 const { alignedComments, alignedCommentsMultiBlock } = require('../fixtures/comments/correct');
+
 describe('Linter - vertically aligned comments', () => {
     it('should report vertically unaligned comments', () => {
         const report = generateReport(contractWith(unalignedComments), {

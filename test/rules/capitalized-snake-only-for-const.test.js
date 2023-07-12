@@ -4,6 +4,7 @@ const generateReport = require('../helpers/generateReport');
 
 const { capitalSnakeCaseConst } = require('../fixtures/capitalSnakeCase/correct');
 const { capitalSnakeCase } = require('../fixtures/capitalSnakeCase/incorrect');
+
 describe('Linter - capitalized snake case variables', () => {
     it('capitalized snake case non-constant reported', () => {
         const report = generateReport(contractWith(capitalSnakeCase), {

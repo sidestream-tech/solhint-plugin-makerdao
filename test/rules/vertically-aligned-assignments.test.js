@@ -1,6 +1,6 @@
-const generateReport = require('../helpers/generateReport');
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
+const generateReport = require('../helpers/generateReport');
 
 const { alignedAssignments } = require('../fixtures/assignments/correct');
 const { unalignedAssignments, multipleBlocksUnalignedAssignments } = require('../fixtures/assignments/incorrect');

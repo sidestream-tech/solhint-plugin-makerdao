@@ -1,10 +1,11 @@
-const generateReport = require('../helpers/generateReport');
 const linter = require('solhint');
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
+const generateReport = require('../helpers/generateReport');
 
 const { suffixedArgs, prefixedArgs } = require('../fixtures/constructors/correct');
 const { unsuffixedArgs } = require('../fixtures/constructors/incorrect');
+
 describe('Linter - underscore at the end of constructor argument', () => {
     it('missing underscore at the end of constructor argument reported', () => {
         const report = generateReport(contractWith(unsuffixedArgs), {

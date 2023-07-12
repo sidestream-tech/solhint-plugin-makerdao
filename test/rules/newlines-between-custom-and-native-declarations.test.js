@@ -1,6 +1,6 @@
-const generateReport = require('../helpers/generateReport');
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
+const generateReport = require('../helpers/generateReport');
 
 const { newlinesBetweenCustomAndNativeDeclarations } = require('../fixtures/declarations/correct');
 const { missingNewlinesBetweenCustomAndNativeDeclarations } = require('../fixtures/declarations/incorrect');

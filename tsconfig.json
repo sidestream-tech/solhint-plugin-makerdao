@@ -7,6 +7,6 @@
     "esModuleInterop": true
 
   },
-  "include": ["src/**/*"],
-  "exclude": ["rules/**", "test/**"]
+  "include": ["**/*.ts", "**/*.js"],
+  "exclude": ["rules/**"]
 }
