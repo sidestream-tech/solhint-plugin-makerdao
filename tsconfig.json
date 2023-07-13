@@ -5,6 +5,6 @@
     "outDir": "./out",
     "strict": true
   },
-  "include": ["**/*.ts", "**/*.js"],
+  "include": ["src/**/*.ts"],
   "exclude": ["out/**"]
 }
