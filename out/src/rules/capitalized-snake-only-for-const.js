@@ -1,5 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CapitalizedSnakeOnlyForConst = exports.meta = void 0;
 const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
-
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -16,13 +18,9 @@ contract C {
     uint256 SNAKE_CASE = 33;
 }
 `;
-
-const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
-
-const meta = {
+exports.meta = {
     ruleId: 'capitalized-snake-only-for-const',
     type: 'miscellaneous',
-
     docs: {
         description: 'Check that only constant variable names are in all caps and snake case',
         category: 'Miscellaneous',
@@ -41,24 +39,20 @@ const meta = {
             ],
         },
     },
-
     isDefault: false,
     recommended: false,
     defaultSetup: 'warn',
-
     schema: null,
 };
-
 function isCapitalSnake(name) {
     const capitalSnakePattern = /^[A-Z0-9_]+$/u;
     return capitalSnakePattern.test(name);
 }
-
 class CapitalizedSnakeOnlyForConst {
     constructor(reporter) {
-        this.ruleId = meta.ruleId;
+        this.ruleId = exports.meta.ruleId;
         this.reporter = reporter;
-        this.meta = meta;
+        this.meta = exports.meta;
     }
     VariableDeclaration(ctx) {
         if (ctx.isDeclaredConst) {
@@ -69,5 +63,5 @@ class CapitalizedSnakeOnlyForConst {
         }
     }
 }
-
-module.exports = { CapitalizedSnakeOnlyForConst, meta };
+exports.CapitalizedSnakeOnlyForConst = CapitalizedSnakeOnlyForConst;
+exports.default = { CapitalizedSnakeOnlyForConst, meta: exports.meta };

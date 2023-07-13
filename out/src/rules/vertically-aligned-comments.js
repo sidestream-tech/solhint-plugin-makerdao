@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VerticallyAlignedComments = exports.meta = void 0;
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -16,10 +19,9 @@ contract C {
     uint256 pi; // comments
 }
 `;
-const meta = {
+exports.meta = {
     ruleId: 'vertically-aligned-comments',
     type: 'miscellaneous',
-
     docs: {
         description: 'Check that comments of the block start on the same column.',
         category: 'Miscellaneous',
@@ -38,17 +40,13 @@ const meta = {
             ],
         },
     },
-
     isDefault: false,
     recommended: false,
     defaultSetup: 'warn',
-
     schema: null,
 };
-
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 const commentPattern = /.*\/\/.*/;
-
 function getCommentGroupStartIndices(comments) {
     const commentGroupStartIndices = [];
     for (let i = 0; i < comments.length; i++) {
@@ -60,7 +58,6 @@ function getCommentGroupStartIndices(comments) {
     }
     return commentGroupStartIndices;
 }
-
 function validateVerticalAlignment(commentGroupStartIndices, comments, ctx) {
     const reportedErrors = [];
     for (let i = 0; i < commentGroupStartIndices.length; i++) {
@@ -69,23 +66,19 @@ function validateVerticalAlignment(commentGroupStartIndices, comments, ctx) {
         commentGroup.forEach(({ line, index }) => {
             const startColumn = line.indexOf('//');
             if (startColumn !== commentGroupMaxStartColumn) {
-                const updatedCtx = {
-                    ...ctx,
-                    loc: { start: { line: index + 1, column: startColumn + 1 } },
-                };
+                const updatedCtx = Object.assign(Object.assign({}, ctx), { loc: { start: { line: index + 1, column: startColumn + 1 } } });
                 reportedErrors.push(updatedCtx);
             }
         });
     }
     return reportedErrors;
 }
-
 class VerticallyAlignedComments {
     constructor(reporter, _config, inputSrc) {
-        this.ruleId = meta.ruleId;
+        this.ruleId = exports.meta.ruleId;
         this.reporter = reporter;
         this.inputSrc = inputSrc;
-        this.meta = meta;
+        this.meta = exports.meta;
     }
     SourceUnit(ctx) {
         const lines = this.inputSrc.split(lineBreakPattern);
@@ -97,5 +90,5 @@ class VerticallyAlignedComments {
         });
     }
 }
-
-module.exports = { VerticallyAlignedComments, meta };
+exports.VerticallyAlignedComments = VerticallyAlignedComments;
+exports.default = { VerticallyAlignedComments, meta: exports.meta };

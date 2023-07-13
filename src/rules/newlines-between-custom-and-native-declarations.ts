@@ -1,4 +1,4 @@
-const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
+import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -22,7 +22,7 @@ contract C {
 
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 
-const meta = {
+export const meta = {
     ruleId: 'newlines-between-custom-and-native-declarations',
     type: 'miscellaneous',
 
@@ -52,7 +52,7 @@ const meta = {
     schema: null,
 };
 
-function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, ctx) {
+function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks: any, _ctx: any) {
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
         for (let i = 1; i < block.length; i++) {
@@ -67,13 +67,16 @@ function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, c
     }
     return errors;
 }
-class NewlinesBetweenCustomAndNativeDeclarations {
-    constructor(reporter) {
+export class NewlinesBetweenCustomAndNativeDeclarations {
+    private ruleId: string;
+    private reporter: any;
+    private meta: any;
+    constructor(reporter: any) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }
-    ContractDefinition(ctx) {
+    ContractDefinition(ctx: any) {
         const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
         const errors = validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, ctx);
         errors.forEach(error =>
@@ -82,4 +85,4 @@ class NewlinesBetweenCustomAndNativeDeclarations {
     }
 }
 
-module.exports = { NewlinesBetweenCustomAndNativeDeclarations, meta };
+export default { NewlinesBetweenCustomAndNativeDeclarations, meta };

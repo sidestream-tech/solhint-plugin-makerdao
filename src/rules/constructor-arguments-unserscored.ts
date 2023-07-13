@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UnderscoredConstructorArguments = exports.meta = void 0;
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -17,9 +14,10 @@ contract C {
     constructor(uint a);
 }
 `;
-exports.meta = {
+export const meta = {
     ruleId: 'constructor-arguments-unserscored',
     type: 'miscellaneous',
+
     docs: {
         description: 'All contract constructor arguments should be suffixed or prefixed with an underscore.',
         category: 'Miscellaneous',
@@ -38,26 +36,33 @@ exports.meta = {
             ],
         },
     },
+
     isDefault: false,
     recommended: false,
     defaultSetup: 'warn',
+
     schema: null,
 };
-class UnderscoredConstructorArguments {
-    constructor(reporter) {
-        this.ruleId = exports.meta.ruleId;
+
+export class UnderscoredConstructorArguments {
+    private ruleId: string;
+    private reporter: any;
+    private meta: any;
+    constructor(reporter: any) {
+        this.ruleId = meta.ruleId;
         this.reporter = reporter;
-        this.meta = exports.meta;
+        this.meta = meta;
     }
-    FunctionDefinition(ctx) {
+    FunctionDefinition(ctx: any) {
         if (!ctx.isConstructor) {
             return;
         }
-        ctx.parameters.forEach((param) => {
+        ctx.parameters.forEach((param: any) => {
             if (param.name[param.name.length - 1] !== '_' && param.name[0] !== '_') {
                 this.reporter.error(param, this.ruleId, 'No suffix at the end of constructor argument');
             }
         });
     }
 }
-exports.UnderscoredConstructorArguments = UnderscoredConstructorArguments;
+
+export default { UnderscoredConstructorArguments, meta };

@@ -17,7 +17,7 @@ contract C {
     function b() public;
 }
 `;
-const meta = {
+export const meta = {
     ruleId: 'no-newlines-between-function-signatures',
     type: 'miscellaneous',
 
@@ -46,7 +46,7 @@ const meta = {
 
     schema: null,
 };
-function getFunctionSignatureBlocks(ctx) {
+function getFunctionSignatureBlocks(ctx: any) {
     const functionSignatureBlocks = [];
     let functionSignatureBlock = [];
     for (const subNode of ctx.subNodes) {
@@ -65,10 +65,10 @@ function getFunctionSignatureBlocks(ctx) {
     return functionSignatureBlocks;
 }
 
-function validateNoNewlines(stateVariableDeclarationBlocks, ctx) {
+function validateNoNewlines(stateVariableDeclarationBlocks: any, ctx: any) {
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
-        const alignments = block.map(node => [node.loc.start.line, node.loc.end.line]);
+        const alignments = block.map((node: any) => [node.loc.start.line, node.loc.end.line]);
         for (let i = 0; i < alignments.length - 1; i++) {
             const endCurrentSignature = alignments[i][1];
             const startNextSignature = alignments[i + 1][0];
@@ -80,13 +80,16 @@ function validateNoNewlines(stateVariableDeclarationBlocks, ctx) {
     return errors;
 }
 
-class NoNewlinesBetweenFunctionSignatures {
-    constructor(reporter) {
+export class NoNewlinesBetweenFunctionSignatures {
+    private ruleId: string;
+    private reporter: any;
+    private meta: any;
+    constructor(reporter: any) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }
-    ContractDefinition(ctx) {
+    ContractDefinition(ctx: any) {
         const stateVariableDeclarationBlocks = getFunctionSignatureBlocks(ctx);
         const errors = validateNoNewlines(stateVariableDeclarationBlocks, ctx);
         errors.forEach(error =>
@@ -95,4 +98,4 @@ class NoNewlinesBetweenFunctionSignatures {
     }
 }
 
-module.exports = { NoNewlinesBetweenFunctionSignatures, meta };
+export default { NoNewlinesBetweenFunctionSignatures, meta };

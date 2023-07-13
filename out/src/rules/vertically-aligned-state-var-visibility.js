@@ -1,5 +1,8 @@
-const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
-const getMaxArrayValueOrNull = require('./utils/getMaxArrayValueOrNull');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VerticallyAlignedVisibilityModifiers = exports.meta = void 0;
+const getStateVariableDeclarationBlocks_1 = require("./utils/getStateVariableDeclarationBlocks");
+const getMaxArrayValueOrNull_1 = require("./utils/getMaxArrayValueOrNull");
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -18,16 +21,12 @@ contract C {
     uint public    b;
 }
 `;
-
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
-
-const meta = {
+exports.meta = {
     ruleId: 'vertically-aligned-state-var-visibility',
     type: 'miscellaneous',
-
     docs: {
-        description:
-            'Check that declarations of contract variables have their visibility modifiers aligned vertically.',
+        description: 'Check that declarations of contract variables have their visibility modifiers aligned vertically.',
         category: 'Miscellaneous',
         examples: {
             good: [
@@ -44,16 +43,13 @@ const meta = {
             ],
         },
     },
-
     isDefault: false,
     recommended: false,
     defaultSetup: 'warn',
-
     schema: null,
 };
-
 function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock) {
-    const typeNameEndLocations = stateVariableDeclarationBlock.map(node => ({
+    const typeNameEndLocations = stateVariableDeclarationBlock.map((node) => ({
         lines: [node.variables[0].typeName.loc.end.line, node.variables[0].identifier.loc.start.line],
         visibilityModifier: node.variables[0].visibility,
     }));
@@ -65,7 +61,6 @@ function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock) {
     });
     return visibilityModifierLocations;
 }
-
 function getIndexOfVisibilityModifier(line, visibilityModifier) {
     const re = new RegExp(`($|(\s)*)${visibilityModifier}($|(\s)*)`, 'g');
     const match = re.exec(line);
@@ -74,36 +69,31 @@ function getIndexOfVisibilityModifier(line, visibilityModifier) {
     }
     return null;
 }
-
 function getVariableVisibilityModifierColumnsPerBlock(visibilityModifierLocations, inputSrc) {
-    const ret = visibilityModifierLocations.map(modifier => {
+    const ret = visibilityModifierLocations.map((modifier) => {
         if (modifier === null) {
             return null;
         }
         const { visibilityModifier, lines } = modifier;
         const [startLine, endLine] = lines;
         const linesOfCode = inputSrc.split(lineBreakPattern).slice(startLine - 1, endLine);
-        const columnLocationsOfModifier = linesOfCode.map(line =>
-            getIndexOfVisibilityModifier(line, visibilityModifier)
-        );
-
-        return columnLocationsOfModifier.find(column => column !== null);
+        const columnLocationsOfModifier = linesOfCode.map((line) => getIndexOfVisibilityModifier(line, visibilityModifier));
+        return columnLocationsOfModifier.find((column) => column !== null);
     });
     return ret;
 }
-
 function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks, ctx, inputSrc) {
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
         const locations = getVariableVisibilityModifierLocations(block);
         const columns = getVariableVisibilityModifierColumnsPerBlock(locations, inputSrc);
-        const maxAlignment = getMaxArrayValueOrNull(columns);
+        const maxAlignment = (0, getMaxArrayValueOrNull_1.default)(columns);
         if (maxAlignment === null) {
             return [];
         }
         columns.forEach((col, idx) => {
             if (col !== maxAlignment) {
-                errors.push({ ...ctx, loc: block[idx].loc });
+                errors.push(Object.assign(Object.assign({}, ctx), { loc: block[idx].loc }));
             }
         });
     }
@@ -111,18 +101,16 @@ function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks, ct
 }
 class VerticallyAlignedVisibilityModifiers {
     constructor(reporter, _config, inputSrc) {
-        this.ruleId = meta.ruleId;
+        this.ruleId = exports.meta.ruleId;
         this.reporter = reporter;
         this.inputSrc = inputSrc;
-        this.meta = meta;
+        this.meta = exports.meta;
     }
     ContractDefinition(ctx) {
-        const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
+        const stateVariableDeclarationBlocks = (0, getStateVariableDeclarationBlocks_1.default)(ctx);
         const errors = validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks, ctx, this.inputSrc);
-        errors.forEach(error =>
-            this.reporter.error(error, this.ruleId, 'State variable visibility modifiers should be aligned')
-        );
+        errors.forEach(error => this.reporter.error(error, this.ruleId, 'State variable visibility modifiers should be aligned'));
     }
 }
-
-module.exports = { VerticallyAlignedVisibilityModifiers, meta };
+exports.VerticallyAlignedVisibilityModifiers = VerticallyAlignedVisibilityModifiers;
+exports.default = { VerticallyAlignedVisibilityModifiers, meta: exports.meta };

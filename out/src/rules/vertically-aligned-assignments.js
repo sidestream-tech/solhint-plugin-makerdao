@@ -1,6 +1,8 @@
-const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
-const getMaxArrayValueOrNull = require('./utils/getMaxArrayValueOrNull');
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VerticallyAlignedAssignments = exports.meta = void 0;
+const getStateVariableDeclarationBlocks_1 = require("./utils/getStateVariableDeclarationBlocks");
+const getMaxArrayValueOrNull_1 = require("./utils/getMaxArrayValueOrNull");
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -19,13 +21,9 @@ contract C {
     uint    public b =  12;
 }
 `;
-
-const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
-
-const meta = {
+exports.meta = {
     ruleId: 'vertically-aligned-assignments',
     type: 'miscellaneous',
-
     docs: {
         description: 'Check that declarations of contract variables have their names aligned vertically.',
         category: 'Miscellaneous',
@@ -44,25 +42,22 @@ const meta = {
             ],
         },
     },
-
     isDefault: false,
     recommended: false,
     defaultSetup: 'warn',
-
     schema: null,
 };
-
 function validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks, ctx) {
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
-        const alignments = block.map(node => node.variables[0].expression.loc.start.column);
-        const maxAlignment = getMaxArrayValueOrNull(alignments);
+        const alignments = block.map((node) => node.variables[0].expression.loc.start.column);
+        const maxAlignment = (0, getMaxArrayValueOrNull_1.default)(alignments);
         if (maxAlignment === null) {
             return [];
         }
         alignments.forEach((alignment, idx) => {
             if (alignment !== maxAlignment) {
-                errors.push({ ...ctx, loc: block[idx].loc });
+                errors.push(Object.assign(Object.assign({}, ctx), { loc: block[idx].loc }));
             }
         });
     }
@@ -70,17 +65,15 @@ function validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks, 
 }
 class VerticallyAlignedAssignments {
     constructor(reporter) {
-        this.ruleId = meta.ruleId;
+        this.ruleId = exports.meta.ruleId;
         this.reporter = reporter;
-        this.meta = meta;
+        this.meta = exports.meta;
     }
     ContractDefinition(ctx) {
-        const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
+        const stateVariableDeclarationBlocks = (0, getStateVariableDeclarationBlocks_1.default)(ctx);
         const errors = validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks, ctx);
-        errors.forEach(error =>
-            this.reporter.error(error, this.ruleId, 'State variable assignments should be aligned')
-        );
+        errors.forEach(error => this.reporter.error(error, this.ruleId, 'State variable assignments should be aligned'));
     }
 }
-
-module.exports = { VerticallyAlignedAssignments, meta };
+exports.VerticallyAlignedAssignments = VerticallyAlignedAssignments;
+exports.default = { VerticallyAlignedAssignments, meta: exports.meta };

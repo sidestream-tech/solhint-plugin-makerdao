@@ -4,10 +4,9 @@
   "description": "",
   "scripts": {
     "lint": "eslint --ext \".js,.ts\" --ignore-path .gitignore . --max-warnings=0",
-    "test": "jest -i",
+    "test": "jest -i --silent=false",
     "compile": "tsc",
-    "prepublish": "npm run compile",
-    "pretest": "npm run compile"
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",

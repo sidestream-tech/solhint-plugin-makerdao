@@ -16,7 +16,7 @@ contract C {
     uint256 a = uint256(-1);
 }
 `;
-const meta = {
+export const meta = {
     ruleId: 'prefer-type-provided-max',
     type: 'miscellaneous',
 
@@ -46,20 +46,25 @@ const meta = {
     schema: null,
 };
 
-class PreferTypeProvidedMax {
-    constructor(reporter) {
+export class PreferTypeProvidedMax {
+    private ruleId: string;
+    private reporter: any;
+    private meta: any;
+    private ruleActiveAt: string;
+    private ruleActive: boolean;
+    constructor(reporter: any) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
         this.ruleActiveAt = '0.7.0';
         this.ruleActive = false;
     }
-    PragmaDirective(node) {
+    PragmaDirective(node: any) {
         if (node.name === 'solidity' && semver.satisfies(semver.minVersion(node.value), this.ruleActiveAt)) {
             this.ruleActive = true;
         }
     }
-    FunctionCall(ctx) {
+    FunctionCall(ctx: any) {
         if (!this.ruleActive) {
             return;
         }
@@ -77,4 +82,4 @@ class PreferTypeProvidedMax {
     }
 }
 
-module.exports = { PreferTypeProvidedMax, meta };
+export default { PreferTypeProvidedMax, meta };
