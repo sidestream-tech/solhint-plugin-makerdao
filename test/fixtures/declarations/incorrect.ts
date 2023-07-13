@@ -1,8 +1,8 @@
-const unalignedDeclarations = `
+export const unalignedDeclarations = `
     uint256 a;
     uint   b;
 `;
-const unalignedDeclarationsMultipleBlocks = `
+export const unalignedDeclarationsMultipleBlocks = `
     uint256 a;
     uint   b;
     function f() {}
@@ -12,19 +12,18 @@ const unalignedDeclarationsMultipleBlocks = `
     uint256 e;
     uint   f;
 `;
-const unalignedMultiLineVisibilityModifiers = `
+export const unalignedMultiLineVisibilityModifiers = `
     uint256 public a;
     uint    public b;
     uint256
     public c;
     uint    public d;
 `;
-const unalignedVisibilityModifiers = `
+export const unalignedVisibilityModifiers = `
     uint256 public a;
     uint   public b;
 `;
-
-const missingNewlinesBetweenCustomAndNativeDeclarations = `
+export const missingNewlinesBetweenCustomAndNativeDeclarations = `
     interface customInterface {
         function f() external;
     }
@@ -34,7 +33,7 @@ const missingNewlinesBetweenCustomAndNativeDeclarations = `
     }
 `;
 
-module.exports = {
+export default {
     unalignedDeclarations,
     unalignedDeclarationsMultipleBlocks,
     unalignedMultiLineVisibilityModifiers,

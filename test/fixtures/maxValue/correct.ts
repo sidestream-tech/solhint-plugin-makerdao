@@ -5,3 +5,7 @@ export const typeProvidedMax = `
     uint8 d = type(uint8).max;
     uint e = type(uint).max;
 `;
+
+export default {
+    typeProvidedMax,
+}

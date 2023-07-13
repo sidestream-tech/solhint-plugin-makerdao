@@ -12,3 +12,8 @@ function b() public {
     return 1;
 }
 `;
+
+export default {
+    noNewlinesBetweenSignatures,
+    newlinesBetweenFunctions,
+}

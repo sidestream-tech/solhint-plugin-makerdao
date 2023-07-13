@@ -1,6 +1,6 @@
-const fs = require('fs');
+import { readdirSync } from 'fs';
 
-const files = fs.readdirSync('./rules/');
+const files = readdirSync('./rules/');
 const relevantFiles = files.filter(file => file.endsWith('js'));
 const { expect } = require('@jest/globals');
 
@@ -13,31 +13,31 @@ const metas = relevantFiles
         return meta;
     });
 const { assertNoErrors } = require('solhint/test/common/asserts');
-const generateReport = require('./helpers/generateReport');
+import generateReport from './helpers/generateReport';
 
 describe('Rules have valid examples', () => {
     it('should have valid good examples', () => {
-        metas.forEach(meta => {
+        metas.forEach((meta: any) => {
             const { ruleId } = meta;
-            const reports = meta.docs.examples.good.map(example => {
+            const reports = meta.docs.examples.good.map((example: any) => {
                 const config = { [`makerdao/${ruleId}`]: 'error' };
                 const report = generateReport(example.code, config);
                 return report;
             });
 
-            reports.forEach(report => assertNoErrors(report));
+            reports.forEach((report: any) => assertNoErrors(report));
         });
     });
     it('should have valid bad examples', () => {
         metas.forEach(meta => {
             const { ruleId } = meta;
-            const reports = meta.docs.examples.bad.map(example => {
+            const reports = meta.docs.examples.bad.map((example: any) => {
                 const config = { [`makerdao/${ruleId}`]: 'error' };
                 const report = generateReport(example.code, config);
                 return report;
             });
 
-            reports.forEach(report => expect(report.errorCount).toBeGreaterThan(0));
+            reports.forEach((report: any) => expect(report.errorCount).toBeGreaterThan(0));
         });
     });
 });

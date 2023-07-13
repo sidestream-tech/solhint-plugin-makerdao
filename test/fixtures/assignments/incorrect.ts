@@ -10,3 +10,5 @@ export const multipleBlocksUnalignedAssignments = `
     uint256 c = 12;
     uint    d = 12;
 `;
+
+export default {unalignedAssignments, multipleBlocksUnalignedAssignments}

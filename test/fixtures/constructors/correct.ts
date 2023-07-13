@@ -9,3 +9,8 @@ export const prefixedArgs = `
         this.a = _a;
     }
 `;
+
+export default {
+    suffixedArgs,
+    prefixedArgs,
+}

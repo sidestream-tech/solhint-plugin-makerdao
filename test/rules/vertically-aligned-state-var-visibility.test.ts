@@ -1,12 +1,12 @@
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
-const generateReport = require('../helpers/generateReport');
+import generateReport from '../helpers/generateReport';
 
-const {
+import {
     alignedMultiLineDeclarationsMultiple,
     alignedVisivilityModifiers,
     singleVisivilityModifiers,
-} = require('../fixtures/declarations/correct');
+} from '../fixtures/declarations/correct';
 const { unalignedVisibilityModifiers } = require('../fixtures/declarations/incorrect');
 
 describe('Linter - vertically aligned visibility modifiers', () => {

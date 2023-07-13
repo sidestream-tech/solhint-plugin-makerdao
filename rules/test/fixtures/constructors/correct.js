@@ -11,3 +11,7 @@ exports.prefixedArgs = `
         this.a = _a;
     }
 `;
+exports.default = {
+    suffixedArgs: exports.suffixedArgs,
+    prefixedArgs: exports.prefixedArgs,
+};

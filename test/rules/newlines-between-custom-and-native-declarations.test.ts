@@ -1,9 +1,9 @@
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
-const generateReport = require('../helpers/generateReport');
 
-const { newlinesBetweenCustomAndNativeDeclarations } = require('../fixtures/declarations/correct');
-const { missingNewlinesBetweenCustomAndNativeDeclarations } = require('../fixtures/declarations/incorrect');
+import generateReport from '../helpers/generateReport';
+import { newlinesBetweenCustomAndNativeDeclarations } from '../fixtures/declarations/correct';
+import { missingNewlinesBetweenCustomAndNativeDeclarations } from '../fixtures/declarations/incorrect';
 
 describe('Linter - newlines between declarations', () => {
     it('should report declarations without newlines between custom and native types', () => {

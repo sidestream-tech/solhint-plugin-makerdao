@@ -6,3 +6,6 @@ exports.unsuffixedArgs = `
         this.a = b;
     }
 `;
+exports.default = {
+    unsuffixedArgs: exports.unsuffixedArgs,
+};

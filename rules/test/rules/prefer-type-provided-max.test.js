@@ -1,17 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const { contractWith } = require('solhint/test/common/contract-builder');
 const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
-const generateReport = require('../helpers/generateReport');
-
-const { typeProvidedMax } = require('../fixtures/maxValue/correct');
-const { conversionProvidedMax } = require('../fixtures/maxValue/incorrect');
-
+const generateReport_1 = require("../helpers/generateReport");
+const correct_1 = require("../fixtures/maxValue/correct");
+const incorrect_1 = require("../fixtures/maxValue/incorrect");
 describe('Linter - max value assignments', () => {
     it('should report type conversion max values', () => {
         const processedStr = `
             pragma solidity ^0.7.0;
-            ${contractWith(conversionProvidedMax)}
+            ${contractWith(incorrect_1.conversionProvidedMax)}
         `;
-        const report = generateReport(processedStr, {
+        const report = (0, generateReport_1.default)(processedStr, {
             'makerdao/prefer-type-provided-max': 'error',
         });
         assertErrorCount(report, 1);
@@ -20,9 +20,9 @@ describe('Linter - max value assignments', () => {
     it('should not report type provided max values', () => {
         const processedStr = `
             pragma solidity ^0.7.0;
-            ${contractWith(typeProvidedMax)}
+            ${contractWith(correct_1.typeProvidedMax)}
         `;
-        const report = generateReport(processedStr, {
+        const report = (0, generateReport_1.default)(processedStr, {
             'makerdao/prefer-type-provided-max': 'error',
         });
         assertNoErrors(report);
@@ -30,9 +30,9 @@ describe('Linter - max value assignments', () => {
     it('should not report type provided max values for solidity below 0.7', () => {
         const processedStr = `
             pragma solidity ^0.6.12;
-            ${contractWith(conversionProvidedMax)}
+            ${contractWith(incorrect_1.conversionProvidedMax)}
         `;
-        const report = generateReport(processedStr, {
+        const report = (0, generateReport_1.default)(processedStr, {
             'makerdao/prefer-type-provided-max': 'error',
         });
         assertNoErrors(report);

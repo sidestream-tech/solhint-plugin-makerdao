@@ -13,3 +13,8 @@ export const alignedCommentsMultiBlock = `
     uint256 e; // this is a comment
     uint f;    // this is another comment
 `;
+
+export default {
+    alignedComments,
+    alignedCommentsMultiBlock,
+}

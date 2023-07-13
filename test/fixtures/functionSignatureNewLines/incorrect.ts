@@ -7,3 +7,7 @@ function d() {
     return 1;
 }
 `;
+
+export default {
+    newlinesBetweenSignatures,
+}

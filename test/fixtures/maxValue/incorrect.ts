@@ -3,3 +3,7 @@ export const conversionProvidedMax = `
         this.a = uint256(-1);
     }
 `;
+
+export default {
+    conversionProvidedMax,
+}

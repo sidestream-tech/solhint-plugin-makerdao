@@ -25,3 +25,11 @@ export const newlinesBetweenCustomAndNativeDeclarations = `
 
     cutomInterface public item;
 `;
+
+export default {
+    alignedDeclarations,
+    alignedMultiLineDeclarationsMultiple,
+    alignedVisivilityModifiers,
+    singleVisivilityModifiers,
+    newlinesBetweenCustomAndNativeDeclarations,
+}

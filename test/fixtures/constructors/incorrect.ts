@@ -3,3 +3,6 @@ export const unsuffixedArgs = `
         this.a = b;
     }
 `;
+export default {
+    unsuffixedArgs,
+};
