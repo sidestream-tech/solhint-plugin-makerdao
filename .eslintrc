@@ -29,9 +29,9 @@
         ],
         "import/prefer-default-export": "off"
     },
-    "ignorePatterns": ["rules/**/*.js"],
+    "ignorePatterns": ["out/rules/**/*.js"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "project": "./tsconfig.json"
+        "project": ["./tsconfig.json", "./test/tsconfig.json"]
     }
 }
