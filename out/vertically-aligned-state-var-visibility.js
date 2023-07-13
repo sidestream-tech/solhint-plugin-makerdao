@@ -62,6 +62,7 @@ function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock) {
     return visibilityModifierLocations;
 }
 function getIndexOfVisibilityModifier(line, visibilityModifier) {
+    // eslint-disable-next-line no-useless-escape
     const re = new RegExp(`($|(\s)*)${visibilityModifier}($|(\s)*)`, 'g');
     const match = re.exec(line);
     if (match) {
