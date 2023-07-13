@@ -69,7 +69,7 @@ function validateNoNewlines(stateVariableDeclarationBlocks: any, ctx: any) {
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
         const alignments = block.map((node: any) => [node.loc.start.line, node.loc.end.line]);
-        for (let i = 0; i < alignments.length - 1; i++) {
+        for (let i = 0; i < alignments.length - 1; i += 1) {
             const endCurrentSignature = alignments[i][1];
             const startNextSignature = alignments[i + 1][0];
             if (endCurrentSignature < startNextSignature - 1) {

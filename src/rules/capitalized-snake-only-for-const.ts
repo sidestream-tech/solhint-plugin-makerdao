@@ -1,5 +1,3 @@
-const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
-
 const goodCode = `
 pragma solidity 0.4.4;
 

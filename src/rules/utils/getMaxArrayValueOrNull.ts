@@ -1,4 +1,4 @@
-export function getMaxArrayValueOrNull(array: any[]) {
+function getMaxArrayValueOrNull(array: any[]) {
     if (array.every(item => item === null)) {
         return null;
     }

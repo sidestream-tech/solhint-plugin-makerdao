@@ -49,7 +49,7 @@ const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 const commentPattern = /.*\/\/.*/;
 function getCommentGroupStartIndices(comments) {
     const commentGroupStartIndices = [];
-    for (let i = 0; i < comments.length; i++) {
+    for (let i = 0; i < comments.length; i += 1) {
         const comment = comments[i];
         const previousComment = comments[i - 1];
         if (!previousComment || comment.index - previousComment.index > 1) {
@@ -60,7 +60,7 @@ function getCommentGroupStartIndices(comments) {
 }
 function validateVerticalAlignment(commentGroupStartIndices, comments, ctx) {
     const reportedErrors = [];
-    for (let i = 0; i < commentGroupStartIndices.length; i++) {
+    for (let i = 0; i < commentGroupStartIndices.length; i += 1) {
         const commentGroup = comments.slice(commentGroupStartIndices[i], commentGroupStartIndices[i + 1] || undefined);
         const commentGroupMaxStartColumn = Math.max(...commentGroup.map(({ line }) => line.indexOf('//')));
         commentGroup.forEach(({ line, index }) => {

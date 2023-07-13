@@ -21,8 +21,6 @@ contract C {
 }
 `;
 
-const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
-
 export const meta = {
     ruleId: 'newlines-between-custom-and-native-declarations',
     type: 'miscellaneous',
@@ -53,17 +51,15 @@ export const meta = {
     schema: null,
 };
 
-function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks: any, _ctx: any) {
+function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks: any) {
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
-        for (let i = 1; i < block.length; i++) {
+        for (let i = 1; i < block.length; i += 1) {
             const currentVariable = block[i].variables[0];
             const previousVariable = block[i - 1].variables[0];
-            if (currentVariable.typeName.type === previousVariable.typeName.type) {
-                continue;
+            if (currentVariable.typeName.type !== previousVariable.typeName.type) {
+                errors.push({ ...block[i] });
             }
-
-            errors.push({ ...block[i] });
         }
     }
     return errors;
@@ -83,7 +79,7 @@ export class NewlinesBetweenCustomAndNativeDeclarations {
 
     ContractDefinition(ctx: any) {
         const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
-        const errors = validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, ctx);
+        const errors = validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks);
         errors.forEach(error =>
             this.reporter.error(error, this.ruleId, 'Should have newlines between custom and native declarations')
         );

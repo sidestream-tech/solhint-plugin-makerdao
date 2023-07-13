@@ -27,9 +27,10 @@
         "no-return-await": [
             "error"
         ],
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "no-restricted-syntax": "off"
     },
-    "ignorePatterns": ["out/rules/**/*.js"],
+    "ignorePatterns": ["out/**", "*.js"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "project": ["./tsconfig.json", "./test/tsconfig.json"]

@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CapitalizedSnakeOnlyForConst = exports.meta = void 0;
-const getStateVariableDeclarationBlocks = require('./utils/getStateVariableDeclarationBlocks');
 const goodCode = `
 pragma solidity 0.4.4;
 

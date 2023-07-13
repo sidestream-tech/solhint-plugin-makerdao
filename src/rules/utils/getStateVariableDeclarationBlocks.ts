@@ -1,7 +1,7 @@
-export function isDeclarationFirstInBlock(startLineNum: any, previousLineNumOrNull: any) {
+function isDeclarationFirstInBlock(startLineNum: any, previousLineNumOrNull: any) {
     return startLineNum === previousLineNumOrNull + 1 || previousLineNumOrNull === null;
 }
-export function getStateVariableDeclarationBlocks(ctx: any) {
+function getStateVariableDeclarationBlocks(ctx: any) {
     const stateVariableDeclarationBlocks = [];
     let stateVariableDeclarationBlock = [];
     let previousLine = null;

@@ -51,7 +51,7 @@ const commentPattern = /.*\/\/.*/;
 
 function getCommentGroupStartIndices(comments: any) {
     const commentGroupStartIndices = [];
-    for (let i = 0; i < comments.length; i++) {
+    for (let i = 0; i < comments.length; i += 1) {
         const comment = comments[i];
         const previousComment = comments[i - 1];
         if (!previousComment || comment.index - previousComment.index > 1) {
@@ -63,7 +63,7 @@ function getCommentGroupStartIndices(comments: any) {
 
 function validateVerticalAlignment(commentGroupStartIndices: any, comments: any, ctx: any) {
     const reportedErrors: any[] = [];
-    for (let i = 0; i < commentGroupStartIndices.length; i++) {
+    for (let i = 0; i < commentGroupStartIndices.length; i += 1) {
         const commentGroup = comments.slice(commentGroupStartIndices[i], commentGroupStartIndices[i + 1] || undefined);
         const commentGroupMaxStartColumn = Math.max(
             ...commentGroup.map(({ line }: { line: any }) => line.indexOf('//'))

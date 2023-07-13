@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getStateVariableDeclarationBlocks = exports.isDeclarationFirstInBlock = void 0;
 function isDeclarationFirstInBlock(startLineNum, previousLineNumOrNull) {
     return startLineNum === previousLineNumOrNull + 1 || previousLineNumOrNull === null;
 }
-exports.isDeclarationFirstInBlock = isDeclarationFirstInBlock;
 function getStateVariableDeclarationBlocks(ctx) {
     const stateVariableDeclarationBlocks = [];
     let stateVariableDeclarationBlock = [];
@@ -28,5 +26,4 @@ function getStateVariableDeclarationBlocks(ctx) {
     }
     return stateVariableDeclarationBlocks;
 }
-exports.getStateVariableDeclarationBlocks = getStateVariableDeclarationBlocks;
 exports.default = getStateVariableDeclarationBlocks;
