@@ -16,4 +16,4 @@ function b() public {
 export default {
     noNewlinesBetweenSignatures,
     newlinesBetweenFunctions,
-}
+};

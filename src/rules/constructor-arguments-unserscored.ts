@@ -46,13 +46,17 @@ export const meta = {
 
 export class UnderscoredConstructorArguments {
     private ruleId: string;
+
     private reporter: any;
+
     private meta: any;
+
     constructor(reporter: any) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }
+
     FunctionDefinition(ctx: any) {
         if (!ctx.isConstructor) {
             return;

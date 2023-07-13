@@ -65,8 +65,10 @@ function validateVerticalAlignment(commentGroupStartIndices: any, comments: any,
     const reportedErrors: any[] = [];
     for (let i = 0; i < commentGroupStartIndices.length; i++) {
         const commentGroup = comments.slice(commentGroupStartIndices[i], commentGroupStartIndices[i + 1] || undefined);
-        const commentGroupMaxStartColumn = Math.max(...commentGroup.map(({ line }: {line: any}) => line.indexOf('//')));
-        commentGroup.forEach(({ line, index }: {line: any; index: any}) => {
+        const commentGroupMaxStartColumn = Math.max(
+            ...commentGroup.map(({ line }: { line: any }) => line.indexOf('//'))
+        );
+        commentGroup.forEach(({ line, index }: { line: any; index: any }) => {
             const startColumn = line.indexOf('//');
             if (startColumn !== commentGroupMaxStartColumn) {
                 const updatedCtx = {
@@ -82,15 +84,20 @@ function validateVerticalAlignment(commentGroupStartIndices: any, comments: any,
 
 export class VerticallyAlignedComments {
     private ruleId: string;
+
     private reporter: any;
+
     private inputSrc: string;
+
     private meta: any;
+
     constructor(reporter: any, _config: any, inputSrc: string) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.inputSrc = inputSrc;
         this.meta = meta;
     }
+
     SourceUnit(ctx: any) {
         const lines = this.inputSrc.split(lineBreakPattern);
         const comments = lines.map((line, index) => ({ line, index })).filter(({ line }) => commentPattern.test(line));

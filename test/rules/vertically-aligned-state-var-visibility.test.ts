@@ -1,5 +1,3 @@
-const { contractWith } = require('solhint/test/common/contract-builder');
-const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 import generateReport from '../helpers/generateReport';
 
 import {
@@ -8,6 +6,9 @@ import {
     singleVisivilityModifiers,
 } from '../fixtures/declarations/correct';
 import { unalignedVisibilityModifiers } from '../fixtures/declarations/incorrect';
+
+const { contractWith } = require('solhint/test/common/contract-builder');
+const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 
 describe('Linter - vertically aligned visibility modifiers', () => {
     it('should report vertically unaligned visibility modifiers', () => {

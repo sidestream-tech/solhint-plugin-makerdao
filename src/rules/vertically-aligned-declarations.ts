@@ -1,5 +1,6 @@
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
+
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -67,13 +68,17 @@ function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks: a
 }
 export class VerticallyAlignedDeclarations {
     private ruleId: string;
+
     private reporter: any;
+
     private meta: any;
+
     constructor(reporter: string) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }
+
     ContractDefinition(ctx: any) {
         const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
         const errors = validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, ctx);

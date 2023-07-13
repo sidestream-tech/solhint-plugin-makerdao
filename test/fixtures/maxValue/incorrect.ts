@@ -6,4 +6,4 @@ export const conversionProvidedMax = `
 
 export default {
     conversionProvidedMax,
-}
+};

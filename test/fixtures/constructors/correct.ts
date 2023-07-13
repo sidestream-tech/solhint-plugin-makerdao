@@ -13,4 +13,4 @@ export const prefixedArgs = `
 export default {
     suffixedArgs,
     prefixedArgs,
-}
+};

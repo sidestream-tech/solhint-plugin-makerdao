@@ -8,4 +8,4 @@ export const typeProvidedMax = `
 
 export default {
     typeProvidedMax,
-}
+};

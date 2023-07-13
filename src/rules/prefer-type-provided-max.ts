@@ -48,10 +48,15 @@ export const meta = {
 
 export class PreferTypeProvidedMax {
     private ruleId: string;
+
     private reporter: any;
+
     private meta: any;
+
     private ruleActiveAt: string;
+
     private ruleActive: boolean;
+
     constructor(reporter: any) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
@@ -59,11 +64,13 @@ export class PreferTypeProvidedMax {
         this.ruleActiveAt = '0.7.0';
         this.ruleActive = false;
     }
+
     PragmaDirective(node: any) {
         if (node.name === 'solidity' && semver.satisfies(semver.minVersion(node.value), this.ruleActiveAt)) {
             this.ruleActive = true;
         }
     }
+
     FunctionCall(ctx: any) {
         if (!this.ruleActive) {
             return;

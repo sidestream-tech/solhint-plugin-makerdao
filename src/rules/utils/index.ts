@@ -1,2 +1,2 @@
-export * from './getMaxArrayValueOrNull'
-export * from './getStateVariableDeclarationBlocks'
+export * from './getMaxArrayValueOrNull';
+export * from './getStateVariableDeclarationBlocks';

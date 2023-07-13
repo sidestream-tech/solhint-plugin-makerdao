@@ -1,9 +1,9 @@
-const { contractWith } = require('solhint/test/common/contract-builder');
-const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
-
 import generateReport from '../helpers/generateReport';
 import { capitalSnakeCaseConst } from '../fixtures/capitalSnakeCase/correct';
 import { capitalSnakeCase } from '../fixtures/capitalSnakeCase/incorrect';
+
+const { contractWith } = require('solhint/test/common/contract-builder');
+const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 
 describe('Linter - capitalized snake case variables', () => {
     it('capitalized snake case non-constant reported', () => {

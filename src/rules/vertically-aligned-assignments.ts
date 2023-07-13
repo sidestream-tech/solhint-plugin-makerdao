@@ -68,13 +68,17 @@ function validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks: 
 }
 export class VerticallyAlignedAssignments {
     private ruleId: string;
+
     private reporter: any;
+
     private meta: any;
+
     constructor(reporter: any) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }
+
     ContractDefinition(ctx: any) {
         const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
         const errors = validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks, ctx);

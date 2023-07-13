@@ -1,9 +1,9 @@
-const { contractWith } = require('solhint/test/common/contract-builder');
-const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
-
 import generateReport from '../helpers/generateReport';
 import { alignedDeclarations } from '../fixtures/declarations/correct';
 import { unalignedDeclarations, unalignedDeclarationsMultipleBlocks } from '../fixtures/declarations/incorrect';
+
+const { contractWith } = require('solhint/test/common/contract-builder');
+const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 
 describe('Linter - vertically aligned declarations', () => {
     it('should report vertically unaligned declarations', () => {

@@ -6,5 +6,5 @@ export const capitalSnakeCase = `
 `;
 
 export default {
-    capitalSnakeCase
-}
+    capitalSnakeCase,
+};

@@ -1,5 +1,6 @@
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
+
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -57,12 +58,14 @@ function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock: a
         lines: [node.variables[0].typeName.loc.end.line, node.variables[0].identifier.loc.start.line],
         visibilityModifier: node.variables[0].visibility,
     }));
-    const visibilityModifierLocations = typeNameEndLocations.map(({ lines, visibilityModifier}: {lines: any; visibilityModifier: any}) => {
-        if (visibilityModifier === 'default') {
-            return null;
+    const visibilityModifierLocations = typeNameEndLocations.map(
+        ({ lines, visibilityModifier }: { lines: any; visibilityModifier: any }) => {
+            if (visibilityModifier === 'default') {
+                return null;
+            }
+            return { visibilityModifier, lines };
         }
-        return { visibilityModifier, lines };
-    });
+    );
     return visibilityModifierLocations;
 }
 
@@ -111,15 +114,20 @@ function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks: an
 }
 export class VerticallyAlignedVisibilityModifiers {
     private ruleId: string;
+
     private reporter: any;
+
     private inputSrc: string;
+
     private meta: any;
+
     constructor(reporter: any, _config: any, inputSrc: string) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.inputSrc = inputSrc;
         this.meta = meta;
     }
+
     ContractDefinition(ctx: any) {
         const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
         const errors = validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks, ctx, this.inputSrc);

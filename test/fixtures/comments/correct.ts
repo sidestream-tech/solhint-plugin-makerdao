@@ -17,4 +17,4 @@ export const alignedCommentsMultiBlock = `
 export default {
     alignedComments,
     alignedCommentsMultiBlock,
-}
+};

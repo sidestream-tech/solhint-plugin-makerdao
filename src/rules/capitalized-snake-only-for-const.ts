@@ -54,13 +54,17 @@ function isCapitalSnake(name: string) {
 
 export class CapitalizedSnakeOnlyForConst {
     private ruleId: string;
+
     private reporter: any;
+
     private meta: any;
+
     constructor(reporter: any) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }
+
     VariableDeclaration(ctx: any) {
         if (ctx.isDeclaredConst) {
             return;

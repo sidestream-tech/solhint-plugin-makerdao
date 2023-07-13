@@ -5,4 +5,4 @@ export const alignedAssignments = `
 
 export default {
     alignedAssignments,
-}
+};

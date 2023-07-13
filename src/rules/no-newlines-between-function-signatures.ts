@@ -82,13 +82,17 @@ function validateNoNewlines(stateVariableDeclarationBlocks: any, ctx: any) {
 
 export class NoNewlinesBetweenFunctionSignatures {
     private ruleId: string;
+
     private reporter: any;
+
     private meta: any;
+
     constructor(reporter: any) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;
     }
+
     ContractDefinition(ctx: any) {
         const stateVariableDeclarationBlocks = getFunctionSignatureBlocks(ctx);
         const errors = validateNoNewlines(stateVariableDeclarationBlocks, ctx);
