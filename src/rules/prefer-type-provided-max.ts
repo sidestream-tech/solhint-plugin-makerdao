@@ -1,4 +1,4 @@
-import type { Reporter, RuleMeta } from "solhint";
+import type { Reporter, RuleMeta } from 'solhint';
 
 const semver = require('semver');
 

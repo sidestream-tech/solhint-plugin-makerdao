@@ -1,6 +1,13 @@
+import type {
+    Reporter,
+    RuleMeta,
+    ContractDefinition,
+    ASTNodeBase,
+    ContractDefinition,
+    StateVariableDeclaration,
+} from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
-import type { Reporter, RuleMeta, ContractDefenition as ContractDefinition, ASTNodeBase, ContractDefenition, StateVariableDeclaration } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -55,7 +62,7 @@ export const meta: RuleMeta = {
 };
 
 function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock: StateVariableDeclaration[]) {
-    const typeNameEndLocations = stateVariableDeclarationBlock.map((node) => ({
+    const typeNameEndLocations = stateVariableDeclarationBlock.map(node => ({
         lines: [node.variables[0].typeName.loc.end.line, node.variables[0].identifier.loc.start.line],
         visibilityModifier: node.variables[0].visibility,
     }));
@@ -97,7 +104,11 @@ function getVariableVisibilityModifierColumnsPerBlock(visibilityModifierLocation
     return ret;
 }
 
-function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks: StateVariableDeclaration[][], ctx: ContractDefenition, inputSrc: string) {
+function validateVerticalVisibilityAlignments(
+    stateVariableDeclarationBlocks: StateVariableDeclaration[][],
+    ctx: ContractDefinition,
+    inputSrc: string
+) {
     const errors: ASTNodeBase[] = [];
     for (const block of stateVariableDeclarationBlocks) {
         const locations = getVariableVisibilityModifierLocations(block);

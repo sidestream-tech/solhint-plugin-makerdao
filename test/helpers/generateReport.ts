@@ -1,4 +1,4 @@
-import {processStr} from 'solhint';
+import { processStr } from 'solhint';
 
 const generateReport = (contractCode: string, rules: Record<string, string>) => {
     const report = processStr(contractCode, {

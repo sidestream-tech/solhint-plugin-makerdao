@@ -1,6 +1,6 @@
+import type { ASTNodeBase, ContractDefinition, Reporter, RuleMeta, StateVariableDeclaration } from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
-import type { Reporter, RuleMeta } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -51,8 +51,11 @@ export const meta: RuleMeta = {
     schema: null,
 };
 
-function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks: any, ctx: any) {
-    const errors: any[] = [];
+function validateVerticalDeclarationAlignments(
+    stateVariableDeclarationBlocks: StateVariableDeclaration[][],
+    ctx: ContractDefinition
+) {
+    const errors: ASTNodeBase[] = [];
     for (const block of stateVariableDeclarationBlocks) {
         const alignments = block.map((node: any) => node.variables[0].identifier.loc.start.column);
         const maxAlignment = getMaxArrayValueOrNull(alignments);
@@ -80,7 +83,7 @@ export class VerticallyAlignedDeclarations {
         this.meta = meta;
     }
 
-    ContractDefinition(ctx: any) {
+    ContractDefinition(ctx: ContractDefinition) {
         const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
         const errors = validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, ctx);
         errors.forEach(error =>

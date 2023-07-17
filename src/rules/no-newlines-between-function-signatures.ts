@@ -1,4 +1,5 @@
 import type { Reporter } from 'solhint';
+
 const goodCode = `
 pragma solidity 0.4.4;
 

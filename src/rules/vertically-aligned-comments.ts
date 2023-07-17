@@ -1,4 +1,4 @@
-import type { Reporter, RuleMeta } from "solhint";
+import type { ASTNodeBase, Reporter, RuleMeta, SourceUnit } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -63,8 +63,12 @@ function getCommentGroupStartIndices(comments: any) {
     return commentGroupStartIndices;
 }
 
-function validateVerticalAlignment(commentGroupStartIndices: any, comments: any, ctx: any) {
-    const reportedErrors: any[] = [];
+function validateVerticalAlignment(
+    commentGroupStartIndices: number[],
+    comments: { line: string; index: number }[],
+    ctx: SourceUnit
+) {
+    const reportedErrors: ASTNodeBase[] = [];
     for (let i = 0; i < commentGroupStartIndices.length; i += 1) {
         const commentGroup = comments.slice(commentGroupStartIndices[i], commentGroupStartIndices[i + 1] || undefined);
         const commentGroupMaxStartColumn = Math.max(
@@ -75,7 +79,10 @@ function validateVerticalAlignment(commentGroupStartIndices: any, comments: any,
             if (startColumn !== commentGroupMaxStartColumn) {
                 const updatedCtx = {
                     ...ctx,
-                    loc: { start: { line: index + 1, column: startColumn + 1 } },
+                    loc: {
+                        start: { line: index + 1, column: startColumn + 1 },
+                        end: { line: index + 1, column: startColumn + 1 },
+                    },
                 };
                 reportedErrors.push(updatedCtx);
             }
@@ -100,7 +107,7 @@ export class VerticallyAlignedComments {
         this.meta = meta;
     }
 
-    SourceUnit(ctx: any) {
+    SourceUnit(ctx: SourceUnit) {
         const lines = this.inputSrc.split(lineBreakPattern);
         const comments = lines.map((line, index) => ({ line, index })).filter(({ line }) => commentPattern.test(line));
         const commentGroupStartIndices = getCommentGroupStartIndices(comments);

@@ -1,9 +1,9 @@
-import type { ContractDefenition, StateVariableDeclaration } from "solhint";
+import type { ContractDefinition, StateVariableDeclaration } from 'solhint';
 
 function isDeclarationFirstInBlock(startLine: number, previousLineOrNull: number | null) {
     return previousLineOrNull === null || startLine === previousLineOrNull + 1;
 }
-function getStateVariableDeclarationBlocks(ctx: ContractDefenition) {
+function getStateVariableDeclarationBlocks(ctx: ContractDefinition) {
     const stateVariableDeclarationBlocks: StateVariableDeclaration[][] = [];
     let stateVariableDeclarationBlock: StateVariableDeclaration[] = [];
     let previousLine = null;

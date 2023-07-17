@@ -1,6 +1,6 @@
+import type { Reporter, RuleMeta } from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
-import type { Reporter, RuleMeta } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;

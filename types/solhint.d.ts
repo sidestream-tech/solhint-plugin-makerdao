@@ -1,6 +1,6 @@
 declare module 'solhint' {
     export interface LinterConfig {
-        rules: Record<string,string>;
+        rules: Record<string, string>;
         plugins: string[];
     }
     export interface Reporter {
@@ -8,8 +8,8 @@ declare module 'solhint' {
     }
     export function processStr(sourceCode: string, config: LinterConfig): Reporter;
     interface MetaDocsExamples {
-        good: {description: string; code: string}[];
-        bad: {description: string; code: string}[];
+        good: { description: string; code: string }[];
+        bad: { description: string; code: string }[];
     }
     interface MetaDocs {
         description: string;
@@ -22,8 +22,8 @@ declare module 'solhint' {
         docs: MetaDocs;
         isDefault: boolean;
         recommended: boolean;
-        defaultSetup: 'warn' | 'error',
-        schema: null,
+        defaultSetup: 'warn' | 'error';
+        schema: null;
     }
     export interface ASTNodeLoc {
         start: {
@@ -39,34 +39,41 @@ declare module 'solhint' {
         type: string;
         loc: ASTNodeLoc;
     }
-    export interface ContractDefenition extends ASTNodeBase {
-        type: "ContractDefinition";
+    export interface ContractDefinition extends ASTNodeBase {
+        type: 'ContractDefinition';
         name: string;
         subNodes: ASTNode[];
-        kind: "contract";
+        kind: 'contract';
     }
     export interface ElementaryTypeName extends ASTNodeBase {
-        type: "ElementaryTypeName";
+        type: 'ElementaryTypeName';
         name: string;
     }
     export interface NumberLiteral extends ASTNodeBase {
-        type: "NumberLiteral";
+        type: 'NumberLiteral';
         number: string;
     }
     export interface VariableDeclaration extends ASTNodeBase {
-        type: "VariableDeclaration";
+        type: 'VariableDeclaration';
         typeName: ElementaryTypeName;
         name: string;
         expression: null | NumberLiteral;
-        visibility: "public" | "private" | "internal" | "external" | "default";
+        visibility: 'public' | 'private' | 'internal' | 'external' | 'default';
         identifier: ASTNodeBase;
         isStateVar: boolean;
         isIndexed: boolean;
     }
     export interface StateVariableDeclaration extends ASTNodeBase {
-        type: "StateVariableDeclaration";
+        type: 'StateVariableDeclaration';
         variables: VariableDeclaration[];
         initialValue: null | NumberLiteral;
     }
-    export type ASTNode = StateVariableDeclaration | ContractDefenition | VariableDeclaration | ElementaryTypeName | NumberLiteral;
+    export interface SourceUnit extends ASTNodeBase {}
+    export type ASTNode =
+        | StateVariableDeclaration
+        | ContractDefinition
+        | VariableDeclaration
+        | ElementaryTypeName
+        | NumberLiteral
+        | SourceUnit;
 }
