@@ -6,6 +6,7 @@ declare module 'solhint' {
     }
     export interface Reporter {
         error: (error: ASTNodeBase, ruleId: string, message: string, meta?: RuleMeta) => void;
+        errorCount: number;
     }
     export function processStr(sourceCode: string, config: LinterConfig): Reporter;
     interface MetaDocsExamples {
