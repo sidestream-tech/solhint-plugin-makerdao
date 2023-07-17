@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PreferTypeProvidedMax = exports.meta = void 0;
-const semver = require('semver');
+const semver_1 = require("semver");
 const goodCode = `
 pragma solidity ^0.7.0;
 
@@ -53,7 +53,11 @@ class PreferTypeProvidedMax {
         this.ruleActive = false;
     }
     PragmaDirective(node) {
-        if (node.name === 'solidity' && semver.satisfies(semver.minVersion(node.value), this.ruleActiveAt)) {
+        const minVer = (0, semver_1.minVersion)(node.value);
+        if (!minVer) {
+            return;
+        }
+        if (node.name === 'solidity' && (0, semver_1.satisfies)(minVer, this.ruleActiveAt)) {
             this.ruleActive = true;
         }
     }

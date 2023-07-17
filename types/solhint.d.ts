@@ -140,5 +140,6 @@ declare module 'solhint' {
 
 declare module 'solhint/test/common/asserts' {
     import type { Reporter } from 'solhint';
+
     export function assertNoErrors(reporter: Reporter): void;
 }

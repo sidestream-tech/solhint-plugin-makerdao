@@ -1,6 +1,6 @@
 import type { FunctionCall, PragmaDirective, Reporter, RuleMeta } from 'solhint';
 
-const semver = require('semver');
+import { satisfies, minVersion } from 'semver';
 
 const goodCode = `
 pragma solidity ^0.7.0;
@@ -68,7 +68,11 @@ export class PreferTypeProvidedMax {
     }
 
     PragmaDirective(node: PragmaDirective) {
-        if (node.name === 'solidity' && semver.satisfies(semver.minVersion(node.value), this.ruleActiveAt)) {
+        const minVer = minVersion(node.value);
+        if (!minVer) {
+            return;
+        }
+        if (node.name === 'solidity' && satisfies(minVer, this.ruleActiveAt)) {
             this.ruleActive = true;
         }
     }
