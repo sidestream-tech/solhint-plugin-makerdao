@@ -1,9 +1,8 @@
 import { expect } from '@jest/globals';
 import type { RuleMeta } from 'solhint';
+import { assertNoErrors } from 'solhint/test/common/asserts';
 import generateReport from './helpers/generateReport';
 import rules from '../src/rules';
-
-const { assertNoErrors } = require('solhint/test/common/asserts');
 
 describe('Rules have valid examples', () => {
     const metas = Object.values(rules).map(value => value.meta);
