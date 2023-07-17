@@ -1,4 +1,4 @@
-import type { Reporter, RuleMeta } from 'solhint';
+import type { ASTNodeBase, ContractDefinition, Reporter, RuleMeta, StateVariableDeclaration } from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
 
@@ -51,10 +51,10 @@ export const meta: RuleMeta = {
     schema: null,
 };
 
-function validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks: any, ctx: any) {
-    const errors: any[] = [];
+function validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks: StateVariableDeclaration[][], ctx: ContractDefinition) {
+    const errors: ASTNodeBase[] = [];
     for (const block of stateVariableDeclarationBlocks) {
-        const alignments = block.map((node: any) => node.variables[0].expression.loc.start.column);
+        const alignments = block.map((node) => node.variables[0].expression?.loc.start.column).filter((alignment): alignment is number => alignment !== undefined);
         const maxAlignment = getMaxArrayValueOrNull(alignments);
         if (maxAlignment === null) {
             return [];
@@ -80,7 +80,7 @@ export class VerticallyAlignedAssignments {
         this.meta = meta;
     }
 
-    ContractDefinition(ctx: any) {
+    ContractDefinition(ctx: ContractDefinition) {
         const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
         const errors = validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks, ctx);
         errors.forEach(error =>

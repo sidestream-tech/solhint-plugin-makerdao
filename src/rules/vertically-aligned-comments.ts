@@ -72,9 +72,9 @@ function validateVerticalAlignment(
     for (let i = 0; i < commentGroupStartIndices.length; i += 1) {
         const commentGroup = comments.slice(commentGroupStartIndices[i], commentGroupStartIndices[i + 1] || undefined);
         const commentGroupMaxStartColumn = Math.max(
-            ...commentGroup.map(({ line }: { line: any }) => line.indexOf('//'))
+            ...commentGroup.map(({ line }) => line.indexOf('//'))
         );
-        commentGroup.forEach(({ line, index }: { line: any; index: any }) => {
+        commentGroup.forEach(({ line, index }) => {
             const startColumn = line.indexOf('//');
             if (startColumn !== commentGroupMaxStartColumn) {
                 const updatedCtx = {

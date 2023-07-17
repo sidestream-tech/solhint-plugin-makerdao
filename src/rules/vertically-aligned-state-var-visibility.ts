@@ -2,6 +2,13 @@ import type { Reporter, RuleMeta, ContractDefinition, ASTNodeBase, StateVariable
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
 
+
+type VisibilityModifier = "public" | "private" | "internal" | "external";
+type Locations = ({
+    visibilityModifier: VisibilityModifier;
+    lines: number[];
+} | null)[];
+
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -60,7 +67,8 @@ function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock: S
         visibilityModifier: node.variables[0].visibility,
     }));
     const visibilityModifierLocations = typeNameEndLocations.map(
-        ({ lines, visibilityModifier }: { lines: any; visibilityModifier: any }) => {
+        (loc) => {
+            const { lines, visibilityModifier } = loc;
             if (visibilityModifier === 'default') {
                 return null;
             }
@@ -70,7 +78,7 @@ function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock: S
     return visibilityModifierLocations;
 }
 
-function getIndexOfVisibilityModifier(line: any, visibilityModifier: any) {
+function getIndexOfVisibilityModifier(line: string, visibilityModifier: VisibilityModifier) {
     // eslint-disable-next-line no-useless-escape
     const re = new RegExp(`($|(\s)*)${visibilityModifier}($|(\s)*)`, 'g');
     const match = re.exec(line);
@@ -80,21 +88,21 @@ function getIndexOfVisibilityModifier(line: any, visibilityModifier: any) {
     return null;
 }
 
-function getVariableVisibilityModifierColumnsPerBlock(visibilityModifierLocations: any[], inputSrc: string) {
-    const ret = visibilityModifierLocations.map((modifier: any) => {
+function getVariableVisibilityModifierColumnsPerBlock(visibilityModifierLocations: Locations, inputSrc: string) {
+    const mapped = visibilityModifierLocations.map((modifier) => {
         if (modifier === null) {
             return null;
         }
         const { visibilityModifier, lines } = modifier;
         const [startLine, endLine] = lines;
         const linesOfCode = inputSrc.split(lineBreakPattern).slice(startLine - 1, endLine);
-        const columnLocationsOfModifier = linesOfCode.map((line: any) =>
+        const columnLocationsOfModifier = linesOfCode.map((line) =>
             getIndexOfVisibilityModifier(line, visibilityModifier)
         );
 
-        return columnLocationsOfModifier.find((column: number | null) => column !== null);
+        return columnLocationsOfModifier.find((column: number | null) => column !== null) || null;
     });
-    return ret;
+    return mapped.filter<number>((value): value is number => value !== null);
 }
 
 function validateVerticalVisibilityAlignments(
@@ -104,7 +112,7 @@ function validateVerticalVisibilityAlignments(
 ) {
     const errors: ASTNodeBase[] = [];
     for (const block of stateVariableDeclarationBlocks) {
-        const locations = getVariableVisibilityModifierLocations(block);
+        const locations: Locations = getVariableVisibilityModifierLocations(block);
         const columns = getVariableVisibilityModifierColumnsPerBlock(locations, inputSrc);
         const maxAlignment = getMaxArrayValueOrNull(columns);
         if (maxAlignment === null) {

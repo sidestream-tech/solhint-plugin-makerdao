@@ -57,12 +57,12 @@ function validateVerticalDeclarationAlignments(
 ) {
     const errors: ASTNodeBase[] = [];
     for (const block of stateVariableDeclarationBlocks) {
-        const alignments = block.map((node: any) => node.variables[0].identifier.loc.start.column);
+        const alignments = block.map(node => node.variables[0].identifier.loc.start.column);
         const maxAlignment = getMaxArrayValueOrNull(alignments);
         if (maxAlignment === null) {
             return [];
         }
-        alignments.forEach((alignment: any, idx: any) => {
+        alignments.forEach((alignment, idx) => {
             if (alignment !== maxAlignment) {
                 errors.push({ ...ctx, loc: block[idx].loc });
             }

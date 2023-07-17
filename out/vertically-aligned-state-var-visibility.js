@@ -53,7 +53,8 @@ function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock) {
         lines: [node.variables[0].typeName.loc.end.line, node.variables[0].identifier.loc.start.line],
         visibilityModifier: node.variables[0].visibility,
     }));
-    const visibilityModifierLocations = typeNameEndLocations.map(({ lines, visibilityModifier }) => {
+    const visibilityModifierLocations = typeNameEndLocations.map((loc) => {
+        const { lines, visibilityModifier } = loc;
         if (visibilityModifier === 'default') {
             return null;
         }
@@ -71,7 +72,7 @@ function getIndexOfVisibilityModifier(line, visibilityModifier) {
     return null;
 }
 function getVariableVisibilityModifierColumnsPerBlock(visibilityModifierLocations, inputSrc) {
-    const ret = visibilityModifierLocations.map((modifier) => {
+    const mapped = visibilityModifierLocations.map((modifier) => {
         if (modifier === null) {
             return null;
         }
@@ -79,9 +80,9 @@ function getVariableVisibilityModifierColumnsPerBlock(visibilityModifierLocation
         const [startLine, endLine] = lines;
         const linesOfCode = inputSrc.split(lineBreakPattern).slice(startLine - 1, endLine);
         const columnLocationsOfModifier = linesOfCode.map((line) => getIndexOfVisibilityModifier(line, visibilityModifier));
-        return columnLocationsOfModifier.find((column) => column !== null);
+        return columnLocationsOfModifier.find((column) => column !== null) || null;
     });
-    return ret;
+    return mapped.filter((value) => value !== null);
 }
 function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks, ctx, inputSrc) {
     const errors = [];
