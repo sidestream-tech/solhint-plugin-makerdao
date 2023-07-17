@@ -1,4 +1,4 @@
-import type { Reporter } from 'solhint';
+import type { ContractDefinition, FunctionDefinition, Reporter } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -48,7 +48,7 @@ export const meta = {
 
     schema: null,
 };
-function getFunctionSignatureBlocks(ctx: any) {
+function getFunctionSignatureBlocks(ctx: ContractDefinition) {
     const functionSignatureBlocks = [];
     let functionSignatureBlock = [];
     for (const subNode of ctx.subNodes) {
@@ -67,10 +67,10 @@ function getFunctionSignatureBlocks(ctx: any) {
     return functionSignatureBlocks;
 }
 
-function validateNoNewlines(stateVariableDeclarationBlocks: any, ctx: any) {
+function validateNoNewlines(functionDefinitionBlocks: FunctionDefinition[][], ctx: ContractDefinition) {
     const errors = [];
-    for (const block of stateVariableDeclarationBlocks) {
-        const alignments = block.map((node: any) => [node.loc.start.line, node.loc.end.line]);
+    for (const block of functionDefinitionBlocks) {
+        const alignments = block.map(node => [node.loc.start.line, node.loc.end.line]);
         for (let i = 0; i < alignments.length - 1; i += 1) {
             const endCurrentSignature = alignments[i][1];
             const startNextSignature = alignments[i + 1][0];
@@ -95,9 +95,9 @@ export class NoNewlinesBetweenFunctionSignatures {
         this.meta = meta;
     }
 
-    ContractDefinition(ctx: any) {
-        const stateVariableDeclarationBlocks = getFunctionSignatureBlocks(ctx);
-        const errors = validateNoNewlines(stateVariableDeclarationBlocks, ctx);
+    ContractDefinition(ctx: ContractDefinition) {
+        const functionSignatureBlocks = getFunctionSignatureBlocks(ctx);
+        const errors = validateNoNewlines(functionSignatureBlocks, ctx);
         errors.forEach(error =>
             this.reporter.error(error, this.ruleId, 'No newlines allowed between function signatures')
         );

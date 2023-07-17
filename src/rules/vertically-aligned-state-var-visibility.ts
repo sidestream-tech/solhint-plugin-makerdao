@@ -2,8 +2,7 @@ import type { Reporter, RuleMeta, ContractDefinition, ASTNodeBase, StateVariable
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
 
-
-type VisibilityModifier = "public" | "private" | "internal" | "external";
+type VisibilityModifier = 'public' | 'private' | 'internal' | 'external';
 type Locations = ({
     visibilityModifier: VisibilityModifier;
     lines: number[];
@@ -66,15 +65,13 @@ function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock: S
         lines: [node.variables[0].typeName.loc.end.line, node.variables[0].identifier.loc.start.line],
         visibilityModifier: node.variables[0].visibility,
     }));
-    const visibilityModifierLocations = typeNameEndLocations.map(
-        (loc) => {
-            const { lines, visibilityModifier } = loc;
-            if (visibilityModifier === 'default') {
-                return null;
-            }
-            return { visibilityModifier, lines };
+    const visibilityModifierLocations = typeNameEndLocations.map(loc => {
+        const { lines, visibilityModifier } = loc;
+        if (visibilityModifier === 'default') {
+            return null;
         }
-    );
+        return { visibilityModifier, lines };
+    });
     return visibilityModifierLocations;
 }
 
@@ -89,14 +86,14 @@ function getIndexOfVisibilityModifier(line: string, visibilityModifier: Visibili
 }
 
 function getVariableVisibilityModifierColumnsPerBlock(visibilityModifierLocations: Locations, inputSrc: string) {
-    const mapped = visibilityModifierLocations.map((modifier) => {
+    const mapped = visibilityModifierLocations.map(modifier => {
         if (modifier === null) {
             return null;
         }
         const { visibilityModifier, lines } = modifier;
         const [startLine, endLine] = lines;
         const linesOfCode = inputSrc.split(lineBreakPattern).slice(startLine - 1, endLine);
-        const columnLocationsOfModifier = linesOfCode.map((line) =>
+        const columnLocationsOfModifier = linesOfCode.map(line =>
             getIndexOfVisibilityModifier(line, visibilityModifier)
         );
 

@@ -65,9 +65,9 @@ function getFunctionSignatureBlocks(ctx) {
     }
     return functionSignatureBlocks;
 }
-function validateNoNewlines(stateVariableDeclarationBlocks, ctx) {
+function validateNoNewlines(functionDefinitionBlocks, ctx) {
     const errors = [];
-    for (const block of stateVariableDeclarationBlocks) {
+    for (const block of functionDefinitionBlocks) {
         const alignments = block.map((node) => [node.loc.start.line, node.loc.end.line]);
         for (let i = 0; i < alignments.length - 1; i += 1) {
             const endCurrentSignature = alignments[i][1];
@@ -86,8 +86,8 @@ class NoNewlinesBetweenFunctionSignatures {
         this.meta = exports.meta;
     }
     ContractDefinition(ctx) {
-        const stateVariableDeclarationBlocks = getFunctionSignatureBlocks(ctx);
-        const errors = validateNoNewlines(stateVariableDeclarationBlocks, ctx);
+        const functionSignatureBlocks = getFunctionSignatureBlocks(ctx);
+        const errors = validateNoNewlines(functionSignatureBlocks, ctx);
         errors.forEach(error => this.reporter.error(error, this.ruleId, 'No newlines allowed between function signatures'));
     }
 }

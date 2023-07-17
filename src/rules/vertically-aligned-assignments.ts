@@ -51,10 +51,15 @@ export const meta: RuleMeta = {
     schema: null,
 };
 
-function validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks: StateVariableDeclaration[][], ctx: ContractDefinition) {
+function validateVerticalInitialValueAlignments(
+    stateVariableDeclarationBlocks: StateVariableDeclaration[][],
+    ctx: ContractDefinition
+) {
     const errors: ASTNodeBase[] = [];
     for (const block of stateVariableDeclarationBlocks) {
-        const alignments = block.map((node) => node.variables[0].expression?.loc.start.column).filter((alignment): alignment is number => alignment !== undefined);
+        const alignments = block
+            .map(node => node.variables[0].expression?.loc.start.column)
+            .filter((alignment): alignment is number => alignment !== undefined);
         const maxAlignment = getMaxArrayValueOrNull(alignments);
         if (maxAlignment === null) {
             return [];

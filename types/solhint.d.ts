@@ -1,4 +1,5 @@
 declare module 'solhint' {
+    export type Visibility = 'public' | 'private' | 'internal' | 'external' | 'default';
     export interface LinterConfig {
         rules: Record<string, string>;
         plugins: string[];
@@ -58,7 +59,7 @@ declare module 'solhint' {
         typeName: ElementaryTypeName;
         name: string;
         expression: null | NumberLiteral;
-        visibility: 'public' | 'private' | 'internal' | 'external' | 'default';
+        visibility: Visibility;
         identifier: ASTNodeBase;
         isStateVar: boolean;
         isIndexed: boolean;
@@ -71,11 +72,41 @@ declare module 'solhint' {
     export interface SourceUnit extends ASTNodeBase {
         type: 'SourceUnit';
     }
+    export interface Identifier extends ASTNodeBase {
+        type: 'Identifier';
+        name: string;
+    }
+    export interface BinaryOperation extends ASTNodeBase {
+        type: 'BinaryOperation';
+        operator: string;
+        left: Identifier;
+        right: Identifier;
+    }
+    export type Expression = BinaryOperation;
+    export interface ExpressionStatement extends ASTNodeBase {
+        type: 'ExpressionStatement';
+        expression: Expression;
+    }
+    export type Statement = ExpressionStatement;
+    export interface Block {
+        type: 'Block';
+        statements: Statement[];
+    }
+    export interface FunctionDefinition extends ASTNodeBase {
+        type: 'FunctionDefinition';
+        name: string;
+        parameters: VariableDeclaration[];
+        returnParameters: null | VariableDeclaration[];
+        visibility: Visibility;
+        body: Block;
+        isConstructor: boolean;
+    }
     export type ASTNode =
         | StateVariableDeclaration
         | ContractDefinition
         | VariableDeclaration
         | ElementaryTypeName
         | NumberLiteral
-        | SourceUnit;
+        | SourceUnit
+        | FunctionDefinition;
 }

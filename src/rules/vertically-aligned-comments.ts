@@ -71,9 +71,7 @@ function validateVerticalAlignment(
     const reportedErrors: ASTNodeBase[] = [];
     for (let i = 0; i < commentGroupStartIndices.length; i += 1) {
         const commentGroup = comments.slice(commentGroupStartIndices[i], commentGroupStartIndices[i + 1] || undefined);
-        const commentGroupMaxStartColumn = Math.max(
-            ...commentGroup.map(({ line }) => line.indexOf('//'))
-        );
+        const commentGroupMaxStartColumn = Math.max(...commentGroup.map(({ line }) => line.indexOf('//')));
         commentGroup.forEach(({ line, index }) => {
             const startColumn = line.indexOf('//');
             if (startColumn !== commentGroupMaxStartColumn) {
