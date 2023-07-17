@@ -49,7 +49,7 @@ exports.meta = {
     schema: null,
 };
 function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock) {
-    const typeNameEndLocations = stateVariableDeclarationBlock.map((node) => ({
+    const typeNameEndLocations = stateVariableDeclarationBlock.map(node => ({
         lines: [node.variables[0].typeName.loc.end.line, node.variables[0].identifier.loc.start.line],
         visibilityModifier: node.variables[0].visibility,
     }));

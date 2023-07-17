@@ -68,7 +68,9 @@ declare module 'solhint' {
         variables: VariableDeclaration[];
         initialValue: null | NumberLiteral;
     }
-    export interface SourceUnit extends ASTNodeBase {}
+    export interface SourceUnit extends ASTNodeBase {
+        type: 'SourceUnit';
+    }
     export type ASTNode =
         | StateVariableDeclaration
         | ContractDefinition

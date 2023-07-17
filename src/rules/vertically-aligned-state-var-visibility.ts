@@ -1,11 +1,4 @@
-import type {
-    Reporter,
-    RuleMeta,
-    ContractDefinition,
-    ASTNodeBase,
-    ContractDefinition,
-    StateVariableDeclaration,
-} from 'solhint';
+import type { Reporter, RuleMeta, ContractDefinition, ASTNodeBase, StateVariableDeclaration } from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
 

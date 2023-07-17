@@ -66,7 +66,10 @@ function validateVerticalAlignment(commentGroupStartIndices, comments, ctx) {
         commentGroup.forEach(({ line, index }) => {
             const startColumn = line.indexOf('//');
             if (startColumn !== commentGroupMaxStartColumn) {
-                const updatedCtx = Object.assign(Object.assign({}, ctx), { loc: { start: { line: index + 1, column: startColumn + 1 } } });
+                const updatedCtx = Object.assign(Object.assign({}, ctx), { loc: {
+                        start: { line: index + 1, column: startColumn + 1 },
+                        end: { line: index + 1, column: startColumn + 1 },
+                    } });
                 reportedErrors.push(updatedCtx);
             }
         });

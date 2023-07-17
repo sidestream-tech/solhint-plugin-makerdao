@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function isDeclarationFirstInBlock(startLineNum, previousLineNumOrNull) {
-    return startLineNum === previousLineNumOrNull + 1 || previousLineNumOrNull === null;
+function isDeclarationFirstInBlock(startLine, previousLineOrNull) {
+    return previousLineOrNull === null || startLine === previousLineOrNull + 1;
 }
 function getStateVariableDeclarationBlocks(ctx) {
     const stateVariableDeclarationBlocks = [];
