@@ -64,7 +64,7 @@ function validateVerticalInitialValueAlignments(
         if (maxAlignment === null) {
             return [];
         }
-        alignments.forEach((alignment: any, idx: any) => {
+        alignments.forEach((alignment, idx) => {
             if (alignment !== maxAlignment) {
                 errors.push({ ...ctx, loc: block[idx].loc });
             }

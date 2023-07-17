@@ -68,6 +68,9 @@ class PreferTypeProvidedMax {
         if (!typeName.startsWith('uint')) {
             return;
         }
+        if (ctx.arguments[0].type !== 'UnaryOperation') {
+            return;
+        }
         if (!ctx.arguments || ctx.arguments[0].operator !== '-' || ctx.arguments[0].subExpression.number !== '1') {
             return;
         }

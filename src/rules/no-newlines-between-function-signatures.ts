@@ -1,4 +1,4 @@
-import type { ContractDefinition, FunctionDefinition, Reporter } from 'solhint';
+import type { ContractDefinition, FunctionDefinition, RuleMeta, Reporter } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -19,7 +19,7 @@ contract C {
     function b() public;
 }
 `;
-export const meta = {
+export const meta: RuleMeta = {
     ruleId: 'no-newlines-between-function-signatures',
     type: 'miscellaneous',
 
@@ -87,7 +87,7 @@ export class NoNewlinesBetweenFunctionSignatures {
 
     private reporter: Reporter;
 
-    private meta: any;
+    private meta: RuleMeta;
 
     constructor(reporter: Reporter) {
         this.ruleId = meta.ruleId;

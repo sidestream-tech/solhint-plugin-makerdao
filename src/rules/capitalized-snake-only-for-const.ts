@@ -1,4 +1,4 @@
-import type { Reporter, RuleMeta } from 'solhint';
+import type { Reporter, RuleMeta, VariableDeclaration } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -65,7 +65,7 @@ export class CapitalizedSnakeOnlyForConst {
         this.meta = meta;
     }
 
-    VariableDeclaration(ctx: any) {
+    VariableDeclaration(ctx: VariableDeclaration) {
         if (ctx.isDeclaredConst) {
             return;
         }

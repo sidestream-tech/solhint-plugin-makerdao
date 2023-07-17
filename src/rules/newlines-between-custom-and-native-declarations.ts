@@ -1,4 +1,4 @@
-import type { Reporter, RuleMeta } from 'solhint';
+import type { ContractDefinition, Reporter, RuleMeta, StateVariableDeclaration } from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 
 const goodCode = `
@@ -52,7 +52,7 @@ export const meta: RuleMeta = {
     schema: null,
 };
 
-function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks: any) {
+function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks: StateVariableDeclaration[][]) {
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
         for (let i = 1; i < block.length; i += 1) {
@@ -78,7 +78,7 @@ export class NewlinesBetweenCustomAndNativeDeclarations {
         this.meta = meta;
     }
 
-    ContractDefinition(ctx: any) {
+    ContractDefinition(ctx: ContractDefinition) {
         const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
         const errors = validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks);
         errors.forEach(error =>

@@ -1,4 +1,4 @@
-import type { Reporter, RuleMeta } from 'solhint';
+import type { FunctionCall, PragmaDirective, Reporter, RuleMeta } from 'solhint';
 
 const semver = require('semver');
 
@@ -67,13 +67,13 @@ export class PreferTypeProvidedMax {
         this.ruleActive = false;
     }
 
-    PragmaDirective(node: any) {
+    PragmaDirective(node: PragmaDirective) {
         if (node.name === 'solidity' && semver.satisfies(semver.minVersion(node.value), this.ruleActiveAt)) {
             this.ruleActive = true;
         }
     }
 
-    FunctionCall(ctx: any) {
+    FunctionCall(ctx: FunctionCall) {
         if (!this.ruleActive) {
             return;
         }
@@ -82,6 +82,9 @@ export class PreferTypeProvidedMax {
         }
         const typeName = ctx.expression.name;
         if (!typeName.startsWith('uint')) {
+            return;
+        }
+        if (ctx.arguments[0].type !== 'UnaryOperation') {
             return;
         }
         if (!ctx.arguments || ctx.arguments[0].operator !== '-' || ctx.arguments[0].subExpression.number !== '1') {

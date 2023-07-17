@@ -115,7 +115,7 @@ function validateVerticalVisibilityAlignments(
         if (maxAlignment === null) {
             return [];
         }
-        columns.forEach((col: any, idx: number) => {
+        columns.forEach((col, idx) => {
             if (col !== maxAlignment) {
                 errors.push({ ...ctx, loc: block[idx].loc });
             }

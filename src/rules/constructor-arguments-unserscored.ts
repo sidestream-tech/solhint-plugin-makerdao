@@ -1,4 +1,4 @@
-import type { Reporter, RuleMeta } from 'solhint';
+import type { FunctionDefinition, Reporter, RuleMeta } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -59,11 +59,11 @@ export class UnderscoredConstructorArguments {
         this.meta = meta;
     }
 
-    FunctionDefinition(ctx: any) {
+    FunctionDefinition(ctx: FunctionDefinition) {
         if (!ctx.isConstructor) {
             return;
         }
-        ctx.parameters.forEach((param: any) => {
+        ctx.parameters.forEach(param => {
             if (param.name[param.name.length - 1] !== '_' && param.name[0] !== '_') {
                 this.reporter.error(param, this.ruleId, 'No suffix at the end of constructor argument');
             }

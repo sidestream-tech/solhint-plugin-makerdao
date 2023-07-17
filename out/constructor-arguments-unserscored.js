@@ -53,7 +53,7 @@ class UnderscoredConstructorArguments {
         if (!ctx.isConstructor) {
             return;
         }
-        ctx.parameters.forEach((param) => {
+        ctx.parameters.forEach(param => {
             if (param.name[param.name.length - 1] !== '_' && param.name[0] !== '_') {
                 this.reporter.error(param, this.ruleId, 'No suffix at the end of constructor argument');
             }

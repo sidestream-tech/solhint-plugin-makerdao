@@ -68,7 +68,7 @@ function getFunctionSignatureBlocks(ctx) {
 function validateNoNewlines(functionDefinitionBlocks, ctx) {
     const errors = [];
     for (const block of functionDefinitionBlocks) {
-        const alignments = block.map((node) => [node.loc.start.line, node.loc.end.line]);
+        const alignments = block.map(node => [node.loc.start.line, node.loc.end.line]);
         for (let i = 0; i < alignments.length - 1; i += 1) {
             const endCurrentSignature = alignments[i][1];
             const startNextSignature = alignments[i + 1][0];

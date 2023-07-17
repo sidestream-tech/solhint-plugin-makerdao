@@ -51,7 +51,12 @@ export const meta: RuleMeta = {
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 const commentPattern = /.*\/\/.*/;
 
-function getCommentGroupStartIndices(comments: any) {
+function getCommentGroupStartIndices(
+    comments: {
+        line: string;
+        index: number;
+    }[]
+) {
     const commentGroupStartIndices = [];
     for (let i = 0; i < comments.length; i += 1) {
         const comment = comments[i];
