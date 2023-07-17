@@ -1,5 +1,6 @@
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
+import type { Reporter, RuleMeta } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -22,7 +23,7 @@ contract C {
 
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 
-export const meta = {
+export const meta: RuleMeta = {
     ruleId: 'vertically-aligned-state-var-visibility',
     type: 'miscellaneous',
 
@@ -116,13 +117,13 @@ function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks: an
 export class VerticallyAlignedVisibilityModifiers {
     private ruleId: string;
 
-    private reporter: any;
+    private reporter: Reporter;
 
     private inputSrc: string;
 
-    private meta: any;
+    private meta: RuleMeta;
 
-    constructor(reporter: any, _config: any, inputSrc: string) {
+    constructor(reporter: Reporter, _config: any, inputSrc: string) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.inputSrc = inputSrc;

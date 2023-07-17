@@ -1,3 +1,4 @@
+import type { Reporter } from 'solhint';
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -83,11 +84,11 @@ function validateNoNewlines(stateVariableDeclarationBlocks: any, ctx: any) {
 export class NoNewlinesBetweenFunctionSignatures {
     private ruleId: string;
 
-    private reporter: any;
+    private reporter: Reporter;
 
     private meta: any;
 
-    constructor(reporter: any) {
+    constructor(reporter: Reporter) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;

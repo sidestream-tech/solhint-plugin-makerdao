@@ -1,3 +1,5 @@
+import type { Reporter, RuleMeta } from "solhint";
+
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -14,7 +16,7 @@ contract C {
     constructor(uint a);
 }
 `;
-export const meta = {
+export const meta: RuleMeta = {
     ruleId: 'constructor-arguments-unserscored',
     type: 'miscellaneous',
 
@@ -47,11 +49,11 @@ export const meta = {
 export class UnderscoredConstructorArguments {
     private ruleId: string;
 
-    private reporter: any;
+    private reporter: Reporter;
 
-    private meta: any;
+    private meta: RuleMeta;
 
-    constructor(reporter: any) {
+    constructor(reporter: Reporter) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;

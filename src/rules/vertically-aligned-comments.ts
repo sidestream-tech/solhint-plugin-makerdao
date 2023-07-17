@@ -1,3 +1,5 @@
+import type { Reporter, RuleMeta } from "solhint";
+
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -16,7 +18,7 @@ contract C {
     uint256 pi; // comments
 }
 `;
-export const meta = {
+export const meta: RuleMeta = {
     ruleId: 'vertically-aligned-comments',
     type: 'miscellaneous',
 
@@ -85,13 +87,13 @@ function validateVerticalAlignment(commentGroupStartIndices: any, comments: any,
 export class VerticallyAlignedComments {
     private ruleId: string;
 
-    private reporter: any;
+    private reporter: Reporter;
 
     private inputSrc: string;
 
-    private meta: any;
+    private meta: RuleMeta;
 
-    constructor(reporter: any, _config: any, inputSrc: string) {
+    constructor(reporter: Reporter, _config: any, inputSrc: string) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.inputSrc = inputSrc;

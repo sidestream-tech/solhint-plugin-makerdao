@@ -1,5 +1,6 @@
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
+import type { Reporter, RuleMeta } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -20,7 +21,7 @@ contract C {
 }
 `;
 
-export const meta = {
+export const meta: RuleMeta = {
     ruleId: 'vertically-aligned-declarations',
     type: 'miscellaneous',
 
@@ -69,11 +70,11 @@ function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks: a
 export class VerticallyAlignedDeclarations {
     private ruleId: string;
 
-    private reporter: any;
+    private reporter: Reporter;
 
-    private meta: any;
+    private meta: RuleMeta;
 
-    constructor(reporter: string) {
+    constructor(reporter: Reporter) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;

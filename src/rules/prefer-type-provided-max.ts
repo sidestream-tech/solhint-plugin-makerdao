@@ -1,3 +1,5 @@
+import type { Reporter, RuleMeta } from "solhint";
+
 const semver = require('semver');
 
 const goodCode = `
@@ -16,7 +18,7 @@ contract C {
     uint256 a = uint256(-1);
 }
 `;
-export const meta = {
+export const meta: RuleMeta = {
     ruleId: 'prefer-type-provided-max',
     type: 'miscellaneous',
 
@@ -49,15 +51,15 @@ export const meta = {
 export class PreferTypeProvidedMax {
     private ruleId: string;
 
-    private reporter: any;
+    private reporter: Reporter;
 
-    private meta: any;
+    private meta: RuleMeta;
 
     private ruleActiveAt: string;
 
     private ruleActive: boolean;
 
-    constructor(reporter: any) {
+    constructor(reporter: Reporter) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;

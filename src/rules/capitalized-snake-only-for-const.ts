@@ -1,3 +1,5 @@
+import type { Reporter, RuleMeta } from "solhint";
+
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -15,7 +17,7 @@ contract C {
 }
 `;
 
-export const meta = {
+export const meta: RuleMeta = {
     ruleId: 'capitalized-snake-only-for-const',
     type: 'miscellaneous',
 
@@ -53,11 +55,11 @@ function isCapitalSnake(name: string) {
 export class CapitalizedSnakeOnlyForConst {
     private ruleId: string;
 
-    private reporter: any;
+    private reporter: Reporter;
 
-    private meta: any;
+    private meta: RuleMeta;
 
-    constructor(reporter: any) {
+    constructor(reporter: Reporter) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;

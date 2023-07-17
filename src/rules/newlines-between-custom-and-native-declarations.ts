@@ -1,3 +1,4 @@
+import type { Reporter, RuleMeta } from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 
 const goodCode = `
@@ -21,7 +22,7 @@ contract C {
 }
 `;
 
-export const meta = {
+export const meta: RuleMeta = {
     ruleId: 'newlines-between-custom-and-native-declarations',
     type: 'miscellaneous',
 
@@ -67,11 +68,11 @@ function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks: a
 export class NewlinesBetweenCustomAndNativeDeclarations {
     private ruleId: string;
 
-    private reporter: any;
+    private reporter: Reporter;
 
-    private meta: any;
+    private meta: RuleMeta;
 
-    constructor(reporter: any) {
+    constructor(reporter: Reporter) {
         this.ruleId = meta.ruleId;
         this.reporter = reporter;
         this.meta = meta;

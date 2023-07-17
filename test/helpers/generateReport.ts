@@ -1,7 +1,7 @@
-const linter = require('solhint');
+import {processStr} from 'solhint';
 
 const generateReport = (contractCode: string, rules: Record<string, string>) => {
-    const report = linter.processStr(contractCode, {
+    const report = processStr(contractCode, {
         plugins: ['makerdao'],
         rules,
     });
