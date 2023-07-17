@@ -1,6 +1,6 @@
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
-import type { Reporter, RuleMeta } from 'solhint';
+import type { Reporter, RuleMeta, ContractDefenition as ContractDefinition, ASTNodeBase, ContractDefenition, StateVariableDeclaration } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -54,8 +54,8 @@ export const meta: RuleMeta = {
     schema: null,
 };
 
-function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock: any) {
-    const typeNameEndLocations = stateVariableDeclarationBlock.map((node: any) => ({
+function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock: StateVariableDeclaration[]) {
+    const typeNameEndLocations = stateVariableDeclarationBlock.map((node) => ({
         lines: [node.variables[0].typeName.loc.end.line, node.variables[0].identifier.loc.start.line],
         visibilityModifier: node.variables[0].visibility,
     }));
@@ -97,8 +97,8 @@ function getVariableVisibilityModifierColumnsPerBlock(visibilityModifierLocation
     return ret;
 }
 
-function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks: any, ctx: any, inputSrc: string) {
-    const errors: any[] = [];
+function validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks: StateVariableDeclaration[][], ctx: ContractDefenition, inputSrc: string) {
+    const errors: ASTNodeBase[] = [];
     for (const block of stateVariableDeclarationBlocks) {
         const locations = getVariableVisibilityModifierLocations(block);
         const columns = getVariableVisibilityModifierColumnsPerBlock(locations, inputSrc);
@@ -130,7 +130,7 @@ export class VerticallyAlignedVisibilityModifiers {
         this.meta = meta;
     }
 
-    ContractDefinition(ctx: any) {
+    ContractDefinition(ctx: ContractDefinition) {
         const stateVariableDeclarationBlocks = getStateVariableDeclarationBlocks(ctx);
         const errors = validateVerticalVisibilityAlignments(stateVariableDeclarationBlocks, ctx, this.inputSrc);
         errors.forEach(error =>

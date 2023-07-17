@@ -4,7 +4,7 @@ declare module 'solhint' {
         plugins: string[];
     }
     export interface Reporter {
-        error: (error: Error, ruleId: string, message: string, meta?: RuleMeta) => void;
+        error: (error: ASTNodeBase, ruleId: string, message: string, meta?: RuleMeta) => void;
     }
     export function processStr(sourceCode: string, config: LinterConfig): Reporter;
     interface MetaDocsExamples {
@@ -25,4 +25,48 @@ declare module 'solhint' {
         defaultSetup: 'warn' | 'error',
         schema: null,
     }
+    export interface ASTNodeLoc {
+        start: {
+            line: number;
+            column: number;
+        };
+        end: {
+            line: number;
+            column: number;
+        };
+    }
+    export interface ASTNodeBase {
+        type: string;
+        loc: ASTNodeLoc;
+    }
+    export interface ContractDefenition extends ASTNodeBase {
+        type: "ContractDefinition";
+        name: string;
+        subNodes: ASTNode[];
+        kind: "contract";
+    }
+    export interface ElementaryTypeName extends ASTNodeBase {
+        type: "ElementaryTypeName";
+        name: string;
+    }
+    export interface NumberLiteral extends ASTNodeBase {
+        type: "NumberLiteral";
+        number: string;
+    }
+    export interface VariableDeclaration extends ASTNodeBase {
+        type: "VariableDeclaration";
+        typeName: ElementaryTypeName;
+        name: string;
+        expression: null | NumberLiteral;
+        visibility: "public" | "private" | "internal" | "external" | "default";
+        identifier: ASTNodeBase;
+        isStateVar: boolean;
+        isIndexed: boolean;
+    }
+    export interface StateVariableDeclaration extends ASTNodeBase {
+        type: "StateVariableDeclaration";
+        variables: VariableDeclaration[];
+        initialValue: null | NumberLiteral;
+    }
+    export type ASTNode = StateVariableDeclaration | ContractDefenition | VariableDeclaration | ElementaryTypeName | NumberLiteral;
 }

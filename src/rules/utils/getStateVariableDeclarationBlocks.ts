@@ -1,9 +1,11 @@
-function isDeclarationFirstInBlock(startLineNum: any, previousLineNumOrNull: any) {
-    return startLineNum === previousLineNumOrNull + 1 || previousLineNumOrNull === null;
+import type { ContractDefenition, StateVariableDeclaration } from "solhint";
+
+function isDeclarationFirstInBlock(startLine: number, previousLineOrNull: number | null) {
+    return previousLineOrNull === null || startLine === previousLineOrNull + 1;
 }
-function getStateVariableDeclarationBlocks(ctx: any) {
-    const stateVariableDeclarationBlocks = [];
-    let stateVariableDeclarationBlock = [];
+function getStateVariableDeclarationBlocks(ctx: ContractDefenition) {
+    const stateVariableDeclarationBlocks: StateVariableDeclaration[][] = [];
+    let stateVariableDeclarationBlock: StateVariableDeclaration[] = [];
     let previousLine = null;
     for (const subNode of ctx.subNodes) {
         if (
