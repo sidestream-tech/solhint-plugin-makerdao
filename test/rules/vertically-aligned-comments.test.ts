@@ -1,9 +1,8 @@
+import { contractWith } from 'solhint/test/common/contract-builder';
+import { assertErrorCount, assertErrorMessage, assertNoErrors } from 'solhint/test/common/asserts';
 import generateReport from '../helpers/generateReport';
 import { unalignedComments, unalignedCommentsMultiBlock } from '../fixtures/comments/incorrect';
 import { alignedComments, alignedCommentsMultiBlock } from '../fixtures/comments/correct';
-
-const { contractWith } = require('solhint/test/common/contract-builder');
-const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 
 describe('Linter - vertically aligned comments', () => {
     it('should report vertically unaligned comments', () => {

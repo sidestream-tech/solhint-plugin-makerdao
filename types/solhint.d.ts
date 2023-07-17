@@ -142,4 +142,9 @@ declare module 'solhint/test/common/asserts' {
     import type { Reporter } from 'solhint';
 
     export function assertNoErrors(reporter: Reporter): void;
+    export function assertErrorCount(reporter: Reporter, count: number): void;
+    export function assertErrorMessage(reporter: Reporter, message: string): void;
+}
+declare module 'solhint/test/common/contract-builder' {
+    export function contractWith(sourceCode: string): string;
 }

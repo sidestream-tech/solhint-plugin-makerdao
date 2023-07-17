@@ -1,9 +1,8 @@
+import { contractWith } from 'solhint/test/common/contract-builder';
+import { assertErrorCount, assertErrorMessage, assertNoErrors } from 'solhint/test/common/asserts';
 import generateReport from '../helpers/generateReport';
 import { typeProvidedMax } from '../fixtures/maxValue/correct';
 import { conversionProvidedMax } from '../fixtures/maxValue/incorrect';
-
-const { contractWith } = require('solhint/test/common/contract-builder');
-const { assertErrorCount, assertErrorMessage, assertNoErrors } = require('solhint/test/common/asserts');
 
 describe('Linter - max value assignments', () => {
     it('should report type conversion max values', () => {
