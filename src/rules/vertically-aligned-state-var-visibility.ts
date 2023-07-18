@@ -4,7 +4,6 @@ import type {
     ContractDefinition,
     BaseASTNode,
     StateVariableDeclaration,
-    FunctionDefinition,
     VariableDeclaration,
 } from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
