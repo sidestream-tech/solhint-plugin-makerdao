@@ -1,8 +1,8 @@
-import type { Reporter, RuleMeta, ContractDefinition, BaseASTNode, StateVariableDeclaration } from 'solhint';
+import type { Reporter, RuleMeta, ContractDefinition, BaseASTNode, StateVariableDeclaration, FunctionDefinition, VariableDeclaration } from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
 
-type VisibilityModifier = 'public' | 'private' | 'internal' | 'default' | undefined;
+type VisibilityModifier = VariableDeclaration['visibility'];
 type Locations = ({
     visibilityModifier: VisibilityModifier;
     lines: number[];
