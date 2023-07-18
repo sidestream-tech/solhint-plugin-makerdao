@@ -51,7 +51,7 @@ function validateVerticalInitialValueAlignments(stateVariableDeclarationBlocks, 
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
         const alignments = block
-            .map(node => { var _a; return (_a = node.variables[0].expression) === null || _a === void 0 ? void 0 : _a.loc.start.column; })
+            .map(node => { var _a, _b; return (_b = (_a = node.variables[0].expression) === null || _a === void 0 ? void 0 : _a.loc) === null || _b === void 0 ? void 0 : _b.start.column; })
             .filter((alignment) => alignment !== undefined);
         const maxAlignment = (0, getMaxArrayValueOrNull_1.default)(alignments);
         if (maxAlignment === null) {

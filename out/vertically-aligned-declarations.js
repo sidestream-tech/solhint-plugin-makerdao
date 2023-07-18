@@ -50,7 +50,7 @@ exports.meta = {
 function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks, ctx) {
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
-        const alignments = block.map(node => node.variables[0].identifier.loc.start.column);
+        const alignments = block.map(node => { var _a, _b; return (_b = (_a = node.variables[0].identifier) === null || _a === void 0 ? void 0 : _a.loc) === null || _b === void 0 ? void 0 : _b.start.column; }).filter((item) => !!item);
         const maxAlignment = (0, getMaxArrayValueOrNull_1.default)(alignments);
         if (maxAlignment === null) {
             return [];

@@ -58,7 +58,7 @@ function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks: S
         for (let i = 1; i < block.length; i += 1) {
             const currentVariable = block[i].variables[0];
             const previousVariable = block[i - 1].variables[0];
-            if (currentVariable.typeName.type !== previousVariable.typeName.type) {
+            if (currentVariable.typeName?.type !== previousVariable.typeName?.type) {
                 errors.push({ ...block[i] });
             }
         }

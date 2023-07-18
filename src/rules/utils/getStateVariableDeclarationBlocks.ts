@@ -10,9 +10,10 @@ function getStateVariableDeclarationBlocks(ctx: ContractDefinition) {
     for (const subNode of ctx.subNodes) {
         if (
             subNode.type === 'StateVariableDeclaration' &&
+            subNode.loc &&
             isDeclarationFirstInBlock(subNode.loc.start.line, previousLine)
         ) {
-            stateVariableDeclarationBlock.push(subNode);
+            stateVariableDeclarationBlock.push(subNode as StateVariableDeclaration);
             previousLine = subNode.loc.end.line;
         } else {
             if (stateVariableDeclarationBlock.length) {

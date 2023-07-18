@@ -1,4 +1,4 @@
-import type { ASTNodeBase, Reporter, RuleMeta, SourceUnit } from 'solhint';
+import type { BaseASTNode, Reporter, RuleMeta, SourceUnit } from 'solhint';
 
 const goodCode = `
 pragma solidity 0.4.4;
@@ -73,7 +73,7 @@ function validateVerticalAlignment(
     comments: { line: string; index: number }[],
     ctx: SourceUnit
 ) {
-    const reportedErrors: ASTNodeBase[] = [];
+    const reportedErrors: BaseASTNode[] = [];
     for (let i = 0; i < commentGroupStartIndices.length; i += 1) {
         const commentGroup = comments.slice(commentGroupStartIndices[i], commentGroupStartIndices[i + 1] || undefined);
         const commentGroupMaxStartColumn = Math.max(...commentGroup.map(({ line }) => line.indexOf('//')));

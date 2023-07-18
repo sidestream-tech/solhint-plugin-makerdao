@@ -69,7 +69,7 @@ export class CapitalizedSnakeOnlyForConst {
         if (ctx.isDeclaredConst) {
             return;
         }
-        if (isCapitalSnake(ctx.name)) {
+        if (ctx.name && isCapitalSnake(ctx.name)) {
             this.reporter.error(ctx, this.ruleId, 'Variable name is in all caps and snake case, but is not constant');
         }
     }

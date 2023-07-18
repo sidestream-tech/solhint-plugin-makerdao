@@ -49,12 +49,13 @@ exports.meta = {
     schema: null,
 };
 function validateVerticalDeclarationAlignments(stateVariableDeclarationBlocks) {
+    var _a, _b;
     const errors = [];
     for (const block of stateVariableDeclarationBlocks) {
         for (let i = 1; i < block.length; i += 1) {
             const currentVariable = block[i].variables[0];
             const previousVariable = block[i - 1].variables[0];
-            if (currentVariable.typeName.type !== previousVariable.typeName.type) {
+            if (((_a = currentVariable.typeName) === null || _a === void 0 ? void 0 : _a.type) !== ((_b = previousVariable.typeName) === null || _b === void 0 ? void 0 : _b.type)) {
                 errors.push(Object.assign({}, block[i]));
             }
         }

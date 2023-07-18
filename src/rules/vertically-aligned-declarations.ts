@@ -1,4 +1,4 @@
-import type { ASTNodeBase, ContractDefinition, Reporter, RuleMeta, StateVariableDeclaration } from 'solhint';
+import type { BaseASTNode, ContractDefinition, Reporter, RuleMeta, StateVariableDeclaration } from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
 
@@ -55,9 +55,9 @@ function validateVerticalDeclarationAlignments(
     stateVariableDeclarationBlocks: StateVariableDeclaration[][],
     ctx: ContractDefinition
 ) {
-    const errors: ASTNodeBase[] = [];
+    const errors: BaseASTNode[] = [];
     for (const block of stateVariableDeclarationBlocks) {
-        const alignments = block.map(node => node.variables[0].identifier.loc.start.column);
+        const alignments = block.map(node => node.variables[0].identifier?.loc?.start.column).filter((item): item is number => !!item);
         const maxAlignment = getMaxArrayValueOrNull(alignments);
         if (maxAlignment === null) {
             return [];
