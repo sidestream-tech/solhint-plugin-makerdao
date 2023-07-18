@@ -1,6 +1,7 @@
 declare module 'solhint' {
     export * from '@solidity-parser/parser/dist/src/ast-types';
     import type { BaseASTNode } from '@solidity-parser/parser/dist/src/ast-types';
+
     export type Visibility = 'public' | 'private' | 'internal' | 'external' | 'default';
     export interface LinterConfig {
         rules: Record<string, string>;

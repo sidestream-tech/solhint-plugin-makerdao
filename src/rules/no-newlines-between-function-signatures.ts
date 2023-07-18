@@ -70,12 +70,14 @@ function getFunctionSignatureBlocks(ctx: ContractDefinition) {
 function validateNoNewlines(functionDefinitionBlocks: FunctionDefinition[][], ctx: ContractDefinition) {
     const errors = [];
     for (const block of functionDefinitionBlocks) {
-        const alignments = block.map(node => {
-            if (node.loc === undefined) {
-                return undefined;
-            }
-            return [node.loc.start.line, node.loc.end.line]
-        }).filter((item): item is [number, number] => !!item);
+        const alignments = block
+            .map(node => {
+                if (node.loc === undefined) {
+                    return undefined;
+                }
+                return [node.loc.start.line, node.loc.end.line];
+            })
+            .filter((item): item is [number, number] => !!item);
         for (let i = 0; i < alignments.length - 1; i += 1) {
             const endCurrentSignature = alignments[i][1];
             const startNextSignature = alignments[i + 1][0];

@@ -1,4 +1,12 @@
-import type { Reporter, RuleMeta, ContractDefinition, BaseASTNode, StateVariableDeclaration, FunctionDefinition, VariableDeclaration } from 'solhint';
+import type {
+    Reporter,
+    RuleMeta,
+    ContractDefinition,
+    BaseASTNode,
+    StateVariableDeclaration,
+    FunctionDefinition,
+    VariableDeclaration,
+} from 'solhint';
 import getStateVariableDeclarationBlocks from './utils/getStateVariableDeclarationBlocks';
 import getMaxArrayValueOrNull from './utils/getMaxArrayValueOrNull';
 
@@ -61,15 +69,20 @@ export const meta: RuleMeta = {
 };
 
 function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock: StateVariableDeclaration[]) {
-    const typeNameEndLocations = stateVariableDeclarationBlock.map(node => {
-        if (node.variables[0].typeName?.loc?.end.line === undefined || node.variables[0].identifier?.loc?.start.line === undefined) {
-            return undefined
-        }
-        return {
-            lines: [node.variables[0].typeName?.loc?.end.line, node.variables[0].identifier?.loc?.start.line],
-            visibilityModifier: node.variables[0].visibility,
-        };
-    }).filter((value): value is { lines: number[]; visibilityModifier: VisibilityModifier } => value !== undefined);
+    const typeNameEndLocations = stateVariableDeclarationBlock
+        .map(node => {
+            if (
+                node.variables[0].typeName?.loc?.end.line === undefined ||
+                node.variables[0].identifier?.loc?.start.line === undefined
+            ) {
+                return undefined;
+            }
+            return {
+                lines: [node.variables[0].typeName?.loc?.end.line, node.variables[0].identifier?.loc?.start.line],
+                visibilityModifier: node.variables[0].visibility,
+            };
+        })
+        .filter((value): value is { lines: number[]; visibilityModifier: VisibilityModifier } => value !== undefined);
     const visibilityModifierLocations = typeNameEndLocations.map(loc => {
         const { lines, visibilityModifier } = loc;
         if (visibilityModifier === 'default') {

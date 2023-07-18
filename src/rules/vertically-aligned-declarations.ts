@@ -57,7 +57,9 @@ function validateVerticalDeclarationAlignments(
 ) {
     const errors: BaseASTNode[] = [];
     for (const block of stateVariableDeclarationBlocks) {
-        const alignments = block.map(node => node.variables[0].identifier?.loc?.start.column).filter((item): item is number => !!item);
+        const alignments = block
+            .map(node => node.variables[0].identifier?.loc?.start.column)
+            .filter((item): item is number => !!item);
         const maxAlignment = getMaxArrayValueOrNull(alignments);
         if (maxAlignment === null) {
             return [];
