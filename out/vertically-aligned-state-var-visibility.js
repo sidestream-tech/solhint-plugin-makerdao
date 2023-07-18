@@ -49,16 +49,19 @@ exports.meta = {
     schema: null,
 };
 function getVariableVisibilityModifierLocations(stateVariableDeclarationBlock) {
-    const typeNameEndLocations = stateVariableDeclarationBlock.map(node => {
+    const typeNameEndLocations = stateVariableDeclarationBlock
+        .map(node => {
         var _a, _b, _c, _d, _e, _f, _g, _h;
-        if (((_b = (_a = node.variables[0].typeName) === null || _a === void 0 ? void 0 : _a.loc) === null || _b === void 0 ? void 0 : _b.end.line) === undefined || ((_d = (_c = node.variables[0].identifier) === null || _c === void 0 ? void 0 : _c.loc) === null || _d === void 0 ? void 0 : _d.start.line) === undefined) {
+        if (((_b = (_a = node.variables[0].typeName) === null || _a === void 0 ? void 0 : _a.loc) === null || _b === void 0 ? void 0 : _b.end.line) === undefined ||
+            ((_d = (_c = node.variables[0].identifier) === null || _c === void 0 ? void 0 : _c.loc) === null || _d === void 0 ? void 0 : _d.start.line) === undefined) {
             return undefined;
         }
         return {
             lines: [(_f = (_e = node.variables[0].typeName) === null || _e === void 0 ? void 0 : _e.loc) === null || _f === void 0 ? void 0 : _f.end.line, (_h = (_g = node.variables[0].identifier) === null || _g === void 0 ? void 0 : _g.loc) === null || _h === void 0 ? void 0 : _h.start.line],
             visibilityModifier: node.variables[0].visibility,
         };
-    }).filter((value) => value !== undefined);
+    })
+        .filter((value) => value !== undefined);
     const visibilityModifierLocations = typeNameEndLocations.map(loc => {
         const { lines, visibilityModifier } = loc;
         if (visibilityModifier === 'default') {
