@@ -30,7 +30,7 @@
         "import/prefer-default-export": "off",
         "no-restricted-syntax": "off"
     },
-    "ignorePatterns": ["out/**", "*.js"],
+    "ignorePatterns": ["dist/**", "*.js"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "project": ["./tsconfig.json", "./test/tsconfig.json"]
