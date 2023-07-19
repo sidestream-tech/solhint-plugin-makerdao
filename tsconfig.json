@@ -2,9 +2,9 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "outDir": "./out",
+    "outDir": "./dist",
     "strict": true
   },
   "include": ["src/**/*.ts", "types/solhint.d.ts"],
-  "exclude": ["out/**"]
+  "exclude": ["dist/**"]
 }
