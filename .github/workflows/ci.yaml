@@ -29,4 +29,4 @@ jobs:
       - name: Install dependencies
         run: npm i
       - name: Run compilation
-        run: npm run Vompile
+        run: npm run compile
