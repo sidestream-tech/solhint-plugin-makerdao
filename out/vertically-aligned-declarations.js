@@ -78,4 +78,4 @@ class VerticallyAlignedDeclarations {
     }
 }
 exports.VerticallyAlignedDeclarations = VerticallyAlignedDeclarations;
-exports.default = { VerticallyAlignedDeclarations, meta: exports.meta };
+exports.default = { rule: VerticallyAlignedDeclarations, meta: exports.meta };

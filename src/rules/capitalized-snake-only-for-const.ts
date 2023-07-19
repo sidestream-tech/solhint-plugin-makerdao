@@ -75,4 +75,4 @@ export class CapitalizedSnakeOnlyForConst {
     }
 }
 
-export default { CapitalizedSnakeOnlyForConst, meta };
+export default { rule: CapitalizedSnakeOnlyForConst, meta };

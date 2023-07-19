@@ -94,4 +94,4 @@ export class VerticallyAlignedDeclarations {
     }
 }
 
-export default { VerticallyAlignedDeclarations, meta };
+export default { rule: VerticallyAlignedDeclarations, meta };

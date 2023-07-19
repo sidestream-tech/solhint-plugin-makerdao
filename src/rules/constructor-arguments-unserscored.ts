@@ -71,4 +71,4 @@ export class UnderscoredConstructorArguments {
     }
 }
 
-export default { UnderscoredConstructorArguments, meta };
+export default { rule: UnderscoredConstructorArguments, meta };

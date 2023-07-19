@@ -63,4 +63,4 @@ class CapitalizedSnakeOnlyForConst {
     }
 }
 exports.CapitalizedSnakeOnlyForConst = CapitalizedSnakeOnlyForConst;
-exports.default = { CapitalizedSnakeOnlyForConst, meta: exports.meta };
+exports.default = { rule: CapitalizedSnakeOnlyForConst, meta: exports.meta };

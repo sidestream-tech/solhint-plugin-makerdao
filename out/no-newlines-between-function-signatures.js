@@ -99,4 +99,4 @@ class NoNewlinesBetweenFunctionSignatures {
     }
 }
 exports.NoNewlinesBetweenFunctionSignatures = NoNewlinesBetweenFunctionSignatures;
-exports.default = { NoNewlinesBetweenFunctionSignatures, meta: exports.meta };
+exports.default = { rule: NoNewlinesBetweenFunctionSignatures, meta: exports.meta };

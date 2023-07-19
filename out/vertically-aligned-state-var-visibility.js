@@ -127,4 +127,4 @@ class VerticallyAlignedVisibilityModifiers {
     }
 }
 exports.VerticallyAlignedVisibilityModifiers = VerticallyAlignedVisibilityModifiers;
-exports.default = { VerticallyAlignedVisibilityModifiers, meta: exports.meta };
+exports.default = { rule: VerticallyAlignedVisibilityModifiers, meta: exports.meta };

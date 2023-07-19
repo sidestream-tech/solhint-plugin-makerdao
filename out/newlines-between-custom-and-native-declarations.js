@@ -75,4 +75,4 @@ class NewlinesBetweenCustomAndNativeDeclarations {
     }
 }
 exports.NewlinesBetweenCustomAndNativeDeclarations = NewlinesBetweenCustomAndNativeDeclarations;
-exports.default = { NewlinesBetweenCustomAndNativeDeclarations, meta: exports.meta };
+exports.default = { rule: NewlinesBetweenCustomAndNativeDeclarations, meta: exports.meta };

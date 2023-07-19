@@ -61,4 +61,4 @@ class UnderscoredConstructorArguments {
     }
 }
 exports.UnderscoredConstructorArguments = UnderscoredConstructorArguments;
-exports.default = { UnderscoredConstructorArguments, meta: exports.meta };
+exports.default = { rule: UnderscoredConstructorArguments, meta: exports.meta };

@@ -98,4 +98,4 @@ export class PreferTypeProvidedMax {
     }
 }
 
-export default { PreferTypeProvidedMax, meta };
+export default { rule: PreferTypeProvidedMax, meta };

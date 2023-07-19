@@ -82,4 +82,4 @@ class PreferTypeProvidedMax {
     }
 }
 exports.PreferTypeProvidedMax = PreferTypeProvidedMax;
-exports.default = { PreferTypeProvidedMax, meta: exports.meta };
+exports.default = { rule: PreferTypeProvidedMax, meta: exports.meta };

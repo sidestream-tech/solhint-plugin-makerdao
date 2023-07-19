@@ -78,4 +78,4 @@ class VerticallyAlignedAssignments {
     }
 }
 exports.VerticallyAlignedAssignments = VerticallyAlignedAssignments;
-exports.default = { VerticallyAlignedAssignments, meta: exports.meta };
+exports.default = { rule: VerticallyAlignedAssignments, meta: exports.meta };

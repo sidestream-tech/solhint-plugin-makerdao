@@ -168,4 +168,4 @@ export class VerticallyAlignedVisibilityModifiers {
     }
 }
 
-export default { VerticallyAlignedVisibilityModifiers, meta };
+export default { rule: VerticallyAlignedVisibilityModifiers, meta };

@@ -87,4 +87,4 @@ export class NewlinesBetweenCustomAndNativeDeclarations {
     }
 }
 
-export default { NewlinesBetweenCustomAndNativeDeclarations, meta };
+export default { rule: NewlinesBetweenCustomAndNativeDeclarations, meta };

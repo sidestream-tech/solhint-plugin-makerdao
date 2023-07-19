@@ -94,4 +94,4 @@ class VerticallyAlignedComments {
     }
 }
 exports.VerticallyAlignedComments = VerticallyAlignedComments;
-exports.default = { VerticallyAlignedComments, meta: exports.meta };
+exports.default = { rule: VerticallyAlignedComments, meta: exports.meta };

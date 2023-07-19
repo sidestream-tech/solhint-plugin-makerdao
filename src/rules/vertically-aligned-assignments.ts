@@ -94,4 +94,4 @@ export class VerticallyAlignedAssignments {
     }
 }
 
-export default { VerticallyAlignedAssignments, meta };
+export default { rule: VerticallyAlignedAssignments, meta };

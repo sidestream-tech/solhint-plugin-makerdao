@@ -111,4 +111,4 @@ export class NoNewlinesBetweenFunctionSignatures {
     }
 }
 
-export default { NoNewlinesBetweenFunctionSignatures, meta };
+export default { rule: NoNewlinesBetweenFunctionSignatures, meta };

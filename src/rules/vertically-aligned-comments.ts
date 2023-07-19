@@ -121,4 +121,4 @@ export class VerticallyAlignedComments {
     }
 }
 
-export default { VerticallyAlignedComments, meta };
+export default { rule: VerticallyAlignedComments, meta };
