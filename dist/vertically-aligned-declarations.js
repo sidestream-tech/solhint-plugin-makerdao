@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VerticallyAlignedDeclarations = exports.meta = void 0;
-const getStateVariableDeclarationBlocks_1 = require("./utils/getStateVariableDeclarationBlocks");
-const getMaxArrayValueOrNull_1 = require("./utils/getMaxArrayValueOrNull");
+const getStateVariableDeclarationBlocks_1 = __importDefault(require("./utils/getStateVariableDeclarationBlocks"));
+const getMaxArrayValueOrNull_1 = __importDefault(require("./utils/getMaxArrayValueOrNull"));
 const goodCode = `
 pragma solidity 0.4.4;
 
