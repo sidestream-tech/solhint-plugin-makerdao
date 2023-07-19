@@ -19,3 +19,16 @@ jobs:
         run: npm run lint
       - name: Run tests
         run: npm run test
+  compile:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm i
+      - name: Run compilation
+        run: npm run compile
+      - name: Ensure dist unchanged
+        run: ./scripts/assert-dist-unchanged.sh
