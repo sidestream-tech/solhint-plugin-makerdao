@@ -30,3 +30,5 @@ jobs:
         run: npm i
       - name: Run compilation
         run: npm run compile
+      - name: Ensure dist unchanged
+        run: ./scripts/assert-dist-unchanged.sh

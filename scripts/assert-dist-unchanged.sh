@@ -1,4 +1,4 @@
-DIFF=$(git status --porcelain | sed s/^...//)
+DIFF=$(git status ./dist --porcelain | sed s/^...//)
 if [ -z "$DIFF" ]
 then
     exit 0
