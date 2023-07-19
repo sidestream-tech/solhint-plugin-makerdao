@@ -18,3 +18,4 @@
 ```
 
 3. import the object from (2) into `src/rules/index.ts` and reexport it there (`export default`)
+4. Add the tests for the rule
