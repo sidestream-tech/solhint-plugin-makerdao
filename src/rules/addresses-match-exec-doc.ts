@@ -15,11 +15,23 @@ import fetch from 'sync-fetch';
 
 // TODO
 const goodCode = `
-AUF
+pragma solidity 0.4.4;
+
+
+// if the executive document contains an address 0x0000000000000000000000000000000000000000
+contract C {
+    address public a = 0x0000000000000000000000000000000000000000;
+}
 `;
 // TODO
 const badCode = `
-AUF
+pragma solidity 0.4.4;
+
+
+// if the executive document contains an address 0x0000000000000000000000000000000000000000
+contract C {
+    address public a = 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee;
+}
 `;
 // TODO
 export const meta: RuleMeta = {
@@ -28,18 +40,18 @@ export const meta: RuleMeta = {
 
     // TODO
     docs: {
-        description: 'ASDF',
+        description: 'Addresses mentioned in the executive document have to be present in the source code.',
         category: 'Miscellaneous',
         examples: {
             good: [
                 {
-                    description: 'ASDF',
+                    description: 'The contract code contains the address that is present in the executive document.',
                     code: goodCode,
                 },
             ],
             bad: [
                 {
-                    description: 'ASDF',
+                    description: 'The contract code does not contain the address that is present in the executive document.',
                     code: badCode,
                 },
             ],
