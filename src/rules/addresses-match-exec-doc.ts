@@ -51,7 +51,8 @@ export const meta: RuleMeta = {
             ],
             bad: [
                 {
-                    description: 'The contract code does not contain the address that is present in the executive document.',
+                    description:
+                        'The contract code does not contain the address that is present in the executive document.',
                     code: badCode,
                 },
             ],
@@ -214,7 +215,7 @@ export class ExecDocAddressesMatchSourceCode {
         if (missingExecAddressesInSpell.size !== 0) {
             this.reporter.error(
                 { type: 'SourceUnit', loc },
-                this.ruleId+'-source-code',
+                `${this.ruleId}-source-code`,
                 // eslint-disable-next-line max-len
                 `Expected addresses in the source code to match addresses in the executive document. Missing addresses:\n${Array.from(
                     missingExecAddressesInSpell
@@ -224,7 +225,7 @@ export class ExecDocAddressesMatchSourceCode {
         if (missingSpellAddressesInExec.size !== 0) {
             this.reporter.warn(
                 { type: 'SourceUnit', loc },
-                this.ruleId + '-exec-doc',
+                `${this.ruleId}-exec-doc`,
                 `Not all addresses in the source code are present in the executive document. Missing addresses:\n${Array.from(
                     missingSpellAddressesInExec
                 ).join(',\n')}`
