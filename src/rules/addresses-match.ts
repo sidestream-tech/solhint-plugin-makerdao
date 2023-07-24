@@ -13,6 +13,7 @@ import { join } from 'path';
 import { parse, visit } from '@solidity-parser/parser';
 import fetch from 'sync-fetch';
 
+/* eslint-disable */
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -37,6 +38,7 @@ contract C {
     address public a = 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee;
 }
 `;
+/* eslint-enable */
 export const meta: RuleMeta = {
     ruleId: 'addresses-match',
     type: 'miscellaneous',
