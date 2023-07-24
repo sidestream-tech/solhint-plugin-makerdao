@@ -9,6 +9,7 @@ const os_1 = require("os");
 const path_1 = require("path");
 const parser_1 = require("@solidity-parser/parser");
 const sync_fetch_1 = __importDefault(require("sync-fetch"));
+/* eslint-disable */
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -33,6 +34,7 @@ contract C {
     address public a = 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee;
 }
 `;
+/* eslint-enable */
 exports.meta = {
     ruleId: 'addresses-match',
     type: 'miscellaneous',
