@@ -12,7 +12,7 @@ const vertically_aligned_comments_1 = __importDefault(require("./vertically-alig
 const vertically_aligned_assignments_1 = __importDefault(require("./vertically-aligned-assignments"));
 const vertically_aligned_declarations_1 = __importDefault(require("./vertically-aligned-declarations"));
 const vertically_aligned_state_var_visibility_1 = __importDefault(require("./vertically-aligned-state-var-visibility"));
-const addresses_match_exec_doc_1 = __importDefault(require("./addresses-match-exec-doc"));
+const addresses_match_1 = __importDefault(require("./addresses-match"));
 exports.default = {
     capitalizedSnakeOnlyForConst: capitalized_snake_only_for_const_1.default,
     constructorArgumentsUnserscored: constructor_arguments_unserscored_1.default,
@@ -23,5 +23,5 @@ exports.default = {
     verticallyAlignedAssignments: vertically_aligned_assignments_1.default,
     verticallyAlignedDeclarations: vertically_aligned_declarations_1.default,
     verticallyAlignedStateVarVisibility: vertically_aligned_state_var_visibility_1.default,
-    addressesMatchExecDoc: addresses_match_exec_doc_1.default,
+    addressesMatch: addresses_match_1.default,
 };
