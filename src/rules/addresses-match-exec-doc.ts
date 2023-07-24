@@ -226,6 +226,7 @@ export class ExecDocAddressesMatchSourceCode {
             this.reporter.warn(
                 { type: 'SourceUnit', loc },
                 `${this.ruleId}-exec-doc`,
+                // eslint-disable-next-line max-len
                 `Not all addresses in the source code are present in the executive document. Missing addresses:\n${Array.from(
                     missingSpellAddressesInExec
                 ).join(',\n')}`
