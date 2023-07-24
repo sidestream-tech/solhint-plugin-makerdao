@@ -1,7 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NewlinesBetweenCustomAndNativeDeclarations = exports.meta = void 0;
-const getStateVariableDeclarationBlocks_1 = require("./utils/getStateVariableDeclarationBlocks");
+const getStateVariableDeclarationBlocks_1 = __importDefault(require("./utils/getStateVariableDeclarationBlocks"));
 const goodCode = `
 pragma solidity 0.4.4;
 

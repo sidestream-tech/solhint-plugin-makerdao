@@ -9,7 +9,8 @@
       "makerdao/capitalized-snake-only-for-const": "error",
       "makerdao/newlines-between-custom-and-native-declarations": "error",
       "makerdao/constructor-arguments-unserscored": "error",
-      "makerdao/prefer-type-provided-max": "error"
+      "makerdao/prefer-type-provided-max": "error",
+      "makerdao/addresses-match": "error"
   }
 }
 

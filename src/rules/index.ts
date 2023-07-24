@@ -7,6 +7,7 @@ import verticallyAlignedComments from './vertically-aligned-comments';
 import verticallyAlignedAssignments from './vertically-aligned-assignments';
 import verticallyAlignedDeclarations from './vertically-aligned-declarations';
 import verticallyAlignedStateVarVisibility from './vertically-aligned-state-var-visibility';
+import addressesMatch from './addresses-match';
 
 export default {
     capitalizedSnakeOnlyForConst,
@@ -18,4 +19,5 @@ export default {
     verticallyAlignedAssignments,
     verticallyAlignedDeclarations,
     verticallyAlignedStateVarVisibility,
+    addressesMatch,
 };
