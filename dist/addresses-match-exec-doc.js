@@ -19,7 +19,7 @@ AUF
 `;
 // TODO
 exports.meta = {
-    ruleId: 'addresses-match-exec-doc',
+    ruleId: 'addresses-match',
     type: 'miscellaneous',
     // TODO
     docs: {
@@ -47,8 +47,12 @@ exports.meta = {
 };
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 const commentPattern = /.*\/\/.*/;
-const hashCommentPattern = /\s*\/\/ Hash: cast keccak -- "\$\(wget \'https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/.*' -q -O - 2>\/dev\/null\)/;
-const githubUrlPattern = /^https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/[a-z0-9]{40}\/governance\/votes\/Executive%20vote%20-%20.+\.md$/;
+const hashCommentPattern = 
+// eslint-disable-next-line no-useless-escape, max-len
+/\s*\/\/ Hash: cast keccak -- "\$\(wget \'https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/.*' -q -O - 2>\/dev\/null\)/;
+const githubUrlPattern = 
+// eslint-disable-next-line no-useless-escape, max-len
+/^https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/[a-z0-9]{40}\/governance\/votes\/Executive%20vote%20-%20.+\.md$/;
 const ethAddressPattern = /0x[a-fA-F0-9]{40}/g;
 function extractGithubUrl(line) {
     const match = line.match(hashCommentPattern);
@@ -78,8 +82,8 @@ function downloadTextFile(url, fileName) {
     return filePath;
 }
 function compareAddresses(whatExpected_, whereExpected_) {
-    const what = new Set(whatExpected_);
-    const where = new Set(whereExpected_);
+    const what = new Set(whatExpected_.map(i => i.toLowerCase()));
+    const where = new Set(whereExpected_.map(i => i.toLowerCase()));
     const diff = new Set([...what].filter(x => !where.has(x)));
     return diff;
 }
@@ -92,12 +96,12 @@ function extractAddressesFromSourceCode(sourceCode) {
     const ast = (0, parser_1.parse)(sourceCode);
     const ret = [];
     (0, parser_1.visit)(ast, {
-        NumberLiteral: function (node) {
+        NumberLiteral(node) {
             const value = node.number;
             if (value.match(ethAddressPattern)) {
                 ret.push(value);
             }
-        }
+        },
     });
     return ret;
 }
@@ -148,10 +152,12 @@ class ExecDocAddressesMatchSourceCode {
         const missingExecAddressesInSpell = compareAddresses(addresssesExecDoc, addressesSpell);
         const missingSpellAddressesInExec = compareAddresses(addressesSpell, addresssesExecDoc);
         if (missingExecAddressesInSpell.size !== 0) {
-            this.reporter.error({ type: 'SourceUnit', loc }, this.ruleId, 'Expected addresses in the source code to match addresses in the executive document. Missing addresses:\n' + Array.from(missingExecAddressesInSpell).join(',\n'));
+            this.reporter.error({ type: 'SourceUnit', loc }, this.ruleId + '-source-code', 
+            // eslint-disable-next-line max-len
+            `Expected addresses in the source code to match addresses in the executive document. Missing addresses:\n${Array.from(missingExecAddressesInSpell).join(',\n')}`);
         }
         if (missingSpellAddressesInExec.size !== 0) {
-            this.reporter.error({ type: 'SourceUnit', loc }, this.ruleId, 'Expected addresses in the exec to match addresses in the spell. Missing addresses:\n' + Array.from(missingSpellAddressesInExec).join(',\n'));
+            this.reporter.warn({ type: 'SourceUnit', loc }, this.ruleId + '-exec-doc', `Not all addresses in the source code are present in the executive document. Missing addresses:\n${Array.from(missingSpellAddressesInExec).join(',\n')}`);
         }
     }
 }

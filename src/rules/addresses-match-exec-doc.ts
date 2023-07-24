@@ -23,7 +23,7 @@ AUF
 `;
 // TODO
 export const meta: RuleMeta = {
-    ruleId: 'addresses-match-exec-doc',
+    ruleId: 'addresses-match',
     type: 'miscellaneous',
 
     // TODO
@@ -96,8 +96,8 @@ function downloadTextFile(url: string, fileName: string): string {
 }
 
 function compareAddresses(whatExpected_: string[], whereExpected_: string[]): Set<string> {
-    const what = new Set(whatExpected_);
-    const where = new Set(whereExpected_);
+    const what = new Set(whatExpected_.map(i => i.toLowerCase()));
+    const where = new Set(whereExpected_.map(i => i.toLowerCase()));
     const diff = new Set([...what].filter(x => !where.has(x)));
     return diff;
 }
@@ -202,7 +202,7 @@ export class ExecDocAddressesMatchSourceCode {
         if (missingExecAddressesInSpell.size !== 0) {
             this.reporter.error(
                 { type: 'SourceUnit', loc },
-                this.ruleId,
+                this.ruleId+'-source-code',
                 // eslint-disable-next-line max-len
                 `Expected addresses in the source code to match addresses in the executive document. Missing addresses:\n${Array.from(
                     missingExecAddressesInSpell
@@ -212,8 +212,8 @@ export class ExecDocAddressesMatchSourceCode {
         if (missingSpellAddressesInExec.size !== 0) {
             this.reporter.warn(
                 { type: 'SourceUnit', loc },
-                this.ruleId,
-                `Expected addresses in the exec to match addresses in the spell. Missing addresses:\n${Array.from(
+                this.ruleId + '-exec-doc',
+                `Not all addresses in the source code are present in the executive document. Missing addresses:\n${Array.from(
                     missingSpellAddressesInExec
                 ).join(',\n')}`
             );
