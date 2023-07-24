@@ -1,16 +1,19 @@
 import type {
+    ASTNode,
     BaseASTNode,
     ContractDefinition,
+    NumberLiteral,
     Reporter,
     RuleMeta,
     StateVariableDeclaration,
     StateVariableDeclarationVariable,
     VariableDeclaration,
 } from 'solhint';
-import {writeFileSync, readFileSync} from 'fs';
-import {tmpdir} from 'os';
-import {join} from 'path'
-import fetch from 'sync-fetch'
+import { writeFileSync, readFileSync } from 'fs';
+import { tmpdir } from 'os';
+import { join } from 'path';
+import { parse, visit } from '@solidity-parser/parser';
+import fetch from 'sync-fetch';
 
 // TODO
 const goodCode = `
@@ -54,8 +57,11 @@ export const meta: RuleMeta = {
 
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 const commentPattern = /.*\/\/.*/;
-const hashCommentPattern = /\s*\/\/ Hash: cast keccak -- "\$\(wget \'https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/.*' -q -O - 2>\/dev\/null\)/
-const githubUrlPattern = /^https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/[a-z0-9]{40}\/governance\/votes\/Executive%20vote%20-%20.+\.md$/
+const hashCommentPattern =
+    /\s*\/\/ Hash: cast keccak -- "\$\(wget \'https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/.*' -q -O - 2>\/dev\/null\)/;
+const githubUrlPattern =
+    /^https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/[a-z0-9]{40}\/governance\/votes\/Executive%20vote%20-%20.+\.md$/;
+const ethAddressPattern = /0x[a-fA-F0-9]{40}/g;
 
 function extractGithubUrl(line: string): string | null {
     const match = line.match(hashCommentPattern);
@@ -79,7 +85,7 @@ function downloadTextFile(url: string, fileName: string): string {
     const response = fetch(url);
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch the file from ${url}. Status: ${response.status}`);
+        throw new Error(`Failed to fetch the file from ${url}. Status: ${response.status}`);
     }
 
     const text = response.text();
@@ -89,22 +95,31 @@ function downloadTextFile(url: string, fileName: string): string {
     return filePath;
 }
 
-function compareAddresses(what_: string[], where_: string[]): Set<string> {
-    const what = new Set(what_)
-    const where = new Set(where_)
+function compareAddresses(whatExpected_: string[], whereExpected_: string[]): Set<string> {
+    const what = new Set(whatExpected_);
+    const where = new Set(whereExpected_);
     const diff = new Set([...what].filter(x => !where.has(x)));
     return diff;
 }
 
 function extractAddressesFromFile(filePath: string) {
     const fileText = readFileSync(filePath, 'utf8');
-    const addresses = fileText.match(/0x[a-fA-F0-9]{40}/g);
+    const addresses = fileText.match(ethAddressPattern);
     return addresses === null ? [] : addresses;
 }
 
 function extractAddressesFromSourceCode(sourceCode: string) {
-    const addresses = sourceCode.match(/0x[a-fA-F0-9]{40}/g);
-    return addresses === null ? [] : addresses;
+    const ast = parse(sourceCode);
+    const ret: string[] = [];
+    visit(ast, {
+        NumberLiteral(node: NumberLiteral) {
+            const value = node.number;
+            if (value.match(ethAddressPattern)) {
+                ret.push(value);
+            }
+        },
+    });
+    return ret;
 }
 
 export class ExecDocAddressesMatchSourceCode {
@@ -176,26 +191,30 @@ export class ExecDocAddressesMatchSourceCode {
                 this.ruleId,
                 'Expected line above `description` variable to contain a github url.'
             );
-            return
+            return;
         }
-        const filePath = downloadTextFile(githubUrl, 'executive.md')
-        const addresssesExecDoc = extractAddressesFromFile(filePath);
+        const filePath = downloadTextFile(githubUrl, 'executive.md');
         const addressesSpell = extractAddressesFromSourceCode(this.inputSrc);
+        const addresssesExecDoc = extractAddressesFromFile(filePath);
         // compare the two
-        const execAddressesInSpell = compareAddresses(addresssesExecDoc, addressesSpell);
-        const spellAddressesInExec = compareAddresses(addressesSpell, addresssesExecDoc);
-        if (execAddressesInSpell.size !== 0) {
+        const missingExecAddressesInSpell = compareAddresses(addresssesExecDoc, addressesSpell);
+        const missingSpellAddressesInExec = compareAddresses(addressesSpell, addresssesExecDoc);
+        if (missingExecAddressesInSpell.size !== 0) {
             this.reporter.error(
                 { type: 'SourceUnit', loc },
                 this.ruleId,
-                'Expected addresses in the source code to match addresses in the executive document. Missing addresses: ' + Array.from(execAddressesInSpell).join(', ')
+                `Expected addresses in the source code to match addresses in the executive document. Missing addresses:\n${Array.from(
+                    missingExecAddressesInSpell
+                ).join(',\n')}`
             );
         }
-        if (spellAddressesInExec.size !== 0) {
+        if (missingSpellAddressesInExec.size !== 0) {
             this.reporter.error(
                 { type: 'SourceUnit', loc },
                 this.ruleId,
-                'Expected addresses in the exec to match addresses in the spell. Missing addresses: ' + Array.from(spellAddressesInExec).join(', ')
+                `Expected addresses in the exec to match addresses in the spell. Missing addresses:\n${Array.from(
+                    missingSpellAddressesInExec
+                ).join(',\n')}`
             );
         }
     }

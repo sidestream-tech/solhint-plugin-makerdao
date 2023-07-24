@@ -7,6 +7,7 @@ exports.ExecDocAddressesMatchSourceCode = exports.meta = void 0;
 const fs_1 = require("fs");
 const os_1 = require("os");
 const path_1 = require("path");
+const parser_1 = require("@solidity-parser/parser");
 const sync_fetch_1 = __importDefault(require("sync-fetch"));
 // TODO
 const goodCode = `
@@ -48,6 +49,7 @@ const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 const commentPattern = /.*\/\/.*/;
 const hashCommentPattern = /\s*\/\/ Hash: cast keccak -- "\$\(wget \'https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/.*' -q -O - 2>\/dev\/null\)/;
 const githubUrlPattern = /^https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/[a-z0-9]{40}\/governance\/votes\/Executive%20vote%20-%20.+\.md$/;
+const ethAddressPattern = /0x[a-fA-F0-9]{40}/g;
 function extractGithubUrl(line) {
     const match = line.match(hashCommentPattern);
     if (match === null) {
@@ -75,20 +77,29 @@ function downloadTextFile(url, fileName) {
     (0, fs_1.writeFileSync)(filePath, text, 'utf8');
     return filePath;
 }
-function compareAddresses(what_, where_) {
-    const what = new Set(what_);
-    const where = new Set(where_);
+function compareAddresses(whatExpected_, whereExpected_) {
+    const what = new Set(whatExpected_);
+    const where = new Set(whereExpected_);
     const diff = new Set([...what].filter(x => !where.has(x)));
     return diff;
 }
 function extractAddressesFromFile(filePath) {
     const fileText = (0, fs_1.readFileSync)(filePath, 'utf8');
-    const addresses = fileText.match(/0x[a-fA-F0-9]{40}/g);
+    const addresses = fileText.match(ethAddressPattern);
     return addresses === null ? [] : addresses;
 }
 function extractAddressesFromSourceCode(sourceCode) {
-    const addresses = sourceCode.match(/0x[a-fA-F0-9]{40}/g);
-    return addresses === null ? [] : addresses;
+    const ast = (0, parser_1.parse)(sourceCode);
+    const ret = [];
+    (0, parser_1.visit)(ast, {
+        NumberLiteral: function (node) {
+            const value = node.number;
+            if (value.match(ethAddressPattern)) {
+                ret.push(value);
+            }
+        }
+    });
+    return ret;
 }
 class ExecDocAddressesMatchSourceCode {
     constructor(reporter, _config, inputSrc) {
@@ -131,16 +142,16 @@ class ExecDocAddressesMatchSourceCode {
             return;
         }
         const filePath = downloadTextFile(githubUrl, 'executive.md');
-        const addresssesExecDoc = extractAddressesFromFile(filePath);
         const addressesSpell = extractAddressesFromSourceCode(this.inputSrc);
+        const addresssesExecDoc = extractAddressesFromFile(filePath);
         // compare the two
-        const execAddressesInSpell = compareAddresses(addresssesExecDoc, addressesSpell);
-        const spellAddressesInExec = compareAddresses(addressesSpell, addresssesExecDoc);
-        if (execAddressesInSpell.size !== 0) {
-            this.reporter.error({ type: 'SourceUnit', loc }, this.ruleId, 'Expected addresses in the source code to match addresses in the executive document. Missing addresses: ' + Array.from(execAddressesInSpell).join(', '));
+        const missingExecAddressesInSpell = compareAddresses(addresssesExecDoc, addressesSpell);
+        const missingSpellAddressesInExec = compareAddresses(addressesSpell, addresssesExecDoc);
+        if (missingExecAddressesInSpell.size !== 0) {
+            this.reporter.error({ type: 'SourceUnit', loc }, this.ruleId, 'Expected addresses in the source code to match addresses in the executive document. Missing addresses:\n' + Array.from(missingExecAddressesInSpell).join(',\n'));
         }
-        if (spellAddressesInExec.size !== 0) {
-            this.reporter.error({ type: 'SourceUnit', loc }, this.ruleId, 'Expected addresses in the exec to match addresses in the spell. Missing addresses: ' + Array.from(spellAddressesInExec).join(', '));
+        if (missingSpellAddressesInExec.size !== 0) {
+            this.reporter.error({ type: 'SourceUnit', loc }, this.ruleId, 'Expected addresses in the exec to match addresses in the spell. Missing addresses:\n' + Array.from(missingSpellAddressesInExec).join(',\n'));
         }
     }
 }
