@@ -20,6 +20,9 @@ pragma solidity 0.4.4;
 
 // if the executive document contains an address 0x0000000000000000000000000000000000000000
 contract C {
+    // Hash: cast keccak -- "$(wget 'https://raw.githubusercontent.com/makerdao/community/e4bf988dd35f82e2828e1ce02c6762ddd398ff92/governance/votes/Executive%20vote%20-%20June%2028%2C%202023.md' -q -O - 2>/dev/null)"
+    string public constant override description =
+        "some description";
     address public a = 0x0000000000000000000000000000000000000000;
 }
 `;
@@ -30,6 +33,9 @@ pragma solidity 0.4.4;
 
 // if the executive document contains an address 0x0000000000000000000000000000000000000000
 contract C {
+    // Hash: cast keccak -- "$(wget 'https://raw.githubusercontent.com/makerdao/community/e4bf988dd35f82e2828e1ce02c6762ddd398ff92/governance/votes/Executive%20vote%20-%20June%2028%2C%202023.md' -q -O - 2>/dev/null)"
+    string public constant override description =
+        "some description";
     address public a = 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee;
 }
 `;
