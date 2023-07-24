@@ -7,7 +7,8 @@ declare module 'solhint' {
         plugins: string[];
     }
     export interface Reporter {
-        error: (error: BaseASTNode, ruleId: string, message: string, meta?: RuleMeta) => void;
+        error: (ctx: BaseASTNode, ruleId: string, message: string, meta?: RuleMeta) => void;
+        warn: (ctx: BaseASTNode, ruleId: string, message: string, meta?: RuleMeta) => void;
         errorCount: number;
     }
     export function processStr(sourceCode: string, config: LinterConfig): Reporter;

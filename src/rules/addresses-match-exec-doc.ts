@@ -210,7 +210,7 @@ export class ExecDocAddressesMatchSourceCode {
             );
         }
         if (missingSpellAddressesInExec.size !== 0) {
-            this.reporter.error(
+            this.reporter.warn(
                 { type: 'SourceUnit', loc },
                 this.ruleId,
                 `Expected addresses in the exec to match addresses in the spell. Missing addresses:\n${Array.from(
