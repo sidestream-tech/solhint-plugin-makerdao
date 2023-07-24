@@ -13,7 +13,6 @@ import { join } from 'path';
 import { parse, visit } from '@solidity-parser/parser';
 import fetch from 'sync-fetch';
 
-// TODO
 const goodCode = `
 pragma solidity 0.4.4;
 
@@ -26,7 +25,6 @@ contract C {
     address public a = 0x0000000000000000000000000000000000000000;
 }
 `;
-// TODO
 const badCode = `
 pragma solidity 0.4.4;
 
@@ -39,12 +37,10 @@ contract C {
     address public a = 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee;
 }
 `;
-// TODO
 export const meta: RuleMeta = {
     ruleId: 'addresses-match',
     type: 'miscellaneous',
 
-    // TODO
     docs: {
         description: 'Addresses mentioned in the executive document have to be present in the source code.',
         category: 'Miscellaneous',
