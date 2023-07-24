@@ -1,5 +1,4 @@
 import type {
-    ASTNode,
     BaseASTNode,
     ContractDefinition,
     NumberLiteral,
@@ -7,7 +6,6 @@ import type {
     RuleMeta,
     StateVariableDeclaration,
     StateVariableDeclarationVariable,
-    VariableDeclaration,
 } from 'solhint';
 import { writeFileSync, readFileSync } from 'fs';
 import { tmpdir } from 'os';
@@ -58,8 +56,10 @@ export const meta: RuleMeta = {
 const lineBreakPattern = /\r\n|[\r\n\u2028\u2029]/u;
 const commentPattern = /.*\/\/.*/;
 const hashCommentPattern =
+    // eslint-disable-next-line no-useless-escape, max-len
     /\s*\/\/ Hash: cast keccak -- "\$\(wget \'https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/.*' -q -O - 2>\/dev\/null\)/;
 const githubUrlPattern =
+    // eslint-disable-next-line no-useless-escape, max-len
     /^https:\/\/raw\.githubusercontent\.com\/makerdao\/community\/[a-z0-9]{40}\/governance\/votes\/Executive%20vote%20-%20.+\.md$/;
 const ethAddressPattern = /0x[a-fA-F0-9]{40}/g;
 
@@ -203,6 +203,7 @@ export class ExecDocAddressesMatchSourceCode {
             this.reporter.error(
                 { type: 'SourceUnit', loc },
                 this.ruleId,
+                // eslint-disable-next-line max-len
                 `Expected addresses in the source code to match addresses in the executive document. Missing addresses:\n${Array.from(
                     missingExecAddressesInSpell
                 ).join(',\n')}`
